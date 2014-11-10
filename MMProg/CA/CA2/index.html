@@ -1,15 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>CA 2</title>
+	<meta charset="UTF-8">
+	<title>CA 2</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+	<style>
+		video {
+			display: block;
+		}
+		canvas {
+			border: 2px solid black;
+			display: block;
+		}
+		canvas:active {
+			cursor: crosshair;
+		}
+		#title {
+			font-size: 5em;
+		}
+		#filters {
+			display: inline-block;
+		}
+		.childTitles {
+			font-size: 2em;
+		}
+		#lineWidth {
+			display: inline;
+			max-width: 50%;
+		}
+		.text {
+			display: inline;
+		}
+	</style>
 </head>
 <body>
-<video id="video"></video>
-<button id="snapButton">Take Snapshot</button>
-<canvas id="canvas"></canvas>
-<button id="negativeButton">Negative</button>
-<button id="polaroidButton">Polaroid</button>
+	<section class = "col-md-6">
+		<p = id="title">Video</p>
+		<video id="video"></video>
+		<button id="snapButton">Take Snapshot</button>
+	</section>
+	<section class = "col-md-6">
+		<p id="title">Canvas</p>
+		<canvas id="canvas"></canvas>
+		<section class="col-md-6">
+			<button id="drawButton">Draw</button>
+			<button id="eraseButton">Erase</button>
+		</section>
+		<section class="col-md-6">
+			<section id="filters" class="col-md-3">
+			<p class="childTitles">Filters</p>
+			<button id="negativeButton">Negative</button>
+			<button id="polaroidButton">Polaroid</button>
+		</section>
+		<section id="lineWidthSection" class="col-md-3">
+			<p class="childTitles">Line Width</p>
+			<p class="text">1</p>
+			<input type="range" min="1" id="lineWidth" value="5" max="50">
+			<p class="text">50</p>
+		</section>
+		<section id="colourSection">
+			<p class="childTitle">Colours</p>
+			<input type="color" id="colorPicker">			
+		</section>
+		</section>
+	</section>
 </body>
 <script src="js/assetLoader.js"></script>
 <script src="js/index.js"></script>
