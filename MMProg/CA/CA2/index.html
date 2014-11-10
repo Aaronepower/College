@@ -42,27 +42,33 @@
 	</section>
 	<section class = "col-md-6">
 		<p id="title">Canvas</p>
-		<canvas id="canvas"></canvas>
+		<div id="canvasWrapper">
+			<canvas id="canvas" tabindex="1"></canvas>
+		</div>
 		<section class="col-md-6">
 			<button id="drawButton">Draw</button>
 			<button id="eraseButton">Erase</button>
 		</section>
 		<section class="col-md-6">
+			<section id="utilties">
+				<button id="undoButton">Undo</button>
+				<button id="textButton">Text</button>
+			</section>
 			<section id="filters" class="col-md-3">
-			<p class="childTitles">Filters</p>
-			<button id="negativeButton">Negative</button>
-			<button id="polaroidButton">Polaroid</button>
-		</section>
-		<section id="lineWidthSection" class="col-md-3">
-			<p class="childTitles">Line Width</p>
-			<p class="text">1</p>
-			<input type="range" min="1" id="lineWidth" value="5" max="50">
-			<p class="text">50</p>
-		</section>
-		<section id="colourSection">
-			<p class="childTitle">Colours</p>
-			<input type="color" id="colorPicker">			
-		</section>
+				<p class="childTitles">Filters</p>
+				<button id="negativeButton">Negative</button>
+				<button id="polaroidButton">Polaroid</button>
+			</section>
+			<section id="lineWidthSection" class="col-md-3">
+				<p class="childTitles">Line Width</p>
+				<p class="text">1</p>
+				<input type="range" min="1" id="lineWidth" value="5" max="50">
+				<p class="text">50</p>
+			</section>
+			<section id="colourSection">
+				<p class="childTitle">Colours</p>
+				<input type="color" id="colorPicker">			
+			</section>
 		</section>
 	</section>
 </body>
