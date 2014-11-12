@@ -32,46 +32,64 @@
 		.text {
 			display: inline;
 		}
+
+		#canvasWrapper {
+
+			height: 500px;
+		}
+
+		#canvasWrapper canvas {
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		}
 	</style>
 </head>
 <body>
 	<section class = "col-md-6">
-		<p = id="title">Video</p>
-		<video id="video"></video>
+		<p id="title">Video</p>
+		<video id="userMediaVideo"></video>
 		<button id="snapButton">Take Snapshot</button>
 	</section>
 	<section class = "col-md-6">
 		<p id="title">Canvas</p>
-		<div id="canvasWrapper">
-			<canvas id="canvas" tabindex="1"></canvas>
+		<div id="canvasWrapper" class="col-md-12" width="640" height="480">
+			<canvas id="userMediaCanvas"></canvas>
+			<canvas id="filterCanvas"></canvas>
+			<canvas id="textCanvas" tabindex="1"></canvas>
+			<canvas id="drawingCanvas"></canvas>
 		</div>
-		<section class="col-md-6">
+		<section class="col-md-12">
+		<section class="col-md-3">
 			<button id="drawButton">Draw</button>
 			<button id="eraseButton">Erase</button>
-		</section>
-		<section class="col-md-6">
-			<section id="utilties">
 				<button id="undoButton">Undo</button>
 				<button id="textButton">Text</button>
-			</section>
-			<section id="filters" class="col-md-3">
+		</section>
+		<section class="col-md-9">
+			<section id="filters" class="col-md-4">
 				<p class="childTitles">Filters</p>
 				<button id="negativeButton">Negative</button>
 				<button id="polaroidButton">Polaroid</button>
 			</section>
-			<section id="lineWidthSection" class="col-md-3">
+			<section id="lineWidthSection" class="col-md-4">
 				<p class="childTitles">Line Width</p>
 				<p class="text">1</p>
 				<input type="range" min="1" id="lineWidth" value="5" max="50">
 				<p class="text">50</p>
 			</section>
-			<section id="colourSection">
+			<section id="colourSection" class="col-md-4">
 				<p class="childTitle">Colours</p>
 				<input type="color" id="colorPicker">			
 			</section>
 		</section>
+		</section>
 	</section>
 </body>
 <script src="js/assetLoader.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/getUserMedia.js"></script>
+<script src="js/filters.js"></script>
+<script src="js/textCanvas.js"></script>
 <script src="js/index.js"></script>
 </html>
