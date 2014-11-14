@@ -43,6 +43,10 @@
 		    top: 0;
 		    left: 0;
 		}
+
+		#hiddenCanvas {
+			display:none;
+		}
 	</style>
 </head>
 <body>
@@ -65,6 +69,7 @@
 			<button id="eraseButton">Erase</button>
 				<button id="undoButton">Undo</button>
 				<button id="textButton">Text</button>
+				<button id="saveButton">Save</button>
 		</section>
 		<section class="col-md-9">
 			<section id="filters" class="col-md-4">
@@ -85,6 +90,7 @@
 		</section>
 		</section>
 	</section>
+	<canvas id="hiddenCanvas"></canvas>
 </body>
 <script src="js/assetLoader.js"></script>
 <script src="js/utils.js"></script>
@@ -92,4 +98,5 @@
 <script src="js/filters.js"></script>
 <script src="js/textCanvas.js"></script>
 <script src="js/index.js"></script>
+<script src="js/hiddenCanvas.js" ></script>
 </html>

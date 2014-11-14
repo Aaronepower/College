@@ -1,0 +1,20 @@
+1:
+ a: 500 KBps
+ b: 64 Seconds
+ c: 
+   i: 100Kbps
+   ii: 5.333R minutes
+
+2:
+ a: processing
+ b: transmission
+ c: queueing
+ d: propagation
+
+3:
+ a: 0.02 seconds 5000000/250000000
+ b: No
+ c: No
+
+4:
+ 

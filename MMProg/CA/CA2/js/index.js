@@ -101,16 +101,25 @@
     }
     drawingCanvasMouseRelease()
   }
+  var keyMap = []
+  function keyShortcuts (event) {
+    keyMap[event.keyCode] = event.type == 'keydown'
+
+    if (keyMap[17]) {
+      if (keyMap[68]) drawButtonEvent()
+    }
+  }
 
   var buttons = document.querySelectorAll('button')
 
-  for (var button of buttons) {
-    button.addEventListener('click', function() {
-      if (this.id !== 'textButton') {
+  for (var i = 0; i < buttons.length; i++) {
+    var button = buttons[i]
+    if (button.id !== 'textButton') {
+      button.addEventListener('click', function() {
         document.getElementById('drawingCanvas').style.pointerEvents = 'all'
         document.getElementById('textButton').disabled = false 
-      }
-    })
+      })      
+    }
   }
 
   drawingCanvas.addEventListener('mousedown', drawingCanvasMouseDown)
