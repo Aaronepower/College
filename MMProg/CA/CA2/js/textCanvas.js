@@ -8,9 +8,10 @@
 		, mouseX      = 0
 		, mouseY      = 0
 
-	function textButtonClick () {
+	textButtonClick = function () {
 		textButton.disabled = true
 		document.getElementById('drawingCanvas').style.pointerEvents = 'none'
+		document.getElementById('rangeTitle').innerHTML = 'Font Size:'
 	}
 
   function textCanvasMouseDown (event) {
@@ -24,7 +25,8 @@
     var character = String.fromCharCode(event.which)
       , width     = mouseX
 
-    textContext.font = "70px Arial"
+    textContext.font = getWidthRangeValue()+'px Arial'
+    textContext.fillStyle = getColor()
     if (charArray.length > 0) {
      charArray.forEach(function (singleChar) {
        width += textContext.measureText(singleChar).width

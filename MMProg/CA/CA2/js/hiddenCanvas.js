@@ -9,12 +9,14 @@
 	var allCanvas = [userMediaCanvas, filterCanvas, textCanvas, drawingCanvas]
 	hiddenCanvas.width = videoWidth
 	hiddenCanvas.height = videoHeight
-	saveButton.addEventListener('click', function() {
+
+	saveButtonClick = function () {
 		var hiddenContext = hiddenCanvas.getContext('2d')
 		for (var i = 0; i < allCanvas.length; i++) {
 			var currentCanvas = allCanvas[i]
 			hiddenContext.drawImage(currentCanvas, 0 ,0)
 		}
 		window.location.href = hiddenCanvas.toDataURL('image/png')
-	})
+	}
+	saveButton.addEventListener('click', saveButtonClick)
 })() 

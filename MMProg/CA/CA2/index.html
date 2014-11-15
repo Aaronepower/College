@@ -39,9 +39,9 @@
 		}
 
 		#canvasWrapper canvas {
-		    position: absolute;
-		    top: 0;
-		    left: 0;
+			position: absolute;
+			top: 0;
+			left: 0;
 		}
 
 		#hiddenCanvas {
@@ -54,6 +54,7 @@
 		<p id="title">Video</p>
 		<video id="userMediaVideo"></video>
 		<button id="snapButton">Take Snapshot</button>
+		<button id="seriesButton">Take Series</button>
 	</section>
 	<section class = "col-md-6">
 		<p id="title">Canvas</p>
@@ -61,42 +62,52 @@
 			<canvas id="userMediaCanvas"></canvas>
 			<canvas id="filterCanvas"></canvas>
 			<canvas id="textCanvas" tabindex="1"></canvas>
+			<canvas id="shapesCanvas"></canvas>
 			<canvas id="drawingCanvas"></canvas>
 		</div>
 		<section class="col-md-12">
-		<section class="col-md-3">
-			<button id="drawButton">Draw</button>
-			<button id="eraseButton">Erase</button>
-				<button id="undoButton">Undo</button>
-				<button id="textButton">Text</button>
-				<button id="saveButton">Save</button>
-		</section>
-		<section class="col-md-9">
-			<section id="filters" class="col-md-4">
-				<p class="childTitles">Filters</p>
-				<button id="negativeButton">Negative</button>
-				<button id="polaroidButton">Polaroid</button>
+			<section class="col-md-3">
+				<h3>Ctrl+Alt+(*)</h3>
+			  <button id="drawButton">(D)raw</button>
+				<button id="eraseButton">(E)rase</button>
+				<button id="undoButton">(U)ndo</button>
+				<button id="textButton">(T)ext</button>
+				<button id="saveButton">(S)ave</button>
 			</section>
-			<section id="lineWidthSection" class="col-md-4">
-				<p class="childTitles">Line Width</p>
-				<p class="text">1</p>
-				<input type="range" min="1" id="lineWidth" value="5" max="50">
-				<p class="text">50</p>
+			<section class="col-md-9">
+				<section id="filters" class="col-md-4">
+					<p class="childTitles">Filters</p>
+					<button id="negativeButton">Negative</button>
+					<button id="polaroidButton">Polaroid</button>
+				</section>
+				<section id="lineWidthSection" class="col-md-4">
+					<p class="childTitles" id="rangeTitle">Line Width:</p>
+					<p class="text">1</p>
+					<input type="range" min="1" id="lineWidth" value="5" max="50">
+					<p class="text">50</p>
+				</section>
+				<section id="colourSection" class="col-md-4">
+					<p class="childTitle">Colours</p>
+					<input type="color" id="colorPicker">			
+				</section>
+				<section>
+					<p id="shapesTitle">Shapes</p>
+					<button id="rectButton">(R)ectangle</button>
+					<button id="arrowButton">(A)rrow</button>
+					<button id="starButton">(S)tar</button>
+				</section>
 			</section>
-			<section id="colourSection" class="col-md-4">
-				<p class="childTitle">Colours</p>
-				<input type="color" id="colorPicker">			
-			</section>
-		</section>
 		</section>
 	</section>
 	<canvas id="hiddenCanvas"></canvas>
 </body>
 <script src="js/assetLoader.js"></script>
-<script src="js/utils.js"></script>
+<script src="js/globals.js"></script>
 <script src="js/getUserMedia.js"></script>
 <script src="js/filters.js"></script>
 <script src="js/textCanvas.js"></script>
-<script src="js/index.js"></script>
+<script src="js/drawingCanvas.js"></script>
 <script src="js/hiddenCanvas.js" ></script>
+<script src="js/keyEvents.js" ></script>
+<script src="js/init.js"></script>
 </html>
