@@ -41,18 +41,22 @@
   function seriesSnapShot () {
   	userMediaContext.clearRect(0,0, videoWidth, videoHeight)
 
-  	var divider   = 9
-  	  , newWidth  = videoWidth / divider
-  	  , newHeight = videoHeight / divider
-	    , x         = 0
-	    , y         = 0
+  	var divider     = 3
+      , numOfDigits = 6
+      , newWidth    = (videoWidth / divider)
+      , newHeight   = (videoHeight / divider)
+      , x           = 0
+      , y           = 0
 
   	function takeSnaps () {
 	  	userMediaContext.drawImage(userMediaVideo, x, y, newWidth, newHeight)
-	  	if (x !== videoWidth - newWidth) {
+      var canvasXBounds = (videoWidth).toFixed(numOfDigits)
+        , canvasYBounds = (videoHeight).toFixed(numOfDigits)
+
+	  	if (x === 0 || !x.toFixed(numOfDigits).equals(canvasXBounds)) {
 	  		x += newWidth
 	  	}
-	  	else if (y !== videoHeight - newHeight) {
+	  	else if (y === 0 || !y.toFixed(numOfDigits).equals(canvasYBounds)) {
 	  		y += newHeight
 	  		x = 0
 	  	}

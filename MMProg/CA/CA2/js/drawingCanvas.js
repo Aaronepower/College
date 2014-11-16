@@ -1,12 +1,7 @@
 (function () {
   'use strict';
 
-  var video           = document.getElementById('userMediaVideo')
-    , userMediaCanvas = document.getElementById('userMediaCanvas')
-    , filterCanvas    = document.getElementById('filterCanvas')
-    , textCanvas      = document.getElementById('textCanvas')
-    , drawingCanvas   = document.getElementById('drawingCanvas')
-    , canvasWrapper   = document.getElementById('canvasWrapper')
+  var drawingCanvas   = document.getElementById('drawingCanvas')
     , drawButton      = document.getElementById('drawButton')
     , eraseButton     = document.getElementById('eraseButton')
     , undoButton      = document.getElementById('undoButton')
@@ -18,19 +13,6 @@
     , globalComposite  = 'source-over'
     , previousCommands = []
   
-  video.width            = 
-  canvasWrapper.width    = 
-  userMediaCanvas.width  = 
-  filterCanvas.width     = 
-  textCanvas.width       = 
-  drawingCanvas.width    = videoWidth
-
-  video.height           = 
-  canvasWrapper.height   = 
-  userMediaCanvas.height = 
-  filterCanvas.height    = 
-  textCanvas.height      = 
-  drawingCanvas.height   = videoHeight
 
   snapButton.disabled = true
 
