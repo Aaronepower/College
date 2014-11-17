@@ -50,14 +50,14 @@
 
   	function takeSnaps () {
 	  	userMediaContext.drawImage(userMediaVideo, x, y, newWidth, newHeight)
-      var canvasXBounds = (videoWidth).toFixed(numOfDigits)
-        , canvasYBounds = (videoHeight).toFixed(numOfDigits)
+      var canvasXBounds = (newWidth).toFixed(numOfDigits)
+        , canvasYBounds = (newHeight).toFixed(numOfDigits)
 
 	  	if (x === 0 || !x.toFixed(numOfDigits).equals(canvasXBounds)) {
-	  		x += newWidth
+	  		x += parseFloat(newWidth).toFixed(numOfDigits)
 	  	}
 	  	else if (y === 0 || !y.toFixed(numOfDigits).equals(canvasYBounds)) {
-	  		y += newHeight
+	  		y += parseFloat(newHeight).toFixed(numOfDigits)
 	  		x = 0
 	  	}
 	  	else {
