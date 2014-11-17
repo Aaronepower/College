@@ -7,7 +7,7 @@
 
 	for (var i = 0; i < buttons.length; i++) {
 		var button = buttons[i]
-		if (button.id !== 'textButton') {
+		if (button.id !== 'textButton' && button.id !== 'rectButton'&& button.id !== 'starButton' && button.id !== 'arrowButton') {
 			button.addEventListener('click', function() {
 				document.getElementById('drawingCanvas').style.pointerEvents = 'all'
 				document.getElementById('textButton').disabled = false

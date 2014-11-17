@@ -1,9 +1,13 @@
 (function () {
 	var shapesCanvas   = document.getElementById('shapesCanvas')
+    , rectButton     = document.getElementById('rectButton')
+    , starButton     = document.getElementById('starButton')
+    , arrowButton    = document.getElementById('arrowButton')
 	  , shapesContext  = shapesCanvas.getContext('2d')
 	  , RECT_NAME      = 'rect'
 	  , STAR_NAME      = 'star'
 	  , ARROW_NAME     = 'arrow'
+    , shape          = null
 
 
 	var x   = null
@@ -12,13 +16,13 @@
 		, y2  = null
 
   drawRect = function(x, y, x2, y2) {
+    console.log('fired');
   	shapesContext.rect(x, y, x2, y2)
   	shapesContext.fillStyle = getColor()
   	shapesContext.fill()
   }
 
   drawStar = function(x, y, x2, y2) {
-  	// function drawStar(cx, cy, spikes, outerRadius, innerRadius) {
     var rot         = (Math.PI / 2 )* 3
 			, newX        = x
 			, newY        = y
@@ -29,7 +33,7 @@
 
     shapesContext.beginPath()
     shapesContext.moveTo(x, y - outerRadius)
-    for (i = 0 i < spikes i++) {
+    for (var i = 0; i < numOfSpikes; i++) {
         x = cx + Math.cos(rot) * outerRadius
         y = cy + Math.sin(rot) * outerRadius
         shapesContext.lineTo(x, y)
@@ -48,6 +52,7 @@
 
   function shapesMousedown (event) {
   	var rect = getRectMargins()
+    console.log(shape);
   	if (x === null) {
   		x = event.pageX - rect.left
   		y = event.pageY - rect.top
@@ -72,7 +77,7 @@
   		}
   		break;
   		case STAR_NAME: {
-  			drawShape(x, y, x2, y2)
+  			drawStar(x, y, x2, y2)
   		}
   		break;
   		case ARROW_NAME: {
@@ -81,4 +86,27 @@
   		break;
   	}
   }
-})() 
+
+  function rectMousedown () {
+    disableDrawCanvas()
+    shape = RECT_NAME
+  }
+
+  function starMousedown () {
+    disableDrawCanvas()
+    shape = STAR_NAME
+  }
+
+  function arrowMousedown () {
+    disableDrawCanvas()
+    shape = ARROW_NAME
+  }
+  function disableDrawCanvas () {
+    document.getElementById('drawingCanvas').style.pointerEvents = 'none'
+  }
+
+  rectButton.addEventListener('click', rectMousedown)
+  starButton.addEventListener('click', starMousedown)
+  arrowButton.addEventListener('click', arrowMousedown)
+  shapesCanvas.addEventListener('mousedown', shapesMousedown)
+})()

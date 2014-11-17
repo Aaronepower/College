@@ -41,7 +41,7 @@
   function seriesSnapShot () {
   	userMediaContext.clearRect(0,0, videoWidth, videoHeight)
 
-  	var divider     = 3
+  	var divider     = 4
       , numOfDigits = 6
       , newWidth    = (videoWidth / divider)
       , newHeight   = (videoHeight / divider)
@@ -50,21 +50,19 @@
 
   	function takeSnaps () {
 	  	userMediaContext.drawImage(userMediaVideo, x, y, newWidth, newHeight)
-      var canvasXBounds = (newWidth).toFixed(numOfDigits)
-        , canvasYBounds = (newHeight).toFixed(numOfDigits)
 
-	  	if (x === 0 || !x.toFixed(numOfDigits).equals(canvasXBounds)) {
-	  		x += parseFloat(newWidth).toFixed(numOfDigits)
+	  	if (x < videoWidth) {
+	  		x += newWidth
 	  	}
-	  	else if (y === 0 || !y.toFixed(numOfDigits).equals(canvasYBounds)) {
-	  		y += parseFloat(newHeight).toFixed(numOfDigits)
+	  	else if (y < videoHeight) {
+	  		y += newHeight
 	  		x = 0
 	  	}
 	  	else {
 	  		clearInterval(interval)
 	  	}
 	  }
-  	var interval = window.setInterval(takeSnaps,1000)
+  	var interval = window.setInterval(takeSnaps,500)
   }
 	
   navigator.getUserMedia(videoSettings, successCallback, errorCallback)
