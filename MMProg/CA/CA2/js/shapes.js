@@ -17,7 +17,7 @@
 
   drawRect = function(x, y, x2, y2) {
     console.log('fired');
-  	shapesContext.rect(x, y, x2, y2)
+  	shapesContext.rect(x, y, x2 - x, y2 - x)
   	shapesContext.fillStyle = getColor()
   	shapesContext.fill()
   }
@@ -61,10 +61,12 @@
 	  	x2 = event.pageX - rect.left
 	  	y2 = event.pageY - rect.top
 
-	  	var topX = Math.max(x, x2)
-	  	  , topY = Math.max(y, y2)
-	  	  , botX = Math.min(x, x2)
-	  	  , botY = Math.min(y, y2)
+	  	var botX = Math.max(x, x2)
+	  	  , botY = Math.max(y, y2)
+	  	  , topX = Math.min(x, x2)
+	  	  , topY = Math.min(y, y2)
+
+        console.log(x, y, x2, y2)
 
 	  	drawShape(topX, topY, botX, botY)
   	}
@@ -85,6 +87,14 @@
   		}
   		break;
   	}
+    clearXAndY()
+  }
+
+  function clearXAndY () {
+    x  = null
+    y  = null
+    x2 = null
+    y2 = null
   }
 
   function rectMousedown () {
