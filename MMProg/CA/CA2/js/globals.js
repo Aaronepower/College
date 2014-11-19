@@ -6,6 +6,9 @@ var videoWidth  = 640
   , undoButtonClick
   , textButtonClick
   , saveButtonClick
+  , drawRect
+  , drawStar
+  , drawArrow
   , firstFired = true
 function getRectMargins () {
 	var rect = drawingCanvas.getBoundingClientRect()
