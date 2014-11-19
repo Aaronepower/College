@@ -1,6 +1,4 @@
 (function () {
-  'use strict';
-
   var drawingCanvas   = document.getElementById('drawingCanvas')
     , drawButton      = document.getElementById('drawButton')
     , eraseButton     = document.getElementById('eraseButton')
@@ -20,8 +18,10 @@
   eraseButton.disabled = false
 
   function lineDraw (x, y, globalComposite, draw) {
-    x -= getRectMargins().left
-    y -= getRectMargins().top
+    var rect = getRectMargins()
+  console.log(rect.left, rect.top)
+    x -= rect.left
+    y -= rect.top
     if (draw) {
       drawingContext.beginPath()
       drawingContext.globalCompositeOperation = globalComposite
@@ -66,20 +66,16 @@
     lineDraw(event.pageX, event.pageY, globalComposite, mouseDown)
   }
   function drawingCanvasMouseRelease () {
+    if (mouseDown) {
+      previousCommands.push(drawingCanvas.toDataURL())
+    }
     mouseDown = false
     drawingContext.closePath()
   }
 
-  function drawingCanvasMouseUp () {
-    if (mouseDown) {
-      previousCommands.push(drawingCanvas.toDataURL())
-    }
-    drawingCanvasMouseRelease()
-  }
-
   drawingCanvas.addEventListener('mousedown', drawingCanvasMouseDown)
   drawingCanvas.addEventListener('mousemove', drawingCanvasMouseMove)
-  drawingCanvas.addEventListener('mouseup', drawingCanvasMouseUp)
+  drawingCanvas.addEventListener('mouseup', drawingCanvasMouseRelease)
   drawingCanvas.addEventListener('mouseleave', drawingCanvasMouseRelease)
   drawButton.addEventListener('click', drawButtonClick)
   eraseButton.addEventListener('click', eraseButtonClick)

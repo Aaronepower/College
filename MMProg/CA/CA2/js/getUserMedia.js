@@ -1,6 +1,4 @@
 (function () {
-	'use strict';
-
   navigator.getUserMedia = ( navigator.getUserMedia 
                           || navigator.webkitGetUserMedia 
                           || navigator.mozGetUserMedia
@@ -25,7 +23,7 @@
 	  userMediaContext.drawImage(userMediaVideo, 0, 0)
 	}
   
-  function errorCallback (e) { console.log('Error: ', e) }
+  function errorCallback (e) { console.error(e) }
 
   function successCallback (stream) {
     if (window.URL) {

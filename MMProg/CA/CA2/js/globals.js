@@ -1,3 +1,4 @@
+'use strict';
 var videoWidth  = 640
   , videoHeight = 480
   , singleSnapShot
@@ -11,10 +12,19 @@ var videoWidth  = 640
   , drawArrow
   , firstFired = true
 function getRectMargins () {
-	var rect = drawingCanvas.getBoundingClientRect()
+	var canvas = document.querySelector('#drawingCanvas')
+	  , top    = 0
+	  , left   = 0
 
-	return { left : rect.left
-		     , top : rect.top
+	// Used over elem.getBoundingClient() as it is broken on chrome
+	while(canvas) {
+	  top  = top + canvas.offsetTop
+	  left = left +canvas.offsetLeft
+	  canvas = canvas.offsetParent       
+	}
+
+	return { left : left
+		     , top : top
 	       }
 }
 

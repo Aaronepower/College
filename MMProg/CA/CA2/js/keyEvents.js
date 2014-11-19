@@ -1,28 +1,34 @@
 (function () {
+	var keyCodes = { D : 68
+	               , E : 69
+	               , S : 83
+	               , T : 84
+	               , U : 85
+	               }
 
 	function keyShortcuts (event) {
 		if (event.ctrlKey && event.altKey) {
 			switch (event.which){
-				case 68: {
+				case keyCodes.D: {
 
 					drawButtonClick()
 				}
 				break;
-				case 69: {
+				case keyCodes.E: {
 					eraseButtonClick()
 				}
 				break;
-				case 83: {
+				case keyCodes.S: {
 
 					saveButtonClick()
 				}
 				break;
-				case 84: {
+				case keyCodes.T: {
 
 					textButtonClick()
 				}
 				break;
-				case 85: {
+				case keyCodes.U: {
 
 					undoButtonClick()
 				}
