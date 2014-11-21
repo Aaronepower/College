@@ -29,9 +29,11 @@ function getRectMargins () {
 }
 
 function getColor () {
-  return document.getElementById('colorPicker').value
+	var color = document.getElementById('colorPicker')
+  return color.value
 }
 
 function getWidthRangeValue () {
-  return document.getElementById('lineWidth').value
+	var input = document.getElementById('lineWidth')
+  return input.value
 }
