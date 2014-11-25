@@ -1,4 +1,5 @@
 (function () {
+  'use strict';
   var drawingCanvas   = document.getElementById('drawingCanvas')
     , drawButton      = document.getElementById('drawButton')
     , eraseButton     = document.getElementById('eraseButton')
@@ -10,16 +11,9 @@
     , mouseDown        = false
     , globalComposite  = 'source-over'
     , previousCommands = []
-  
-
-  snapButton.disabled = true
-
-  drawButton.disabled  = 
-  eraseButton.disabled = false
 
   function lineDraw (x, y, globalComposite, draw) {
     var rect = getRectMargins()
-  console.log(rect.left, rect.top)
     x -= rect.left
     y -= rect.top
     if (draw) {
@@ -66,9 +60,7 @@
     lineDraw(event.pageX, event.pageY, globalComposite, mouseDown)
   }
   function drawingCanvasMouseRelease () {
-    if (mouseDown) {
-      previousCommands.push(drawingCanvas.toDataURL())
-    }
+    previousCommands.push(drawingCanvas.toDataURL())
     mouseDown = false
     drawingContext.closePath()
   }

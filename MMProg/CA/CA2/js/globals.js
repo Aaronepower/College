@@ -1,4 +1,3 @@
-'use strict';
 var videoWidth  = 640
   , videoHeight = 480
   , singleSnapShot

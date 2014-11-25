@@ -1,4 +1,5 @@
 (function () {
+	'use strict';
 	var keyCodes = { D : 68
 	               , E : 69
 	               , S : 83

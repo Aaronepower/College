@@ -1,4 +1,5 @@
 (function () {
+  'use strict';
   navigator.getUserMedia = ( navigator.getUserMedia 
                           || navigator.webkitGetUserMedia 
                           || navigator.mozGetUserMedia
@@ -33,6 +34,7 @@
       userMediaVideo.src = stream
     }
     snapButton.disabled = false
+    seriesButton.disabled = false
     userMediaVideo.play()
   }
 
@@ -40,7 +42,6 @@
   	userMediaContext.clearRect(0,0, videoWidth, videoHeight)
 
   	var divider     = 4
-      , numOfDigits = 6
       , newWidth    = (videoWidth / divider)
       , newHeight   = (videoHeight / divider)
       , x           = 0

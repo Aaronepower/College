@@ -1,5 +1,5 @@
 (function () {
-	
+	'use strict';
 	var textCanvas = document.getElementById('textCanvas')
 	  , textButton = document.getElementById('textButton')
 
@@ -9,7 +9,6 @@
 		, mouseY      = 0
 
 	textButtonClick = function () {
-		textButton.disabled = true
     document.getElementById('drawingCanvas').style.pointerEvents = 'none'
 		document.getElementById('shapesCanvas').style.pointerEvents = 'none'
 		document.getElementById('rangeTitle').innerHTML = 'Font Size:'

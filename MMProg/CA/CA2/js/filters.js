@@ -1,5 +1,5 @@
 (function () {
-	
+	'use strict';
 	function downloadCallback () {
 
 		var negativeButton = document.getElementById('negativeButton')
