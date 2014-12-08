@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Practical 7</title>
+	</head>
+	<body>
+		  <canvas id="canvas"width=800 height=400>
+		  </canvas>
+	</body>
+
+	<script>
+		var canvas = document.getElementById("canvas")		
+		  , context = canvas.getContext("2d")
+		  , t = 0
+		function animate () {
+			window.requestAnimationFrame(animate)
+			context.rect(t * 10,Math.sin(t)*10, 5,5)
+			t += 1 
+			context.fillStyle = "red"
+			context.fill()
+		}
+		window.requestAnimationFrame(animate)
+	</script>
+</html>
+
