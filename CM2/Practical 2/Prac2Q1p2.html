@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>prac2 Q1 B</title>
+</head>  
+<body>
+	<canvas id='myCanvas' width='640' height='480'
+	style='border:1px solid #000000;'>
+</canvas>
+</body>
+<script src='./classes/ball.js'></script> 
+<script src='./classes/utils.js'></script>
+<script type='text/javascript'>
+var canvas       = document.getElementById('myCanvas')
+  , context      = canvas.getContext('2d')
+  , canvasWidth  = canvas.width
+  , canvasHeight = canvas.height
+  , x            = 0
+  , y            = 0
+  , t            = 0
+  , r            = 10	
+ball = new Ball(r)
+
+function animate () {
+	context.clearRect(0, 0, canvasWidth, canvasHeight)
+	window.requestAnimationFrame(animate, canvas)
+	
+	x      = (r * Math.cos(t*Math.PI/180))
+	y      = ((r*2) * Math.sin(t*Math.PI/180))
+	ball.x = (x * r) + 320
+	ball.y = canvasHeight - (y*r + 240)
+	t     += 1
+	ball.draw(context)
+}
+window.requestAnimationFrame(animate, canvas)
+</script>
+</html>
