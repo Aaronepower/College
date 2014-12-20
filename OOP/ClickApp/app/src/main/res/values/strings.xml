@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ClickingApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="staticClicks">Clicks:</string>
+    <string name="numOfClicks">0</string>
+    <string name="clickButton">Click</string>
+    <string name="clearButton">Clear</string>
+    <string name="saveButton">Save</string>
+    <string name="leaderButton">Leaderboards</string>
+    <string name="clearMessage">Are you sure you want to clear your score?</string>
+    <string name="saveMessage">Are you sure you want to save your score? It will reset your score.</string>
+    <string name="ok">Yes</string>
+    <string name="cancel">No</string>
+    <string name="title_activity_sign_up">Sign Up / Login</string>
+    <string name="firstNameHint">First Name</string>
+    <string name="lastNameHint">Last Name</string>
+    <string name="userNameHint">Username</string>
+    <string name="passwordHint">Password</string>
+    <string name="confirmHint">Confirm Password</string>
+    <string name="signUp">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="signUpButton">New Account</string>
+    <string name="noUserError">No user found with those details.</string>
+    <string name="emptyFieldError">Some fields were empty.</string>
+    <string name="invalidPasswordError">Passwords do not match.</string>
+    <string name="newUserSaveMessage">You will have to Sign Up or Login to save your score. Press \'Ok\' to go to the Sign Up/Login Screen.</string>
+    <string name="homeButton">Home</string>
+    <string name="leaderBoardTitle">LeaderBoards</string>
+    <string name="title_activity_leaderboard">Leaderboards</string>
+    <string name="signOutButton">Sign Out</string>
+    <string name="signOutMessage">Do you wish to sign out?</string>
+    <string name="scoreTitle">Score:</string>
+    <string name="nameTitle">Name:</string>
+    <string name="userExistsError">User already exists</string>
+
+</resources>
