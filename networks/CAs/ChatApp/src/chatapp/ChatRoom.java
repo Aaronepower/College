@@ -5,14 +5,13 @@
  */
 package chatapp;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JTable;
 
 /**
  *
@@ -21,7 +20,7 @@ import javax.swing.JTable;
 public class ChatRoom extends javax.swing.JFrame {
 
     private static Socket connection;
-    private static ArrayList<Message> messages;
+    static Thread readThread;
 
     /**
      * Creates new form InputField
@@ -41,8 +40,7 @@ public class ChatRoom extends javax.swing.JFrame {
 
         userInput = new javax.swing.JTextField();
         chatMessages = new javax.swing.JScrollPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTextArea1 = new javax.swing.JTextArea();
         enterButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -53,20 +51,9 @@ public class ChatRoom extends javax.swing.JFrame {
         chatMessages.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         chatMessages.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable1);
-
-        chatMessages.setViewportView(jScrollPane3);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        chatMessages.setViewportView(jTextArea1);
 
         enterButton.setText("Enter");
         enterButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -148,8 +135,23 @@ public class ChatRoom extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        readThread = new Thread(() -> {
+            ObjectInputStream input = null;
+            Message message = null;
+            try {
+                input = new ObjectInputStream(connection.getInputStream());
+                message = (Message) input.readObject();
+                System.out.println(message);
+                jTextArea1.append(message.toString());
+            } catch (EOFException ex) {
+            } catch (IOException | ClassNotFoundException ex) {
+                Logger.getLogger(ChatRoom.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            new Thread(readThread).start();
+        });
         try {
             connection = new Socket("localhost", ChatApp.PORT);
+            readThread.start();
         } catch (IOException ex) {
             Logger.getLogger(ChatRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -158,25 +160,16 @@ public class ChatRoom extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new ChatRoom().setVisible(true);
-            new Thread(() -> {
-                try {
-                    ObjectInputStream input = new ObjectInputStream(connection.getInputStream());
-                    Message message = (Message) input.readObject();
-                    messages.add(message); 
-                    
-                } catch (IOException | ClassNotFoundException ex) {
-                    Logger.getLogger(ChatRoom.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }).start();
+
         });
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane chatMessages;
     private javax.swing.JButton enterButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
+    private static javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField userInput;
     private javax.swing.JTextField usernameInput;
     // End of variables declaration//GEN-END:variables
