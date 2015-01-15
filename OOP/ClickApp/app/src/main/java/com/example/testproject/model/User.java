@@ -6,18 +6,20 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 
 public class User implements Parcelable {
+    private int id;
     private String firstName;
     private String lastName;
     private String username;
     private String password;
-    private ArrayList<Integer> scores;
+    private int score;
 
-    public User (String firstName, String lastName,String username,String password) {
+    public User (int id, String firstName, String lastName,String username,String password, int score) {
+        this.id = id;
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setUsername(username);
         this.setPassword(password);
-        this.scores = new ArrayList<Integer>();
+        this.score = score;
     }
 
     public String getFirstName() {
@@ -82,11 +84,15 @@ public class User implements Parcelable {
         this.setPassword(in.readString());
     }
 
-    public ArrayList<Integer> getScores() {
-        return this.scores;
+    public int getScore() {
+        return score;
     }
 
-    public void addScore (int score) {
-        this.scores.add(score);
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getId() {
+        return id;
     }
 }

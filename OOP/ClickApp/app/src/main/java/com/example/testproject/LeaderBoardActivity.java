@@ -27,39 +27,43 @@ public class LeaderBoardActivity extends Activity {
         TextView textView;
 
         this.findViewById(R.id.homeButton).setOnClickListener(onclickListener);
-        table = (TableLayout)this.findViewById(R.id.scoreTable);
-        scoresList = Model.getInstance().sortedLeaderboards();
 
-        for (ScoreWrapper scoreWrapper : scoresList) {
-            User user;
-            int score;
 
-            user = scoreWrapper.getUser();
-            score = scoreWrapper.getScore();
-            tableRow = new TableRow(getApplicationContext());
 
-            for (int i = 0; i < 2; i++) {
-                String output = null;
 
-                switch (i) {
-                    case 0: {
-                        output = user.getFirstName() + " " + user.getLastName();
-                    }
-                    break;
-
-                    case 1: {
-                        output = Integer.valueOf(score).toString();
-                    }
-                    break;
-                }
-                textView = new TextView(getApplicationContext());
-                textView.setText(output);
-                textView.setPadding(20, 20, 20, 20);
-                textView.setTextAppearance(this, android.R.style.TextAppearance_Large);
-                tableRow.addView(textView);
-            }
-            table.addView(tableRow);
-        }
+//        table = (TableLayout)this.findViewById(R.id.scoreTable);
+//        scoresList = Model.getInstance().sortedLeaderboards();
+//
+//        for (ScoreWrapper scoreWrapper : scoresList) {
+//            User user;
+//            int score;
+//
+//            user = scoreWrapper.getUser();
+//            score = scoreWrapper.getScore();
+//            tableRow = new TableRow(getApplicationContext());
+//
+//            for (int i = 0; i < 2; i++) {
+//                String output = null;
+//
+//                switch (i) {
+//                    case 0: {
+//                        output = user.getFirstName() + " " + user.getLastName();
+//                    }
+//                    break;
+//
+//                    case 1: {
+//                        output = Integer.valueOf(score).toString();
+//                    }
+//                    break;
+//                }
+//                textView = new TextView(getApplicationContext());
+//                textView.setText(output);
+//                textView.setPadding(20, 20, 20, 20);
+//                textView.setTextAppearance(this, android.R.style.TextAppearance_Large);
+//                tableRow.addView(textView);
+//            }
+//            table.addView(tableRow);
+//        }
     }
 	
 	@Override

@@ -44,7 +44,11 @@ public class UserContentProvider extends ContentProvider{
     }
 
     @Override
-    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+    public Cursor query(Uri uri,
+                        String[] projection,
+                        String selection,
+                        String[] selectionArgs,
+                        String sortOrder) {
         Cursor cursor;
 
         switch(uriMatcher.match(uri)) {
@@ -98,7 +102,9 @@ public class UserContentProvider extends ContentProvider{
             insertedUri = ContentUris.withAppendedId(CONTENT_URI, id);
         }
         else {
-            throw new SQLException("Failed to insert book into " + uri);
+            // Android won't compile this line unless it is an Unchecked Exception.
+            // Originally SQLException
+            throw new RuntimeException("Failed to insert book into " + uri);
         }
         contentResolver.notifyChange(insertedUri, null);
 
@@ -108,11 +114,58 @@ public class UserContentProvider extends ContentProvider{
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        return 0;
+        int count;
+
+        switch (uriMatcher.match(uri)) {
+            case USER_COLLECTION_URI_CODE:
+                count = usersGateway.delete(selection, selectionArgs);
+                break;
+
+            case SINGLE_USER_URI_CODE:
+                String id = uri.getPathSegments().get(1);
+                String where = UsersGateway.ID + " = " + id;
+
+                if (TextUtils.isEmpty(selection)) {
+                    selection = where;
+                }
+                else {
+                    selection += " AND " + where;
+                }
+                count = usersGateway.delete(selection, selectionArgs);
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown URI " + uri);
+        }
+        contentResolver.notifyChange(uri, null);
+
+        return count;
     }
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        return 0;
+        int count;
+
+        switch (uriMatcher.match(uri)) {
+            case USER_COLLECTION_URI_CODE:
+                count = usersGateway.update(values, selection, selectionArgs);
+                break;
+            case SINGLE_USER_URI_CODE:
+                String id = uri.getPathSegments().get(1);
+                String where = UsersGateway.ID + " = " + id;
+
+                if (TextUtils.isEmpty(selection)) {
+                    selection = where;
+                }
+                else {
+                    selection += " AND "+where;
+                }
+                count = usersGateway.update(values, selection, selectionArgs);
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown URI "+ uri);
+        }
+        contentResolver.notifyChange(uri, null);
+
+        return count;
     }
 }

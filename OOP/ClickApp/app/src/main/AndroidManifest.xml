@@ -30,6 +30,11 @@
             android:name=".LeaderBoardActivity"
             android:label="@string/title_activity_leaderboard" >
         </activity>
+        <provider
+            android:name="com.example.testproject.model.db.UserContentProvider"
+            android:authorities="com.bookstore.app.model.db.BookContentProvider"
+            android:exported="true" >
+        </provider>
     </application>
 
 </manifest>

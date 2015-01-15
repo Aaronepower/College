@@ -5,6 +5,11 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.testproject.model.User;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class UsersGateway {
     private SQLiteDatabase db;
     private static UsersGateway instance = null;
@@ -31,6 +36,8 @@ public class UsersGateway {
     public static String openBrace = " ( ";
     public static String stringProps = " TEXT NOT NULL, ";
     public static String closeBrace = " )";
+    public static String score = "score";
+    public static String numProps = " INTEGER NOT NULL ";
     public static String DROP = "DROP TABLE IF EXISTS ";
 
     private static String CREATE_USERS =
@@ -40,10 +47,28 @@ public class UsersGateway {
                     lastName  + stringProps +
                     username  + stringProps +
                     password  + stringProps +
+                    score    + numProps +
                     closeBrace;
 
     public void create() {
         db.execSQL(CREATE_USERS);
+
+        List<User> testUsers = new ArrayList<User>();
+
+        testUsers.add(new User(1, "Aaron", "Power", "aaronpower", "password", 10));
+        testUsers.add(new User(2, "John", "Doe", "johndoe", "12345", 20));
+
+        for (User testUser : testUsers) {
+            ContentValues row = new ContentValues();
+            row.put(ID, testUser.getId());
+            row.put(firstName, testUser.getFirstName());
+            row.put(lastName, testUser.getLastName());
+            row.put(username, testUser.getUsername());
+            row.put(password, testUser.getPassword());
+            row.put(score, testUser.getScore());
+
+            insert(row);
+        }
     }
 
     public void upgrade (int oldDB, int newDB) {

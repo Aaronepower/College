@@ -25,16 +25,12 @@ public class ClickAppOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         UsersGateway leaderboard = UsersGateway.getInstance(db);
-        ScoresGateway scoresboard = ScoresGateway.getInstance(db);
         leaderboard.create();
-        scoresboard.create();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         UsersGateway leaderboard = UsersGateway.getInstance(db);
-        ScoresGateway scoresboard = ScoresGateway.getInstance(db);
         leaderboard.upgrade(oldVersion, newVersion);
-        scoresboard.upgrade(oldVersion, newVersion);
     }
 }
