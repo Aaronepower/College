@@ -32,7 +32,7 @@
         </activity>
         <provider
             android:name="com.example.testproject.model.db.UserContentProvider"
-            android:authorities="com.bookstore.app.model.db.BookContentProvider"
+            android:authorities="com.example.testproject.model.db.UserContentProvider"
             android:exported="true" >
         </provider>
     </application>

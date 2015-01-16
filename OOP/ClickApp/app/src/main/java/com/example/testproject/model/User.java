@@ -1,25 +1,33 @@
 package com.example.testproject.model;
 
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
+import com.example.testproject.model.db.UsersGateway;
 
 public class User implements Parcelable {
-    private int id;
     private String firstName;
     private String lastName;
     private String username;
     private String password;
     private int score;
 
-    public User (int id, String firstName, String lastName,String username,String password, int score) {
-        this.id = id;
+    public User(String firstName, String lastName, String username, String password, int score) {
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setUsername(username);
         this.setPassword(password);
         this.score = score;
+    }
+
+    public User(Cursor cursor) {
+
+        this.firstName = cursor.getString(cursor.getColumnIndex(UsersGateway.firstName));
+        this.lastName = cursor.getString(cursor.getColumnIndex(UsersGateway.lastName));
+        this.username = cursor.getString(cursor.getColumnIndex(UsersGateway.username));
+        this.password = cursor.getString(cursor.getColumnIndex(UsersGateway.password));
+        this.score = cursor.getInt(cursor.getColumnIndex(UsersGateway.score));
     }
 
     public String getFirstName() {
@@ -86,13 +94,5 @@ public class User implements Parcelable {
 
     public int getScore() {
         return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public int getId() {
-        return id;
     }
 }

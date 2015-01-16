@@ -10,7 +10,8 @@ import java.util.List;
 
 public class AsyncUserContentProvider extends AsyncQueryHandler {
 
-    private List<AsyncQueryListener> listeners;
+    private final List<AsyncQueryListener> listeners;
+
     public AsyncUserContentProvider(ContentResolver cr) {
         super(cr);
 
@@ -50,7 +51,4 @@ public class AsyncUserContentProvider extends AsyncQueryHandler {
         listeners.add(listener);
     }
 
-    public void removeAsyncQueryListener(AsyncQueryListener listener) {
-        listeners.remove(listener);
-    }
 }

@@ -15,7 +15,7 @@ public class Form {
     private String passwordFieldValue;
     private String confirmFieldValue;
 
-    public Form (EditText firstNameField, EditText lastNameField, EditText usernameField, EditText passwordField, EditText confirmField) {
+    public Form(EditText firstNameField, EditText lastNameField, EditText usernameField, EditText passwordField, EditText confirmField) {
         this.setFirstNameField(firstNameField);
         this.setLastNameField(lastNameField);
         this.setUsernameField(usernameField);
@@ -28,7 +28,7 @@ public class Form {
         this.setConfirmFieldValue(getConfirmField().getText().toString());
     }
 
-    public Form (EditText usernameField, EditText passwordField) {
+    public Form(EditText usernameField, EditText passwordField) {
         this.setUsernameField(usernameField);
         this.setPasswordField(passwordField);
         this.setUsernameFieldValue(getUsernameField().getText().toString());
@@ -109,7 +109,7 @@ public class Form {
                 getConfirmFieldValue()
         };
 
-        for (String field: fieldValues) {
+        for (String field : fieldValues) {
             if (field != null && field.isEmpty()) {
                 return false;
             }
@@ -136,32 +136,4 @@ public class Form {
     void setConfirmFieldValue(String confirmFieldValue) {
         this.confirmFieldValue = confirmFieldValue;
     }
-
-
-    public boolean userExists () {
-        String username;
-        username = getUsernameFieldValue();
-
-        for (User user : Model.getInstance().getUsers()) {
-            if (user.getUsername().equals(username)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    public User getUser() {
-        String username, password;
-        username = getUsernameFieldValue();
-        password = getPasswordFieldValue();
-        User desiredUser;
-
-        desiredUser = null;
-        for (User user : Model.getInstance().getUsers()) {
-            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                desiredUser = user;
-            }
-        }
-        return desiredUser;
-    }
-
 }

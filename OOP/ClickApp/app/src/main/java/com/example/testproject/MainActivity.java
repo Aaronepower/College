@@ -3,8 +3,11 @@ package com.example.testproject;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -15,70 +18,69 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.testproject.model.Model;
 import com.example.testproject.model.User;
+import com.example.testproject.model.db.AsyncQueryListener;
+import com.example.testproject.model.db.AsyncUserContentProvider;
+import com.example.testproject.model.db.UserContentProvider;
+import com.example.testproject.model.db.UsersGateway;
 
 /**
- *
  * Activity containing main user interaction and serves as the hub to the other activities.
  */
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements AsyncQueryListener {
 
     public static final String SCORE_KEY = "score";
     private static User currentUser = null;
     private int score;
+    private AsyncUserContentProvider provider;
 
     /**
      * Once created attaches OnClickListener listener to the buttons contained within the activity.
+     *
      * @param savedInstanceState previous instance of activity if any are present.
      */
-	@Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        this.findViewById(R.id.clickButton).setOnClickListener(listener);
-        this.findViewById(R.id.clearButton).setOnClickListener(listener);
-        this.findViewById(R.id.saveButton).setOnClickListener(listener);
-        this.findViewById(R.id.leaderButton).setOnClickListener(listener);
-        this.findViewById(R.id.signOutButton).setOnClickListener(listener);
+        int[] buttons = new int[]{
+                R.id.clickButton,
+                R.id.clearButton,
+                R.id.saveButton,
+                R.id.leaderButton,
+                R.id.signOutButton,
+                R.id.deleteButton
+        };
+        for (int button : buttons) {
+            this.findViewById(button).setOnClickListener(listener);
+        }
+        provider = new AsyncUserContentProvider(getContentResolver());
+        provider.addAsyncQueryListener(this);
     }
 
     @Override
-    protected void onResume () {
+    protected void onResume() {
         super.onResume();
+        changeButtons();
+    }
 
-        Button signOutButton = (Button)this.findViewById(R.id.signOutButton);
+    private void changeButtons() {
+        Button signOutButton = (Button) this.findViewById(R.id.signOutButton);
+        Button deleteButton = (Button) this.findViewById(R.id.deleteButton);
 
         if (currentUser != null) {
             signOutButton.setVisibility(View.VISIBLE);
+            deleteButton.setVisibility(View.VISIBLE);
         } else {
             signOutButton.setVisibility(View.GONE);
+            deleteButton.setVisibility(View.GONE);
         }
     }
 
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        return id == R.id.action_settings || super.onOptionsItemSelected(item);
-    }
-    
     private final OnClickListener listener = new OnClickListener() {
-    	public void onClick(View v) {
-    		switch (v.getId()) {
-    			case R.id.clickButton: {
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.clickButton: {
                     int clicks;
                     try {
                         clicks = getNumOfClicks();
@@ -89,20 +91,20 @@ public class MainActivity extends FragmentActivity {
                     }
                 }
                 break;
-    			
-    			case R.id.clearButton: {
+
+                case R.id.clearButton: {
                     ClearDialogFragment clearBox = new ClearDialogFragment();
                     clearBox.show(getFragmentManager(), "ConfirmDialogFragment");
                 }
                 break;
-    			
-    			case R.id.saveButton: {
-    				SaveDialogFragment saveBox = new SaveDialogFragment();
-    				saveBox.show(getFragmentManager(), "SaveDialogFragment");
+
+                case R.id.saveButton: {
+                    SaveDialogFragment saveBox = new SaveDialogFragment();
+                    saveBox.show(getFragmentManager(), "SaveDialogFragment");
                 }
                 break;
-    			
-    			case R.id.leaderButton: {
+
+                case R.id.leaderButton: {
                     Intent intent = new Intent(MainActivity.this, LeaderBoardActivity.class);
                     startActivity(intent);
                 }
@@ -113,24 +115,32 @@ public class MainActivity extends FragmentActivity {
                     signOutBox.show(getFragmentManager(), "SignOutDialogFragment");
                 }
                 break;
-    		}
-    	}
+                case R.id.deleteButton: {
+                    DeleteDialogFragment deleteBox = new DeleteDialogFragment();
+                    deleteBox.show(getFragmentManager(), "DeleteDialogFragment");
+
+                }
+                break;
+            }
+        }
     };
-    
+
     private int getNumOfClicks() {
-    	TextView clicksView = (TextView)this.findViewById(R.id.numOfClicks);
-    	String clicksString = clicksView.getText().toString();
-		return Integer.parseInt(clicksString);
-    }
-    
-    private void setNumOfClicks(int value) {
-    	TextView clicksView = (TextView)this.findViewById(R.id.numOfClicks);
-    	clicksView.setText(Integer.valueOf(value).toString());
+        TextView clicksView = (TextView) this.findViewById(R.id.numOfClicks);
+        String clicksString = clicksView.getText().toString();
+        return Integer.parseInt(clicksString);
     }
 
-    public static void setCurrentUser (User user) {
+    private void setNumOfClicks(int value) {
+        TextView clicksView = (TextView) this.findViewById(R.id.numOfClicks);
+        clicksView.setText(Integer.valueOf(value).toString());
+    }
+
+    public static void setCurrentUser(User user) {
         MainActivity.currentUser = user;
     }
+
+
 
     /**
      * Provides confirmation on whether or not the user wishes to clear their score.
@@ -157,7 +167,10 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-    public static class SignOutDialogFragment extends DialogFragment {
+    /**
+     * Signs user out on confirmation
+     */
+    public class SignOutDialogFragment extends DialogFragment {
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -167,7 +180,35 @@ public class MainActivity extends FragmentActivity {
                     .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             currentUser = null;
-                            getActivity().findViewById(R.id.signOutButton).setVisibility(View.GONE);
+                            changeButtons();
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+            // Create the AlertDialog object and return it
+            return builder.create();
+        }
+    }
+
+    /**
+     * Will remove user from the database on confirmation.
+     */
+    public class DeleteDialogFragment extends DialogFragment {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(R.string.deleteMessage)
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            String[] args = new String[]{
+                                    currentUser.getUsername(), currentUser.getPassword()
+                            };
+                            provider.startDelete(0, null, UserContentProvider.CONTENT_URI, SignUpActivity.getUserWhere, args);
                         }
                     })
                     .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -193,9 +234,8 @@ public class MainActivity extends FragmentActivity {
             if (currentUser == null) {
                 intent = new Intent(getActivity(), SignUpActivity.class);
                 message = R.string.newUserSaveMessage;
-            }
-            else {
-                intent = new Intent(getActivity(), LeaderBoardActivity.class);
+            } else {
+                intent = null;
                 message = R.string.saveMessage;
             }
 
@@ -206,12 +246,23 @@ public class MainActivity extends FragmentActivity {
                             score = getNumOfClicks();
                             setNumOfClicks(0);
                             if (currentUser == null) {
-                                intent.putExtra(SCORE_KEY, score);
+                                if (intent != null) {
+                                    intent.putExtra(SCORE_KEY, score);
+                                    startActivity(intent);
+                                }
                             } else {
-                                Model model = Model.getInstance();
-                                model.addScore(currentUser, score);
+                                ContentValues values = new ContentValues();
+                                values.put(UsersGateway.score, score);
+                                String[] args = new String[]{
+                                        currentUser.getUsername(), currentUser.getPassword()
+                                };
+                                provider.startUpdate(0,
+                                        null,
+                                        UserContentProvider.CONTENT_URI,
+                                        values,
+                                        SignUpActivity.getUserWhere,
+                                        args);
                             }
-                            startActivity(intent);
                         }
                     })
                     .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -222,5 +273,28 @@ public class MainActivity extends FragmentActivity {
             // Create the AlertDialog object and return it
             return builder.create();
         }
+    }
+
+    @Override
+    public void onInsertComplete(int token, Object cookie, Uri uri) {
+
+    }
+
+    @Override
+    public void onUpdateComplete(int token, Object cookie, int result) {
+
+        Intent intent = new Intent(this, LeaderBoardActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onDeleteComplete(int token, Object cookie, int result) {
+        currentUser = null;
+        changeButtons();
+    }
+
+    @Override
+    public void onQueryComplete(int token, Object cookie, Cursor cursor) {
+
     }
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsersGateway {
-    private SQLiteDatabase db;
+    private final SQLiteDatabase db;
     private static UsersGateway instance = null;
 
     private UsersGateway(SQLiteDatabase db) {
@@ -24,30 +24,30 @@ public class UsersGateway {
         return instance;
     }
 
-    public static String USERS = "users";
-    public static String ID = "_id";
-    public static String firstName = "firstName";
-    public static String lastName = "lastName";
-    public static String username = "userName";
-    public static String password = "password";
+    public static final String USERS = "users";
+    public static final String ID = "_id";
+    public static final String firstName = "firstName";
+    public static final String lastName = "lastName";
+    public static final String username = "userName";
+    public static final String password = "password";
 
-    public static String CREATE = "CREATE TABLE ";
-    public static String idProps = " INTEGER PRIMARY KEY AUTOINCREMENT, ";
-    public static String openBrace = " ( ";
-    public static String stringProps = " TEXT NOT NULL, ";
-    public static String closeBrace = " )";
-    public static String score = "score";
-    public static String numProps = " INTEGER NOT NULL ";
-    public static String DROP = "DROP TABLE IF EXISTS ";
+    private static final String CREATE = "CREATE TABLE ";
+    private static final String idProps = " INTEGER PRIMARY KEY AUTOINCREMENT, ";
+    private static final String openBrace = " ( ";
+    private static final String stringProps = " TEXT NOT NULL, ";
+    private static final String closeBrace = " )";
+    public static final String score = "score";
+    private static final String numProps = " INTEGER NOT NULL ";
+    private static final String DROP = "DROP TABLE IF EXISTS ";
 
-    private static String CREATE_USERS =
-             CREATE + USERS + openBrace +
-                    ID        + idProps +
+    private static final String CREATE_USERS =
+            CREATE + USERS + openBrace +
+                    ID + idProps +
                     firstName + stringProps +
-                    lastName  + stringProps +
-                    username  + stringProps +
-                    password  + stringProps +
-                    score    + numProps +
+                    lastName + stringProps +
+                    username + stringProps +
+                    password + stringProps +
+                    score + numProps +
                     closeBrace;
 
     public void create() {
@@ -55,12 +55,12 @@ public class UsersGateway {
 
         List<User> testUsers = new ArrayList<User>();
 
-        testUsers.add(new User(1, "Aaron", "Power", "aaronpower", "password", 10));
-        testUsers.add(new User(2, "John", "Doe", "johndoe", "12345", 20));
+        testUsers.add(new User("Aaron", "Power", "aaronpower", "password", 10));
+        testUsers.add(new User("John", "Doe", "johndoe", "12345", 20));
+        testUsers.add(new User("test", "me", "a", "b", 5));
 
         for (User testUser : testUsers) {
             ContentValues row = new ContentValues();
-            row.put(ID, testUser.getId());
             row.put(firstName, testUser.getFirstName());
             row.put(lastName, testUser.getLastName());
             row.put(username, testUser.getUsername());
@@ -71,8 +71,8 @@ public class UsersGateway {
         }
     }
 
-    public void upgrade (int oldDB, int newDB) {
-        db.execSQL(DROP+USERS);
+    public void upgrade(int oldDB, int newDB) {
+        db.execSQL(DROP + USERS);
         create();
     }
 
@@ -80,15 +80,15 @@ public class UsersGateway {
         return db.insert(USERS, null, values);
     }
 
-    public int update (ContentValues values, String clause, String[] args) {
+    public int update(ContentValues values, String clause, String[] args) {
         return db.update(USERS, values, clause, args);
     }
 
-    public int delete (String where, String[] args) {
+    public int delete(String where, String[] args) {
         return db.delete(USERS, where, args);
     }
 
-    public Cursor query (String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
+    public Cursor query(String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
         return db.query(USERS, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
     }
 }

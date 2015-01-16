@@ -11,25 +11,23 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.text.TextUtils;
 
-import java.sql.SQLException;
-
-public class UserContentProvider extends ContentProvider{
-    public static final String AUTHORITY = "com.example.testproject.model.db.UserContentProvider";
+public class UserContentProvider extends ContentProvider {
+    private static final String AUTHORITY = "com.example.testproject.model.db.UserContentProvider";
     private static final UriMatcher uriMatcher;
     private static final int USER_COLLECTION_URI_CODE = 1;
     private static final int SINGLE_USER_URI_CODE = 2;
 
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/users");
-    public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.com.leaderboard.user";
-    public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.com.leaderboard.user";
+    private static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.com.leaderboard.user";
+    private static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.com.leaderboard.user";
 
-    UsersGateway usersGateway;
-    ContentResolver contentResolver;
+    private UsersGateway usersGateway;
+    private ContentResolver contentResolver;
 
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(AUTHORITY, UsersGateway.USERS, USER_COLLECTION_URI_CODE);
-        uriMatcher.addURI(AUTHORITY, UsersGateway.USERS +"/#", SINGLE_USER_URI_CODE);
+        uriMatcher.addURI(AUTHORITY, UsersGateway.USERS + "/#", SINGLE_USER_URI_CODE);
     }
 
     @Override
@@ -51,7 +49,7 @@ public class UserContentProvider extends ContentProvider{
                         String sortOrder) {
         Cursor cursor;
 
-        switch(uriMatcher.match(uri)) {
+        switch (uriMatcher.match(uri)) {
             case USER_COLLECTION_URI_CODE:
                 cursor = usersGateway.query(projection, selection, selectionArgs, null, null, sortOrder, null);
                 break;
@@ -61,14 +59,13 @@ public class UserContentProvider extends ContentProvider{
 
                 if (TextUtils.isEmpty(selection)) {
                     selection = where;
-                }
-                else {
+                } else {
                     selection = selection + " AND " + where;
                 }
                 cursor = usersGateway.query(projection, selection, selectionArgs, null, null, sortOrder, null);
                 break;
             default:
-                throw new IllegalArgumentException("Unknown URI "+ uri);
+                throw new IllegalArgumentException("Unknown URI " + uri);
         }
         cursor.setNotificationUri(contentResolver, uri);
 
@@ -85,7 +82,7 @@ public class UserContentProvider extends ContentProvider{
                 return CONTENT_ITEM_TYPE;
 
             default:
-                throw new IllegalArgumentException("Unknown URI: "+uri);
+                throw new IllegalArgumentException("Unknown URI: " + uri);
         }
     }
 
@@ -100,11 +97,10 @@ public class UserContentProvider extends ContentProvider{
         long id = usersGateway.insert(values);
         if (id > 0) {
             insertedUri = ContentUris.withAppendedId(CONTENT_URI, id);
-        }
-        else {
+        } else {
             // Android won't compile this line unless it is an Unchecked Exception.
             // Originally SQLException
-            throw new RuntimeException("Failed to insert book into " + uri);
+            throw new RuntimeException("Failed to insert user into " + uri);
         }
         contentResolver.notifyChange(insertedUri, null);
 
@@ -127,8 +123,7 @@ public class UserContentProvider extends ContentProvider{
 
                 if (TextUtils.isEmpty(selection)) {
                     selection = where;
-                }
-                else {
+                } else {
                     selection += " AND " + where;
                 }
                 count = usersGateway.delete(selection, selectionArgs);
@@ -155,14 +150,13 @@ public class UserContentProvider extends ContentProvider{
 
                 if (TextUtils.isEmpty(selection)) {
                     selection = where;
-                }
-                else {
-                    selection += " AND "+where;
+                } else {
+                    selection += " AND " + where;
                 }
                 count = usersGateway.update(values, selection, selectionArgs);
                 break;
             default:
-                throw new IllegalArgumentException("Unknown URI "+ uri);
+                throw new IllegalArgumentException("Unknown URI " + uri);
         }
         contentResolver.notifyChange(uri, null);
 
