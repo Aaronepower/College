@@ -4,40 +4,90 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Message object designed to contain all information needed for a message to be
+ * clear.
+ *
+ * Implements Serializable in order to be streamed across the server and
+ * clients.
+ *
+ * @author Aaron Power / N00121603
+ */
 public class Message implements Serializable {
-  private String sender;
-  private String message;
-  private Date date;
 
-  public Message (String sender, String message) {
-    this.sender = sender;
-    this.message = message;
-    this.date = new Date();
+    private String sender;
+    private String message;
+    private Date date;
 
-  }
+    /**
+     * Takes sender, and the message. Date is added when a new Message is
+     * created.
+     *
+     * @param sender String
+     * @param message String
+     */
+    public Message(String sender, String message) {
+        this.sender = sender;
+        this.message = message;
+        this.date = new Date();
+    }
 
-  public void setSender(String sender) {
-    this.sender = sender;
-  }
+    /**
+     *
+     * @return String sender
+     */
+    public String getSender() {
+        return sender;
+    }
 
-  public void setMessage(String message) {
-    this.message = message;
-  }
+    /**
+     *
+     * @return String Message
+     */
+    public String getMessage() {
+        return message;
+    }
 
-  public void setDate(Date date) {
-    this.date = date;
-  }
+    /**
+     *
+     * @return Date date
+     */
+    public Date getDate() {
+        return date;
+    }
 
-  @Override
-  public String toString() {
-    SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
-    return format.format(date)+": "+ sender + ": "+message;
+    /**
+     *
+     * @param sender String
+     */
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
 
-  }
+    /**
+     *
+     * @param message String
+     */
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-  public boolean equals(Message message) {
-    return this.sender.equals(message.sender) 
-      && this.message.equals(message.message) 
-      && this.date.compareTo(message.date) == 0;
-  }
+    /**
+     *
+     * @param date Date
+     */
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    /**
+     *
+     * @return String in format "HH:MM:SS: Sender: Message"
+     */
+    @Override
+    public String toString() {
+        SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
+        return format.format(date) + ": " + sender + ": " + message;
+
+    }
 }

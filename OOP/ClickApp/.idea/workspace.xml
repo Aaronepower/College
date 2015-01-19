@@ -17,25 +17,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.testproject" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e40ab17-9624-4f37-af3e-2801088ad2a5" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Aaron\Documents\GitHub\College\OOP\ClickApp\app\src\main\java\com\example\testproject\model\Model.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/model/db/AsyncQueryListener.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/model/db/AsyncQueryListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/model/db/AsyncUserContentProvider.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/model/db/AsyncUserContentProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/model/Form.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/model/Form.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/LeaderBoardActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/LeaderBoardActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/SignUpActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/SignUpActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/model/User.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/model/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/model/db/UserContentProvider.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/model/db/UserContentProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/UserListFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/UserListFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/model/db/UsersGateway.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testproject/model/db/UsersGateway.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_leaderboard.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_leaderboard.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_item_user.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/list_item_user.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="3e40ab17-9624-4f37-af3e-2801088ad2a5" name="Default" comment="" />
     <ignored path="ClickApp.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -1405,7 +1387,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="last_opened_file_path" value="C:/Program Files (x86)/Git/cmd/git.exe" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/College-master/College-master/OOP/ClickApp" />
     <property name="options.lastSelected" value="vcs.Git" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -1616,7 +1598,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21555555" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21555555" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39666668" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
