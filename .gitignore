@@ -93,4 +93,5 @@ hs_err_pid*
 *.swp
 *.swo
 *~
-/networks/CAs/ChatApp/dist/
+
+dist/
