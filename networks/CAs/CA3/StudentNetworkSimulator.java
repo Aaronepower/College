@@ -1,3 +1,6 @@
+
+import java.util.HashMap;
+
 public class StudentNetworkSimulator extends NetworkSimulator {
     /*
      * Predefined Constants (static member variables):
@@ -82,10 +85,13 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     // state information for A or B.
     // Also add any necessary methods (e.g. checksum of a String)
     int aSeqNum,
+            packetSent = 0,
+            numOfSuccess,
             bSeqNum,
             aAckNum,
             bAckNum,
-            packetReceived;
+            packetReceived = 0;
+    HashMap<Integer, Packet> packets;
 
     private int createChecksum(Packet packet) {
 
@@ -111,27 +117,19 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     // return 0 if refusing to send the message
     @Override
     protected int aOutput(Message message) {
-        //***GETTING STARTED***
-        //To get started, construct a new Packet object containing the data in message
-        //Then send this toLayer3
-        //Then return 1 to indicate the message has been accepted and sent
-        boolean haventSent = true;
-        Packet packet = null;
-        while (true) {
-            if (haventSent) {
+        if (packetReceived == 1) {
+            Packet packet = packets.get(aSeqNum);
+            if (packet == null) {
                 packet = new Packet(aSeqNum, aAckNum, 0, message.getData());
                 packet.setChecksum(createChecksum(packet));
-                toLayer3(A, packet);
-                packetReceived = 0;
-                haventSent = !haventSent;
+                packets.put(aSeqNum, packet);
             }
-            
-            if (packetReceived == 1) {
-                System.out.println("SENDING NEW PACKET");
-                break;
-            }
+            toLayer3(A, packet);
+            startTimer(A, 5000);
+            return packetReceived;
+        } else {
+            return packetReceived;
         }
-        return packetReceived;
     }
 
     // This routine will be called whenever a packet sent from the B-side 
@@ -147,7 +145,12 @@ public class StudentNetworkSimulator extends NetworkSimulator {
                 aSeqNum = packet.getAcknum();
                 aAckNum = packet.getSeqnum() + 1;
                 packetReceived = 1;
+//                System.out.println("Number of successful ACKS: "+numOfAcks++);
+            } else {
+                packetReceived = 0;
             }
+        } else {
+            packetReceived = 0;
         }
     }
 
@@ -155,6 +158,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     // timer interrupt). You'll probably want to use this routine to control 
     // the retransmission of packets. See startTimer() and stopTimer(), above,
     // for how the timer is started and stopped. 
+    @Override
     protected void aTimerInterrupt() {
         //***GETTING STARTED***
         // This will be needed later, to deal with lost packets
@@ -164,33 +168,38 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     // routines are called. It can be used to do any required
     // initialization (e.g. of member variables you add to control the state
     // of entity A).
+    @Override
     protected void aInit() {
         //***GETTING STARTED***
         // This will be needed later
         aSeqNum = 0;
         aAckNum = 0;
-        packetReceived = 0;
+        packetReceived = 1;
+        packets = new HashMap<>();
     }
 
     // This routine will be called whenever a packet sent from the A-side 
     // (i.e. as a result of a toLayer3() being done by an A-side procedure)
     // arrives at the B-side.  "packet" is the (possibly corrupted) packet
     // sent from the A-side.
+    @Override
     protected void bInput(Packet packet) {
         //***GETTING STARTED***
         // To get started, extract the payload from the packet
         // and then send it up toLayer5
         if (packet.getChecksum() == createChecksum(packet)) {
-            Packet ack = new Packet(packet.getAcknum(), packet.getSeqnum()+ 1, 0, "");
+            Packet ack = new Packet(packet.getAcknum(), packet.getSeqnum() + 1, 0, "");
             ack.setChecksum(createChecksum(ack));
             toLayer3(B, ack);
             toLayer5(B, packet.getPayload());
 //            numOfPackets++;
 //            System.out.println("Number of packets sent: " + numOfPackets);
+            System.out.println("GOOD PACKET DETECTED");
         } else {
-            Packet nack = new Packet(0, 0, 0, "");
+            Packet nack = new Packet(packet.getAcknum() - 1, packet.getSeqnum(), 0, "");
             nack.setChecksum(createChecksum(nack));
             toLayer3(B, nack);
+            System.out.println("CORRUPT PACKET DETECTED");
         }
     }
 
@@ -198,6 +207,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     // routines are called. It can be used to do any required
     // initialization (e.g. of member variables you add to control the state
     // of entity B).
+    @Override
     protected void bInit() {
         //***GETTING STARTED***
         // This will be needed later
