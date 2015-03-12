@@ -88,8 +88,9 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     int acks;
     boolean packetSent;
     boolean newPacket = false;
-    Message message;
     Packet lastPacket;
+    String debugString;
+    private boolean packetLost;
 
     private int createChecksum(Packet packet) {
 
@@ -113,30 +114,29 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     // the data in such a message is delivered in-order, and correctly, to
     // the receiving upper layer. Return 1 if accepting the message to send, 
     // return 0 if refusing to send the message
-    private int sendPacket() {
-        Packet packet = new Packet(aSeqNum, aAckNum, 0, message.getData());
-        packet.setChecksum(createChecksum(packet));
-        if (!packetSent) {
-            stopTimer(A);
-            debug("SENDING PACKETS");
-            toLayer3(A, packet);
-            startTimer(A, 5000);
-        } else {
-            debug("NOT SENDING PACKETS");
-        }
-        if (!packetSent && newPacket) {
-            debug("NEW PACKET");
-            packetSent = true;
-            newPacket = false;
-        }
-        return packetSent ? 1 : 0;
-    }
-
     @Override
     protected int aOutput(Message message) {
-
-        this.message = message;
-        return sendPacket();
+        if (!packetLost) {
+            packetLost = true;
+            Packet packet = new Packet(aSeqNum, aAckNum, 0, message.getData());
+            packet.setChecksum(createChecksum(packet));
+            if (!packetSent) {
+                stopTimer(A);
+                debug("SENDING PACKETS");
+                toLayer3(A, packet);
+                startTimer(A, 100);
+            } else {
+                debug("NOT SENDING PACKETS");
+            }
+            if (!packetSent && newPacket) {
+                debug("NEW PACKET");
+                packetSent = true;
+                newPacket = false;
+            }
+            return packetSent ? 0 : 1;
+        } else {
+            return 0;
+        }
     }
 
     // This routine will be called whenever a packet sent from the B-side 
@@ -155,6 +155,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
                 aAckNum = packet.getSeqnum() + 1;
                 packetSent = false;
                 newPacket = true;
+                packetLost = false;
                 debug("Number of Successful ACKS: " + acks++);
             } else {
                 packetSent = false;
@@ -172,7 +173,8 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     protected void aTimerInterrupt() {
         //***GETTING STARTED***
         // This will be needed later, to deal with lost packets
-        sendPacket();
+        debug("PACKET DROPPED SENDING ANOTHER");
+        packetLost = false;
     }
 
     // This routine will be called once, before any of your other A-side 
@@ -186,6 +188,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         aSeqNum = 0;
         aAckNum = 0;
         acks = 0;
+        packetLost = false;
     }
 
     // This routine will be called whenever a packet sent from the A-side 
@@ -205,14 +208,14 @@ public class StudentNetworkSimulator extends NetworkSimulator {
             toLayer3(B, ack);
             if (lastPacket == null) {
 
-                debug("Number of successful Packets:" + numOfSuccess++);
                 toLayer5(B, packet.getPayload());
                 lastPacket = packet;
             } else if (!packet.getPayload().equals(lastPacket.getPayload())) {
-                debug("Number of successful Packets:" + numOfSuccess++);
                 lastPacket = packet;
                 toLayer5(B, packet.getPayload());
             }
+            debug("Number of successful Packets:" + numOfSuccess++);
+            debug("LETTERS: " +(debugString+=packet.getPayload().substring(0, 1))+"");
         } else {
 
             Packet nack = new Packet(packet.getAcknum() - 1, packet.getSeqnum(), 0, "");
