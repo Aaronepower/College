@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <canvas id="canvas" width="800" height="500"></canvas>
+  </body>
+  <script>
+    (function (window) {
+      var character = { char1 : [32, 64]
+                      , char2 : [96, 128, 160]
+                      , up : 152
+                      , down : 0
+                      , left : 50
+                      , right : 100
+                      }
+
+      var canvas  = document.getElementById("canvas")
+        , context = canvas.getContext("2d")
+        , canvasWidth = canvas.width
+        , canvasHeight = canvas.height
+        , charWidth = 31
+        , charHeight = 52
+        , char1X = 50
+        , char1Y = 100
+        , char2X = 350
+        , char2Y = 100
+        , charIncrement = 7
+        , char1Counter = 0
+        , char2Counter = 0
+      var background = new Image()
+      background.src = 'background.jpg'
+      background.onload = backgroundLoad
+
+      var characters = new Image()
+
+      function backgroundLoad () {
+        context.drawImage(background, 0, 0)
+        characters.src = 'characters.png'
+        characters.onload = function () {
+          context.drawImage(characters, 0, 0, charWidth, charHeight, char1X, char1Y, charWidth, charHeight)
+          context.drawImage(characters, 96, 0, charWidth, charHeight, char2X, char2Y, charWidth, charHeight)
+        }
+      }
+      function draw (x, y, charX, charY) {
+        context.drawImage(characters, x, y, charWidth, charHeight, charX, charY, charWidth, charHeight)
+      }
+
+      document.addEventListener("keydown", function (event) {
+        char1Counter++
+        char2Counter++
+
+        char1Counter = (char1Counter > 1) ? 0 : char1Counter
+        char2Counter = (char2Counter > 2) ? 0 : char2Counter
+        var position = -1
+        switch (event.keyCode) {
+
+          case 37:
+            char1X -= charIncrement
+            char2X -= charIncrement
+            char1X = (char1X < 0) ? canvasWidth : char1X
+            char2X = (char2X < 0) ? canvasWidth : char2X
+            position = character.left
+            break;
+
+          case 38:
+            char1Y -= charIncrement 
+            char2Y -= charIncrement 
+            char1Y = (char1Y > canvasHeight) ? 0 : char1Y
+            char2Y = (char2Y > canvasHeight) ? 0 : char2Y
+            char1Y = (char1Y < 0) ? canvasHeight : char1Y
+            char2Y = (char2Y < 0) ? canvasHeight : char2Y
+            position = character.up
+            break
+
+          case 39:
+            char1X += charIncrement
+            char2X += charIncrement
+            char1X = (char1X > canvasWidth) ? 0 : char1X
+            char2X = (char2X > canvasWidth) ? 0 : char2X
+            position = character.right
+            break
+
+          case 40:
+            char1Y += charIncrement
+            char2Y += charIncrement
+            char1Y = (char1Y > canvasHeight) ? 0 : char1Y
+            char2Y = (char2Y > canvasHeight) ? 0 : char2Y
+            position = character.down
+            break
+        }
+      if (position > -1) { 
+        context.drawImage(background, 0, 0)
+        draw(character.char1[char1Counter], position, char1X, char1Y)
+        draw(character.char2[char2Counter], position, char2X, char2Y)
+      }
+      }, false)
+    })(window)
+  </script>
+</html>

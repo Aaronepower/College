@@ -82,18 +82,15 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     // these variables to send messages error free!  They can only hold
     // state information for A or B.
     // Also add any necessary methods (e.g. checksum of a String)
+    
+    // 'A' VARIABLES
     int aSeqNum;
-    int numOfSuccess;
     int aAckNum;
-    int acks;
     boolean packetSent;
-    boolean newPacket = false;
-    Packet lastPacket;
-    String debugString;
-    private boolean packetLost;
+    boolean newPacket;
+    Packet packet;
 
     private int createChecksum(Packet packet) {
-
         return packet.getSeqnum()
                 + packet.getAcknum()
                 + packet.getPayload().hashCode();
@@ -116,25 +113,21 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     // return 0 if refusing to send the message
     @Override
     protected int aOutput(Message message) {
-        if (!packetLost) {
-            packetLost = true;
-            Packet packet = new Packet(aSeqNum, aAckNum, 0, message.getData());
+        // Only create a packet if no packet is in transit,
+        // and the last packet has been sent successfully.
+        if (!packetSent && newPacket) {
+            // Packet creation
+            packet = new Packet(aSeqNum, aAckNum, 0, message.getData());
             packet.setChecksum(createChecksum(packet));
-            if (!packetSent) {
-                stopTimer(A);
-                debug("SENDING PACKETS");
-                toLayer3(A, packet);
-                startTimer(A, 100);
-            } else {
-                debug("NOT SENDING PACKETS");
-            }
-            if (!packetSent && newPacket) {
-                debug("NEW PACKET");
-                packetSent = true;
-                newPacket = false;
-            }
-            return packetSent ? 0 : 1;
+            debug("SENDING PACKETS");
+            toLayer3(A, packet);
+            startTimer(A, 1000);
+            debug("NEW PACKET");
+            packetSent = true;
+            newPacket = false;
+            return packetSent && !newPacket ? 1 : 0;
         } else {
+            toLayer3(A, packet);
             return 0;
         }
     }
@@ -150,13 +143,11 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         if (packet.getChecksum() == createChecksum(packet)) {
 
             if (packet.getSeqnum() == aSeqNum) {
-
+                stopTimer(A);
                 aSeqNum = packet.getAcknum();
                 aAckNum = packet.getSeqnum() + 1;
                 packetSent = false;
                 newPacket = true;
-                packetLost = false;
-                debug("Number of Successful ACKS: " + acks++);
             } else {
                 packetSent = false;
             }
@@ -174,7 +165,9 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         //***GETTING STARTED***
         // This will be needed later, to deal with lost packets
         debug("PACKET DROPPED SENDING ANOTHER");
-        packetLost = false;
+        toLayer3(A, packet);
+        packetSent = true;
+        startTimer(A, 1000);
     }
 
     // This routine will be called once, before any of your other A-side 
@@ -187,10 +180,12 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         // This will be needed later
         aSeqNum = 0;
         aAckNum = 0;
-        acks = 0;
-        packetLost = false;
+        newPacket = true;
     }
-
+    
+    // 'B' variables
+    Packet lastPacket;
+    String debugString;
     // This routine will be called whenever a packet sent from the A-side 
     // (i.e. as a result of a toLayer3() being done by an A-side procedure)
     // arrives at the B-side.  "packet" is the (possibly corrupted) packet
@@ -200,9 +195,16 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         //***GETTING STARTED***
         // To get started, extract the payload from the packet
         // and then send it up toLayer5
+        
+        // To see reliability search for LETTERS line in the output..
+        // It takes the first letter of each packet and adds them to a string.
+        // Example 26 Packets: abcdefghijklmnopqrstuvwxyz || abcdefghijklmnopqrstuvwxy
+        // As the program begins to shutdown once the last packet has been received
+        // And if the packet is corrupted or
+        // dropped the program will end before it can be resent.
         if (packet.getChecksum() == createChecksum(packet)) {
 
-            Packet ack = new Packet(packet.getAcknum(), packet.getSeqnum() + 1, 0, "");
+            Packet ack = new Packet(packet.getAcknum(), packet.getSeqnum() + 1, 0, "ack");
             ack.setChecksum(createChecksum(ack));
             debug("SENDING ACKS");
             toLayer3(B, ack);
@@ -210,15 +212,15 @@ public class StudentNetworkSimulator extends NetworkSimulator {
 
                 toLayer5(B, packet.getPayload());
                 lastPacket = packet;
+                debug("LETTERS: " + (debugString += packet.getPayload().substring(0, 1)));
             } else if (!packet.getPayload().equals(lastPacket.getPayload())) {
                 lastPacket = packet;
                 toLayer5(B, packet.getPayload());
+                debug("LETTERS: " + (debugString += packet.getPayload().substring(0, 1)));
             }
-            debug("Number of successful Packets:" + numOfSuccess++);
-            debug("LETTERS: " +(debugString+=packet.getPayload().substring(0, 1))+"");
         } else {
 
-            Packet nack = new Packet(packet.getAcknum() - 1, packet.getSeqnum(), 0, "");
+            Packet nack = new Packet(packet.getAcknum() - 1, packet.getSeqnum(), 0, "nack");
             nack.setChecksum(createChecksum(nack));
             toLayer3(B, nack);
             debug("SENDING NACKS");
@@ -234,7 +236,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         //***GETTING STARTED***
         // This will be needed later
         lastPacket = null;
-        numOfSuccess = 0;
+        debugString = "";
     }
 
     private void debug(String message) {
