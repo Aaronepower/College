@@ -1,0 +1,29 @@
+<html>
+<head>
+<style type='text/css'>
+body { padding: 0 margin: 0 }
+</style>
+</head>
+<body>
+
+<h1> Snow Particle System</h1>
+<canvas width="650" height="650" id="canvas"></canvas>
+<button id="start">start</button>
+<button id="stop">stop</button>
+<script src="raf.js"></script>
+<script src="particle.js"></script>
+<script src="particleSystem.js"></script>
+<script>
+var particleSystem = new ParticleSystem(document.getElementById('canvas'))
+
+document.getElementById('start').addEventListener('click', function () {
+  particleSystem.start()    
+})
+
+document.getElementById('stop').addEventListener('click', function () {
+  particleSystem.stop()    
+})
+</script>
+</body>
+</html>
+

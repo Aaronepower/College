@@ -65,8 +65,6 @@
           case 38:
             char1Y -= charIncrement 
             char2Y -= charIncrement 
-            char1Y = (char1Y > canvasHeight) ? 0 : char1Y
-            char2Y = (char2Y > canvasHeight) ? 0 : char2Y
             char1Y = (char1Y < 0) ? canvasHeight : char1Y
             char2Y = (char2Y < 0) ? canvasHeight : char2Y
             position = character.up
