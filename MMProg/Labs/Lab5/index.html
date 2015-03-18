@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <canvas id ="canvas" width ="500" height="500"></canvas>
+    <button id ="add">Add</button>
+  </body>
+  <script src ="raf.js"></script>
+  <script src ="ball.js"></script>
+  <script>
+    (function () {
+      var canvas = document.getElementById('canvas')
+        , context = canvas.getContext('2d')
+        , balls = []
+        , ballsAdded = 0
+
+        function animation () {
+          window.requestAnimationFrame(animation)
+          if (balls.length < 10 + ballsAdded) {
+            balls.push({ x: getRandomInt(0, canvas.width)
+                       , y: 0
+                       , radius: getRandomInt(3, 10)
+                       , xVelocity: getRandomInt(1, 25)
+                       , yVelocity: getRandomInt(1, 25)
+                       , colour: getRandomColor()
+                       , goingDown: (Math.random() > .5)
+                       , goingRight: (Math.random() > .5)
+                       })
+          }
+          context.clearRect(0, 0, canvas.width, canvas.height)
+          balls.forEach(function (ball) {
+            if (ball.goingDown) {
+              ball.y += ball.yVelocity  
+            }
+            else {
+              ball.y -= ball.yVelocity
+            }
+
+            if (ball.goingRight) {
+              ball.x += ball.xVelocity 
+            }
+            else {
+              ball.x -= ball.xVelocity
+            }
+
+            if (ball.y + ball.radius*2 >= canvas.height) {
+              ball.goingDown = false
+            }
+            else if (ball.y - ball.radius*2 <= 0) {
+              ball.goingDown = true
+            }
+
+            if (ball.x + ball.radius*2 >= canvas.width) {
+              ball.goingRight = false
+            }
+            else if (ball.x - ball.radius*2 <= 0) {
+              ball.goingRight = true
+            }
+
+            context.beginPath()
+            context.arc(ball.x, ball.y, ball.radius, 0, Math.PI*2)
+            context.closePath()
+            context.fillStyle = ball.colour
+            context.fill()
+          })
+        }
+        window.requestAnimationFrame(animation)
+
+        document.getElementById('add').addEventListener('click', function () {
+          ballsAdded += 5
+        })
+
+        function getRandomInt(min, max) {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        function getRandomColor() {
+          var letters = '0123456789ABCDEF'.split('')
+            var color = '#'
+            for (var i = 0; i < 6; i++ ) {
+              color += letters[Math.floor(Math.random() * 16)]
+            }
+          return color
+        }
+    })()
+  </script>
+</html>
