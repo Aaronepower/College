@@ -16,7 +16,7 @@ ParticleSystem.prototype.start = function () {
     vm.context.clearRect(0,0,canvas.width,canvas.height) 
 
     if(vm.tick % 10 == 0) {
-      if(vm.particles.length < 100) {
+      if(vm.particles.length < 1000) {
         vm.particles.push(new Particle())
       }
     }
@@ -29,8 +29,6 @@ ParticleSystem.prototype.start = function () {
     vm.tick++ 
   }
 }
-
-
 
 ParticleSystem.prototype.stop = function () {
   window.cancelAnimationFrame(this.frameID) 

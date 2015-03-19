@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
+  <head>
+    <style type="text/css">
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
   <body>
     <canvas id ="canvas" width ="500" height="500"></canvas>
     <button id ="add">Add</button>
@@ -43,17 +49,17 @@
               ball.x -= ball.xVelocity
             }
 
-            if (ball.y + ball.radius*2 >= canvas.height) {
+            if (ball.y + ball.radius >= canvas.height) {
               ball.goingDown = false
             }
-            else if (ball.y - ball.radius*2 <= 0) {
+            else if (ball.y - ball.radius <= 0) {
               ball.goingDown = true
             }
 
-            if (ball.x + ball.radius*2 >= canvas.width) {
+            if (ball.x + ball.radius >= canvas.width) {
               ball.goingRight = false
             }
-            else if (ball.x - ball.radius*2 <= 0) {
+            else if (ball.x - ball.radius<= 0) {
               ball.goingRight = true
             }
 

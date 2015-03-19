@@ -57,16 +57,16 @@
           case 37:
             char1X -= charIncrement
             char2X -= charIncrement
-            char1X = (char1X < 0) ? canvasWidth : char1X
-            char2X = (char2X < 0) ? canvasWidth : char2X
+            char1X = (char1X < 0-charWidth) ? canvasWidth : char1X
+            char2X = (char2X < 0-charWidth) ? canvasWidth : char2X
             position = character.left
             break;
 
           case 38:
             char1Y -= charIncrement 
             char2Y -= charIncrement 
-            char1Y = (char1Y < 0) ? canvasHeight : char1Y
-            char2Y = (char2Y < 0) ? canvasHeight : char2Y
+            char1Y = (char1Y < 0-charHeight) ? canvasHeight : char1Y
+            char2Y = (char2Y < 0-charHeight) ? canvasHeight : char2Y
             position = character.up
             break
 

@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Basic animation</title>
+	<script src="classes/ball.js"></script> 
+	<script src="classes/utils.js"></script> 
+
+</head>  
+<body>
+	<p id="height"></p>
+	<canvas id="canvas" width="640" height="480"
+	style="border:1px solid #000000;">
+</canvas>
+<script type="text/javascript">
+(function() {
+	var canvas       = document.getElementById('canvas')
+	  , context      = canvas.getContext('2d')
+	  , canvasWidth  = canvas.width
+	  , canvasHeight = canvas.height
+
+	ball = new Ball(20)
+	
+	var angle = 60
+	  , hyp = 75
+	  , adj = hyp*Math.cos(angle* (Math.PI/180))
+	  , opp = hyp*Math.sin(angle* (Math.PI/180))
+
+	var x = 0
+	  , y = 0
+	  , t = 0
+	  , greatestHeight = 0
+
+	function animate () {
+		context.clearRect(0, 0, canvasWidth, canvasHeight)
+		window.requestAnimationFrame(animate, canvas)
+		var sy = S("y", opp, t)
+		if (sy > greatestHeight) {
+			greatestHeight = sy
+			document.getElementById('height').innerHTML = 'Greatest Height: '+greatestHeight
+		}
+		ball.x = S("x", adj, t)
+		ball.y = canvasHeight - sy
+		t += .05
+		ball.draw(context)
+
+	}
+	
+	window.requestAnimationFrame(animate, canvas)
+})()
+</script>
+</body>
+</html>
