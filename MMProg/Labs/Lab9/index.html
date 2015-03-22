@@ -5,93 +5,143 @@
     <canvas id="canvas" width="800" height="500"></canvas>
   </body>
   <script>
-    (function (window) {
-      var character = { char1 : [32, 64]
-                      , char2 : [96, 128, 160]
-                      , up : 152
-                      , down : 0
-                      , left : 50
-                      , right : 100
-                      }
+    (function (window, document) {
+      var sprites = { actors : [ { frames: [32, 64]
+                                 , x: 150
+                                 , y: 100
+                                 , counter: 0
+                                 }
+                               , { frames: [96, 128, 160]
+                                 , x: 450
+                                 , y: 250
+                                 , counter: 0
+                                 }
+                               ]
+                    , up : 152
+                    , down : 0
+                    , left : 50
+                    , right : 100
+                    , width: 31
+                    , height: 52
+                    , increment: 7
+                    }
 
-      var canvas  = document.getElementById("canvas")
-        , context = canvas.getContext("2d")
-        , canvasWidth = canvas.width
-        , canvasHeight = canvas.height
-        , charWidth = 31
-        , charHeight = 52
-        , char1X = 50
-        , char1Y = 100
-        , char2X = 350
-        , char2Y = 100
-        , charIncrement = 7
-        , char1Counter = 0
-        , char2Counter = 0
+      var canvas  = document.getElementById('canvas')
+        , context = canvas.getContext('2d')
+
       var background = new Image()
       background.src = 'background.jpg'
       background.onload = backgroundLoad
 
       var characters = new Image()
+        , explosion = new Image()
+        , hasntExploded = true
 
       function backgroundLoad () {
         context.drawImage(background, 0, 0)
         characters.src = 'characters.png'
+        explosion.src = 'explosion.png'
         characters.onload = function () {
-          context.drawImage(characters, 0, 0, charWidth, charHeight, char1X, char1Y, charWidth, charHeight)
-          context.drawImage(characters, 96, 0, charWidth, charHeight, char2X, char2Y, charWidth, charHeight)
+          draw(0, 0, sprites.actors[0].x, sprites.actors[0].y)
+          draw(96, 0, sprites.actors[1].x, sprites.actors[1].y)
         }
       }
+
       function draw (x, y, charX, charY) {
-        context.drawImage(characters, x, y, charWidth, charHeight, charX, charY, charWidth, charHeight)
+        context.drawImage( characters
+                         , x
+                         , y
+                         , sprites.width
+                         , sprites.height
+                         , charX
+                         , charY
+                         , sprites.width
+                         , sprites.height
+                         )
       }
 
-      document.addEventListener("keydown", function (event) {
-        char1Counter++
-        char2Counter++
+      document.addEventListener('keydown', function (event) {
 
-        char1Counter = (char1Counter > 1) ? 0 : char1Counter
-        char2Counter = (char2Counter > 2) ? 0 : char2Counter
+        sprites.actors.forEach(function (actor) {
+          actor.counter++
+          actor.counter=(actor.counter>actor.frames.length-1) ? 0 :actor.counter
+        })
         var position = -1
+        var i
         switch (event.keyCode) {
-
           case 37:
-            char1X -= charIncrement
-            char2X -= charIncrement
-            char1X = (char1X < 0-charWidth) ? canvasWidth : char1X
-            char2X = (char2X < 0-charWidth) ? canvasWidth : char2X
-            position = character.left
-            break;
+            sprites.actors.forEach(function (actor){
+              actor.x -= sprites.increment
+              actor.x = (actor.x < 0-sprites.width) ? canvas.width : actor.x
+            })
+            position = sprites.left
+            break
 
           case 38:
-            char1Y -= charIncrement 
-            char2Y -= charIncrement 
-            char1Y = (char1Y < 0-charHeight) ? canvasHeight : char1Y
-            char2Y = (char2Y < 0-charHeight) ? canvasHeight : char2Y
-            position = character.up
+            sprites.actors.forEach(function (actor){
+              actor.y -= sprites.increment
+              actor.y = (actor.y < 0-sprites.height) ? canvas.height : actor.y
+            })
+            position = sprites.up
             break
 
           case 39:
-            char1X += charIncrement
-            char2X += charIncrement
-            char1X = (char1X > canvasWidth) ? 0 : char1X
-            char2X = (char2X > canvasWidth) ? 0 : char2X
-            position = character.right
+            sprites.actors.forEach(function (actor){
+              actor.x += sprites.increment
+              actor.x = (actor.x > canvas.width) ? 0 : actor.x
+            })
+            position = sprites.right
             break
 
           case 40:
-            char1Y += charIncrement
-            char2Y += charIncrement
-            char1Y = (char1Y > canvasHeight) ? 0 : char1Y
-            char2Y = (char2Y > canvasHeight) ? 0 : char2Y
-            position = character.down
+            sprites.actors.forEach(function (actor){
+              actor.y += sprites.increment
+              actor.y = (actor.y > canvas.height) ? 0-sprites.height : actor.y
+            })
+            position = sprites.down
             break
         }
-      if (position > -1) { 
-        context.drawImage(background, 0, 0)
-        draw(character.char1[char1Counter], position, char1X, char1Y)
-        draw(character.char2[char2Counter], position, char2X, char2Y)
-      }
+
+        if (position > -1) { 
+          context.drawImage(background, 0, 0)
+          sprites.actors.forEach(function (actor) {
+            draw(actor.frames[actor.counter], position, actor.x, actor.y)
+          })
+        }
+
+        if (hasntExploded) {
+          sprites.actors.forEach(function (actor, index) {
+            var expPos = 100
+              , xCondition = (actor.x >= expPos && actor.x <= expPos + sprites.width)
+              , yCondition = (actor.y >= expPos && actor.y <= expPos + sprites.height)
+            if (xCondition && yCondition) {
+              sprites.actors.splice(index, 1)
+              window.requestAnimationFrame(explosionAnim)
+              hasntExploded = false
+            }
+          })
+        }
+        var xIndex = 1
+          , yIndex = 1
+        function explosionAnim () {
+          if (yIndex < 9)
+          window.requestAnimationFrame(explosionAnim)
+
+          sprites.actors.forEach(function (actor) {
+            context.drawImage(background, 0, 0)
+            draw(actor.frames[actor.counter], position, actor.x, actor.y)
+            context.drawImage(explosion, 100*xIndex, 100*yIndex, 100, 100, 100, 100, 100, 100)
+          })
+          if (xIndex < 9) {
+            xIndex++
+          }
+          else {
+            xIndex = 1
+            yIndex++
+          }
+
+        }
       }, false)
-    })(window)
+    })(window, document)
   </script>
 </html>
