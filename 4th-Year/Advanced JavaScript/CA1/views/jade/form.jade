@@ -1,0 +1,33 @@
+extends layout
+
+block content
+	.container
+		if login
+			h1.offset-by-four.columns="Login"
+		else
+			h1.offset-by-four.columns="Sign Up"
+		if login
+			form.offset-by-two.ten.columns.row#login.form
+				ul.twelve.columns.row
+					li.twelve.columns.row
+						label.two.columns(for="username") UserName:
+						input.six.columns.username(name="username" type='text')
+					li.twelve.columns.row
+						label.two.columns(for="password") Password:
+						input.six.columns.password(name="password" type='password')
+					li.twelve.columns.row
+						input.offset-by-six.two.columns.button-primary(type='submit')
+		else
+			form.offset-by-two.ten.columns.row#register.form
+				ul
+					li.twelve.columns.row
+						label.two.columns(for="username") Username:
+						input.six.columns.username(name="username" type='text')
+					li.twelve.columns.row
+						label.two.columns(for="password") Password
+						input.six.columns.password(name="password" type='password')
+					li.twelve.columns.row
+						label.two.columns(for="confirm") Confirm Password
+						input.six.columns.confirm(name="confirm" type='password')
+					li.twelve.columns.row
+						input.offset-by-six.two.columns.button-primary(type='submit')
