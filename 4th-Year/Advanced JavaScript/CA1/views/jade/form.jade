@@ -4,30 +4,32 @@ block content
 	.container
 		if login
 			h1.offset-by-four.columns="Login"
-		else
-			h1.offset-by-four.columns="Sign Up"
-		if login
-			form.offset-by-two.ten.columns.row#login.form
+			form#login.offset-by-two.ten.columns.row.form
 				ul.twelve.columns.row
 					li.twelve.columns.row
 						label.two.columns(for="username") UserName:
-						input.six.columns.username(name="username" type='text')
+						input.six.columns.username(name="username" type='text' required)
 					li.twelve.columns.row
 						label.two.columns(for="password") Password:
-						input.six.columns.password(name="password" type='password')
+						input.six.columns.password(name="password" type='password' required)
 					li.twelve.columns.row
-						input.offset-by-six.two.columns.button-primary(type='submit')
+						#error.error
+					li.twelve.columns.row
+						input.offset-by-six.two.columns.button-primary(form='login' type='submit' value='Submit')
 		else
-			form.offset-by-two.ten.columns.row#register.form
+			h1.offset-by-four.columns="Sign Up"
+			form#register.offset-by-two.ten.columns.row.form
 				ul
 					li.twelve.columns.row
 						label.two.columns(for="username") Username:
-						input.six.columns.username(name="username" type='text')
+						input.six.columns.username(name="username" type='text' required)
 					li.twelve.columns.row
 						label.two.columns(for="password") Password
-						input.six.columns.password(name="password" type='password')
+						input.six.columns.password(name="password" type='password' required)
 					li.twelve.columns.row
 						label.two.columns(for="confirm") Confirm Password
-						input.six.columns.confirm(name="confirm" type='password')
+						input.six.columns.confirm(name="confirm" type='password' required)
 					li.twelve.columns.row
-						input.offset-by-six.two.columns.button-primary(type='submit')
+						#error.error
+					li.twelve.columns.row
+						input#register.offset-by-six.two.columns.button-primary(form='register' type='submit' value='Submit')

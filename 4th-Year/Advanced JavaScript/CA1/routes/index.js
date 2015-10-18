@@ -13,4 +13,8 @@ router.get('/register', function(req, res, next) {
   res.render('form');
 });
 
+router.get('/canvas', function(req, res, next) {
+  res.render('canvas');
+});
+
 module.exports = router;

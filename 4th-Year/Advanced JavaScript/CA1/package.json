@@ -18,7 +18,12 @@
     "del": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
+    "gulp-expect-file": "*",
+    "gulp-jshint": "^1.11.2",
+    "gulp-nodemon": "*",
+    "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.4.1",
-    "gulp-wrap": "^0.11.0"
+    "gulp-wrap": "^0.11.0",
+    "jshint-stylish": "^2.0.1"
   }
 }
