@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{Rust}
+The Rust~Core Team.
+\newblock Announcing rust 1.0.
+\newblock http://blog.rust-lang.org/2015/05/15/Rust-1.0.html, May 2015.
+
+\bibitem{Iron}
+Johnathan Reem.
+\newblock Iron.
+\newblock https://github.com/iron/iron.
+
+\end{thebibliography}

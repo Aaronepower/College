@@ -128,7 +128,7 @@ function diff (a, b) {
     }
 }
 
-function changeSizePercentage (imageWidth, dyImageWidth) {
+function changePercentage (imageWidth, dyImageWidth) {
     var percentage = Math.floor((dyImageWidth / imageWidth) * 100)
     $('#size-label').text('size: ' + percentage + '%')
 }
