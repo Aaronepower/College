@@ -10,6 +10,12 @@ function DyImage (image) {
 }
 
 DyImage.prototype.changeSize = function (width, height, target) {
+	if (target > width && target > height) {
+		this.width = this.image.width
+		this.height = this.image.height
+		return;
+	}
+
 	var aspectRatio = height / width
 	  , newHeight   = Math.ceil(aspectRatio * target)
 
@@ -40,5 +46,6 @@ DyImage.prototype.draw = function(x, y, width, height) {
 	var $canvas = $(this.canvas)
 	  , context = this.canvas.getContext('2d')
     context.clearRect(0, 0, $canvas.width(), $canvas.height())
+    console.log(width, height);
     context.drawImage(this.image, x, y, width, height)
 };

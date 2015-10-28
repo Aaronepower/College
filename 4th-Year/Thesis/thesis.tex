@@ -1,173 +1,19 @@
-\documentclass[draft]{report}
-\usepackage[a4paper, total={6in, 8in}]{geometry}
-% \renewcommand{\familydefault}{\sfdefault}
+\documentclass[12pt]{report}
+\usepackage{style}
 
-\title{Requirements}
+\title{Using Rust, a systems level programming language.
+Develop a \compiler{} for use in the creation of a templating language.
+To aid the in the development of scalable, modular markup.}
 \date{20-10-2015}
 \author{Aaron Power}
-
+\addbibresource{thesis.bib} 
 \begin{document}
 \maketitle
 \newpage
-\tableofcontents
-\newpage
-\listoffigures
-\newpage
-
-
-\chapter{Requirements}
-\section{Requirements Analysis}
-The user(developer) should be able to pass in a file written in TBD, and optionally data stored in
-a key-value pairing. This data will then be passed to a compiler, which will return a html
-file based on the file, and data to be passed back as the HTTP response.
-
-
-\begin{figure}[ht!]
-\caption{Layout file}
-\begin{verbatim}
-doctype html
-html
-    head
-    title= title
-    meta(charset="utf-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
-    link(rel='stylesheet', href='/stylesheets/normalize.css')
-    link(rel='stylesheet', href='/stylesheets/skeleton.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    script(type='text/javascript', src='/javascripts/jquery.min.js' defer)
-    script(type='text/javascript', src='/javascripts/script.js' defer)
-    body
-        block content
-\end{verbatim}
-\end{figure}
-
-\begin{figure}[ht!]
-\caption{Index file}
-\begin{verbatim}
-extends layout
-
-block content
-    h1 Hello World
-
-    p Lorem Ipsum...
-\end{verbatim}
-\end{figure}
-
-\begin{figure}[ht!]
-    \caption{Rendered file}
-    \begin{verbatim}
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Express</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <link rel="stylesheet" href="/stylesheets/normalize.css">
-        <link rel="stylesheet" href="/stylesheets/skeleton.css">
-        <link rel="stylesheet" href="/stylesheets/style.css">
-        <script type="text/javascript" src="/javascripts/jquery.min.js" defer>
-        </script>
-        <script type="text/javascript" src="/javascripts/script.js" defer>
-        </script>
-    </head>
-    <body>
-        <h1>Hello World</h1>
-        <p>Lorem ipsum...</p>
-    </body>
-</html>
-    \end{verbatim}
-\end{figure}
-\clearpage
-
-\subsection{Technical Requirements}
-All the other technologies would be programmed in Rust, and directly interfaced 
-within a Rust program.
-
-\subsubsection{Rust} 
-A new programming language from Mozilla, released in May 15th, 2015.\cite{Rust}
-Rust is a systems level programming language. Meaning that Rust is run directly on top of the existing
-OS(Operating System), as opposed to languages like Java, or Ruby which is run on top of a VM(Virtual Machine).
-Rust is designed to \textit{combines low-level control over performance with high-level convenience
-and safety guarantees}\cite{Rust}.
-
-\begin{figure}[ht!]
-    \caption{Fizz buzz in rust.}
-    \begin{verbatim}
-            fn main() {
-                for i in 1..101 {
-                    match (i%3, i%5) {
-                        (0, 0) => println!("FizzBuzz"),
-                        (0, _) => println!("Fizz"),
-                        (_, 0) => println!("Buzz"),
-                        (_, _) => println!("{}", i),
-                    }
-                }
-            }
-    \end{verbatim}
-\end{figure}
-
-\subsubsection{Iron}
-A high level web framework designed for making web servers in Rust.\cite{Iron}
-Iron is designed to enable other users to create plugins for it. The end-goal would be to integrate
-the transcompiler with Iron, so a user could easily integrate within the system, and start using the
-templating language with ease.
-
-\begin{figure}[ht!]
-    \caption{Hello world server using Iron.}
-    \begin{verbatim}
-            extern crate iron;
-
-            use iron::prelude::*;
-            use iron::status;
-
-            fn main() {
-                fn hello_world(_: &mut Request) -> IronResult<Response> {
-                    Ok(Response::with((status::Ok, "Hello World!")))
-                }
-
-                Iron::new(hello_world).http("localhost:3000").unwrap();
-                println!("On 3000");
-            }
-    \end{verbatim}
-\end{figure}
-
-
-\newpage
-
-\section{System Model}
-The system is mainly two parts, the actual web server written in rust with Iron, and the transcompiler, 
-which will be used as middleware with Iron. Middleware being defined as software that runs between
-handling the  requests, making it easier for the user, or providing new functionality, 
-like adding a templating language.
-
-
-As shown in TBD. After a request has been handled by the user, but before the response has been
-sent, the transcompiler will parse the template file, and any file the template requires. Building an 
-AST(Abstract Syntax Tree), and creating a HTML file from the AST. As this is a transcompiler,
-the program doesn't need to worry about code optimisation, or typical code generation
-that a typical compiler would. The main work of the program,would be to do lexical analysis,
-Syntax analysis, and Semantic analysis, and generate the HTML source code if the source is correct,
-and provide effective, and clear errors if the source code is incorrect.
-
-\newpage
-
-
-\section{Feasibility}
-There are a lot of risks with making a transcompiler. The most important first step is to have
-an iron-clad definition of the language it is transcompiling, as changes in the fundamental syntax
-can cause large sections of code to be rewritten, and could even require in the how the parsing of
-the syntax is done.
-
-
-Of course there is always the risk that when the project finishes that it won't have all
-features specified in the requirements document due to time constraints, but this can be handled with
-effective time management, and being able to do effective cost analysis such as how viable a feature
-may be, and how much value does it provide over how much time it will take.
-
-\newpage
-
-\bibliography{Thesis} 
-\bibliographystyle{unsrt}
+% \tableofcontents
+% \newpage
+% \listoffigures
+% \newpage
+\input{tex/ResearchAndAnalysis}
+\printbibliography
 \end{document}

@@ -1,6 +1,7 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Layout file}}{3}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces Index file}}{4}
-\contentsline {figure}{\numberline {1.3}{\ignorespaces Rendered file}}{4}
-\contentsline {figure}{\numberline {1.4}{\ignorespaces Fizz buzz in rust.}}{5}
-\contentsline {figure}{\numberline {1.5}{\ignorespaces Hello world server using Iron.}}{6}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {1.1}{\ignorespaces A Mustache Example, taken from The Mustache Manual\cite {MustacheMan}}}{4}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Standard React HTML index file}}{5}

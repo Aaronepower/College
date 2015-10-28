@@ -40,7 +40,7 @@ function onImageLoad () {
     dyImage = new DyImage()
     dyImage.image = this
     dyImage.canvas = canvas
-    dyImage.changeSize(this.width, this.height, canvasWidth, canvasHeight)
+    dyImage.changeSize(this.width, this.height, canvasWidth)
     dyImage.y = Math.floor((canvasHeight / 2) - (dyImage.height / 2))
     dyImage.x = Math.floor((canvasWidth /2 ) - (dyImage.width / 2))
     dyImage.draw()
@@ -57,21 +57,25 @@ function onImageLoad () {
         var width  = this.width
           , dWidth = dyImage.width
         size.min = width * 0.1
-        size.max = width
+        if (dWidth < width) {
+            size.max = dWidth
+        } else {
+            size.max = width
+        }
         size.value = dWidth
         changeSizePercentage(width, dWidth)
     }.bind(this))
     .on('input', function (event) {
-        var newWidth = event.target.value
+        var target = event.target.value
           , oldWidth = dyImage.width
           , oldHeight = dyImage.height
 
-        dyImage.changeSize(this.width, this.height, newWidth)
+        dyImage.changeSize(this.width, this.height, target)
         dyImage.x -= diff(dyImage.width, oldWidth)   / 2
         dyImage.y -= diff(dyImage.height, oldHeight) / 2
         dyImage.draw()
 
-        changeSizePercentage(this.width, newWidth)
+        changeSizePercentage(this.width, target)
     }.bind(this))
     .end()
     // Manipulating the image's opacity
@@ -107,7 +111,6 @@ function onImageLoad () {
     .filter('#filter-opacity')
     .each(function (_, filter) { 
         $('#filter-canvas')[0].getContext('2d').globalAlpha = filter.value
-        console.log(filter.value);
         $('#filter-opacity-label').append(' ' + Math.floor(filter.value * 100)+'%')
     })
     .change(function (event) {
@@ -128,7 +131,7 @@ function diff (a, b) {
     }
 }
 
-function changePercentage (imageWidth, dyImageWidth) {
+function changeSizePercentage (imageWidth, dyImageWidth) {
     var percentage = Math.floor((dyImageWidth / imageWidth) * 100)
     $('#size-label').text('size: ' + percentage + '%')
 }
