@@ -45,27 +45,25 @@ function onImageLoad () {
     dyImage.x = Math.floor((canvasWidth /2 ) - (dyImage.width / 2))
     dyImage.draw()
 
-    // all image settings initialisation 
     $('#opacity-label').text('Opacity: 100%')
-    $('.setting')
-    .each(function (_, element) {
+
+    // all image settings initialisation 
+    $('.setting').each(function (_, element) {
         element.disabled = false
     })
     // Manipulating the image's size
-    .filter('#size')
-    .each(function (_, size) {
+    .filter('#size').each(function (_, size) {
         var width  = this.width
           , dWidth = dyImage.width
         size.min = width * 0.1
-        if (dWidth < width) {
+        if (dWidth > width) {
             size.max = dWidth
         } else {
-            size.max = width
+            size.max = this.height
         }
         size.value = dWidth
         changeSizePercentage(width, dWidth)
-    }.bind(this))
-    .on('input', function (event) {
+    }.bind(this)).on('input', function (event) {
         var target = event.target.value
           , oldWidth = dyImage.width
           , oldHeight = dyImage.height
@@ -77,43 +75,33 @@ function onImageLoad () {
 
         changeSizePercentage(this.width, target)
     }.bind(this))
-    .end()
-    // Manipulating the image's opacity
-    .filter('#opacity')
-    .each(function () {
-    })
-    .on('input', function (event) {
+    // Manipulating the image's
+    .end().filter('#opacity').on('input', function (event) {
         var newOpacity = event.target.value
         $('#opacity-label').text('Opacity: ' + Math.floor(newOpacity * 100) + '%')
         dyImage.canvas.getContext('2d').globalAlpha = newOpacity
         dyImage.draw()
     })
-    .end()
     // Manipulating the image's filter
-    .filter('#filter')
-    .change(function (event) {
+    .end().filter('#filter').change(function (event) {
         var $canvas = $('#filter-canvas')
           , context = $canvas[0].getContext('2d')
 
         context.fillStyle = event.target.value
         context.fillRect(0, 0, canvasWidth, canvasHeight)
     })
-    .end()
     // Manipulating the filter clear button
-    .filter('#clear')
-    .click(function() {
+    .end().filter('#clear').click(function() {
         var context = $('#filter-canvas')[0].getContext('2d')
         context.clearRect(0, 0, canvasWidth, canvasHeight)
         $('')
     })
-    .end()
     // Manipulating the image's filter's opacity
-    .filter('#filter-opacity')
-    .each(function (_, filter) { 
+    .end().filter('#filter-opacity').each(function (_, filter) { 
         $('#filter-canvas')[0].getContext('2d').globalAlpha = filter.value
-        $('#filter-opacity-label').append(' ' + Math.floor(filter.value * 100)+'%')
-    })
-    .change(function (event) {
+        $('#filter-opacity-label').text(' ' + Math.floor(filter.value * 100)+'%')
+
+    }).on('input', function (event) {
         var $canvas = $('#filter-canvas')
           , context = $canvas[0].getContext('2d')
         context.globalAlpha = event.target.value

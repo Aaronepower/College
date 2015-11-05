@@ -30,7 +30,15 @@ block content
 						label.five.columns#filter-opacity-label(for="filter-opacity") Colour Opacity:
 						input.seven.columns.setting#filter-opacity(name="filter-opacity" type="range" disabled min="0" max="1" value="0" step="0.01")
 					.row.twelve.columns
-						label.five.columns#filter-gradient-label(for="")
+						label.five.columns#num-gradient-label(for="num-gradient") Filter Gradient:
+						input.seven.columns.setting#num-gradient(name="filter-gradient" type="range" disabled min="0" max="3" value="0" step="1")
+					.row.twelve.columns#gradients
+					.row.twelve.columns
+						label.five.columns#gradient-type(for="gradient-type") Gradient Type:
+						input(type="radio" name="gradient-type" value="Linear")
+						| Linear
+						input(type="radio" name="gradient-type" value="Radial")
+						| Radial
 
 				.row.twelve.columns
 					input.twelve.columns.setting.button-primary#Upload(name="Upload" type="submit" value="Upload" disabled)
