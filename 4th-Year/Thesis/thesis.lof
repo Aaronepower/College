@@ -2,6 +2,18 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {1.1}{\ignorespaces A Mustache Example, taken from The Mustache Manual\cite {MustacheMan}}}{4}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces A Mustache Example, from \parencite {MustacheMan}\relax }}{4}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {1.2}{\ignorespaces Standard React HTML index file}}{5}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Standard React HTML index file\relax }}{5}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Layout file\relax }}{10}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Index file\relax }}{10}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Rendered file\relax }}{11}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Fizz buzz in rust.\relax }}{12}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Hello world server using Iron.\relax }}{13}

@@ -53,11 +53,9 @@
     <requires type="static">
       <file>blx-compat.def</file>
       <file>biblatex.def</file>
-      <file>trad-abbrv.bbx</file>
-      <file>trad-standard.bbx</file>
+      <file>authoryear.bbx</file>
       <file>standard.bbx</file>
-      <file>trad-abbrv.cbx</file>
-      <file>numeric.cbx</file>
+      <file>authoryear.cbx</file>
       <file>biblatex.cfg</file>
       <file>english.lbx</file>
     </requires>

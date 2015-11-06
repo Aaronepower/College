@@ -1,12 +1,13 @@
-\usepackage[backend=bibtex, 
-style=trad-abbrv,
-sorting=none]{biblatex}
+\usepackage[backend=bibtex, style=authoryear, dashed=false, firstinits=true]{biblatex}
+\addbibresource{thesis.bib}
+\
 \usepackage[a4paper, total={6in, 8in}]{geometry}
 \usepackage{color}
 \usepackage{subfig}
 \usepackage[T1]{fontenc}
 \usepackage{setspace}
 \usepackage{tgtermes}
+\usepackage{import}
 
 \newcommand{\languageName}{\{NAME TBD\}}
 \newcommand{\languageExt}{.TBD}
@@ -16,9 +17,37 @@ sorting=none]{biblatex}
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\lhead{\languageName: A Templating language in Rust.}
+\setlength{\headheight}{15pt}
+\lhead{\languageName{}: A Templating language in Rust.}
 \rhead{Aaron Power}
 
 \emergencystretch=1em
 
 \fontfamily{qtm}\selectfont
+
+
+% \makeatletter
+% \newrobustcmd*{\parentexttrack}[1]{%
+%   \begingroup
+%   \blx@blxinit
+%   \blx@setsfcodes
+%   \blx@bibopenparen#1\blx@bibcloseparen
+%   \endgroup}
+% 
+% \AtEveryCite{%
+%   \let\parentext=\parentexttrack%
+%   \let\bibopenparen=\bibopenbracket%
+%   \let\bibcloseparen=\bibclosebracket}
+% 
+% \renewbibmacro*{cite}{%
+%   \iffieldundef{shorthand}
+%     {\ifthenelse{\ifnameundef{labelname}\OR\iffieldundef{labelyear}}
+%        {\usebibmacro{cite:label}%
+%         \setunit{\addspace}}
+%        {\printnames{labelname}%
+%         \setunit{\nameyeardelim}}%
+% %     \usebibmacro{cite:labelyear+extrayear}}% DELETED
+%      \printtext[parens]{\usebibmacro{cite:labelyear+extrayear}}}% ADDED
+%     {\usebibmacro{cite:shorthand}}}
+% 
+% \makeatother% 

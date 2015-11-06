@@ -16,151 +16,18 @@
   {}
 \endgroup
 
-\entry{XSLT}{online}{}
-  \name{author}{2}{}{%
-    {{}%
-     {W3C}{W.}%
-     {}{}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Clark(Editor)}{C.}%
-     {Jame}{J.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{WCJ1}
-  \strng{fullhash}{WCJ1}
-  \field{title}{XSL Transformations (XSLT) Version 1.0}
-  \verb{url}
-  \verb http://www.w3.org/TR/xslt
-  \endverb
-  \field{day}{16}
-  \field{month}{11}
-  \field{year}{1999}
-  \field{urlday}{25}
-  \field{urlmonth}{10}
-  \field{urlyear}{2015}
-\endentry
-
-\entry{XSLTEx}{online}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Quin}{Q.}%
-     {Liam R.~E.}{L.~R.~E.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{QLRE1}
-  \strng{fullhash}{QLRE1}
-  \field{title}{Transformation}
-  \verb{url}
-  \verb http://www.w3.org/standards/xml/transformation
-  \endverb
-  \field{urlday}{25}
-  \field{urlmonth}{10}
-  \field{urlyear}{2015}
-\endentry
-
-\entry{Mustache}{online}{}
-  \field{title}{Mustache}
-  \verb{url}
-  \verb https://mustache.github.io/
-  \endverb
-  \field{urlday}{25}
-  \field{urlmonth}{10}
-  \field{urlyear}{2015}
-\endentry
-
-\entry{MustacheMan}{online}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Wanstrath}{W.}%
-     {Chris}{C.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{WC1}
-  \strng{fullhash}{WC1}
-  \field{title}{Mustache Manual 5}
-  \verb{url}
-  \verb https://mustache.github.io/mustache.5.html
-  \endverb
-  \field{urlday}{25}
-  \field{urlmonth}{10}
-  \field{urlyear}{2015}
-\endentry
-
-\entry{MobileLoad}{online}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Work}{W.}%
-     {Sean}{S.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{WS1}
-  \strng{fullhash}{WS1}
-  \field{title}{How Loading Time Affects Your Bottom Line}
-  \verb{url}
-  \verb https://blog.kissmetrics.com/loading-time/
-  \endverb
-  \field{urlday}{25}
-  \field{urlmonth}{10}
-  \field{urlyear}{2015}
-\endentry
-
-\entry{VergeJS}{online}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Orchard}{O.}%
-     {Les}{L.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{OL1}
-  \strng{fullhash}{OL1}
-  \field{title}{The Verge's web sucks}
-  \verb{url}
-  \verb http://blog.lmorchard.com/2015/07/22/the-verge-web-sucks/
-  \endverb
-  \field{day}{22}
-  \field{month}{07}
-  \field{year}{2015}
-  \field{urlday}{25}
-  \field{urlmonth}{10}
-  \field{urlyear}{2015}
-\endentry
-
-\entry{WikiCompare}{online}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Wikipedia}{W.}%
-     {the free~encyclopedia}{t.~f.~e.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{Wtfe1}
-  \strng{fullhash}{Wtfe1}
-  \field{title}{Comparison of web template engines}
-  \verb{url}
-  \verb https://en.wikipedia.org/wiki/Comparison_of_web_template_engines
-  \endverb
-  \field{urlday}{26}
-  \field{urlmonth}{10}
-  \field{urlyear}{2015}
-\endentry
-
 \entry{JSCompare}{online}{}
   \name{author}{1}{}{%
     {{}%
-     {Gorbatchev}{G.}%
      {Alex}{A.}%
+     {Gorbatchev}{G.}%
      {}{}%
      {}{}}%
   }
-  \strng{namehash}{GA1}
-  \strng{fullhash}{GA1}
+  \strng{namehash}{AG1}
+  \strng{fullhash}{AG1}
+  \field{labelyear}{2014}
+  \field{sortinit}{A}
   \field{title}{Comparing JavaScript Templating Engines: Jade, Mustache, Dust
   and More}
   \verb{url}
@@ -178,63 +45,247 @@
 \entry{DragonBook}{book}{}
   \name{author}{4}{}{%
     {{}%
-     {Abo}{A.}%
-     {Alfred~V.}{A.~V.}%
+     {Alfred}{A.}%
+     {V.~Abo}{V.~A.}%
      {}{}%
      {}{}}%
     {{}%
-     {Lam}{L.}%
-     {Monica~S.}{M.~S.}%
+     {Monica}{M.}%
+     {S.~Lam}{S.~L.}%
      {}{}%
      {}{}}%
     {{}%
-     {Sethi}{S.}%
      {Ravi}{R.}%
+     {Sethi}{S.}%
      {}{}%
      {}{}}%
     {{}%
-     {Ullman}{U.}%
-     {Jeffery~D.}{J.~D.}%
+     {Jeffery}{J.}%
+     {D.~Ullman}{D.~U.}%
      {}{}%
      {}{}}%
   }
   \list{publisher}{1}{%
     {Addison Wesley}%
   }
-  \strng{namehash}{AAVLMSSRUJD1}
-  \strng{fullhash}{AAVLMSSRUJD1}
+  \strng{namehash}{AVA+1}
+  \strng{fullhash}{AVAMSLRSJDU1}
+  \field{labelyear}{2007}
+  \field{sortinit}{A}
   \field{edition}{2}
   \field{title}{Compilers Principles Techniques and Tools}
   \field{year}{2007}
 \endentry
 
+\entry{MustacheMan}{online}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Chris}{C.}%
+     {Wanstrath}{W.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CW1}
+  \strng{fullhash}{CW1}
+  \field{sortinit}{C}
+  \field{title}{Mustache Manual 5}
+  \verb{url}
+  \verb https://mustache.github.io/mustache.5.html
+  \endverb
+  \field{urlday}{25}
+  \field{urlmonth}{10}
+  \field{urlyear}{2015}
+\endentry
+
 \entry{ParseTech}{book}{}
   \name{author}{2}{}{%
     {{}%
-     {Grune}{G.}%
      {Dick}{D.}%
+     {Grune}{G.}%
      {}{}%
      {}{}}%
     {{}%
-     {Jacobs}{J.}%
-     {Ceriel~J.H.}{C.~J.}%
+     {Ceriel}{C.}%
+     {J.H.~Jacobs}{J.~J.}%
      {}{}%
      {}{}}%
   }
   \list{publisher}{1}{%
     {Springer}%
   }
-  \strng{namehash}{GDJCJ1}
-  \strng{fullhash}{GDJCJ1}
+  \strng{namehash}{DGCJJ1}
+  \strng{fullhash}{DGCJJ1}
+  \field{labelyear}{2008}
+  \field{sortinit}{D}
   \field{edition}{2}
   \field{title}{Parsing Techniques - A Practical Guide}
   \field{year}{2008}
 \endentry
 
+\entry{Iron}{online}{}
+  \field{sortinit}{I}
+  \field{title}{{Iron}}
+  \verb{url}
+  \verb https://github.com/iron/iron
+  \endverb
+  \field{urlday}{25}
+  \field{urlmonth}{10}
+  \field{urlyear}{2015}
+\endentry
+
 \entry{Jade}{online}{}
-  \field{title}{Jade - Template Engine}
+  \field{sortinit}{J}
+  \field{title}{{Jade - Template Engine}}
   \verb{url}
   \verb http://jade-lang.com/
+  \endverb
+  \field{urlday}{26}
+  \field{urlmonth}{10}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{VergeJS}{online}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Les}{L.}%
+     {Orchard}{O.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{LO1}
+  \strng{fullhash}{LO1}
+  \field{labelyear}{2015}
+  \field{sortinit}{L}
+  \field{title}{The Verge's web sucks}
+  \verb{url}
+  \verb http://blog.lmorchard.com/2015/07/22/the-verge-web-sucks/
+  \endverb
+  \field{day}{22}
+  \field{month}{07}
+  \field{year}{2015}
+  \field{urlday}{25}
+  \field{urlmonth}{10}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{XSLTEx}{online}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Liam}{L.}%
+     {{R. E. Quin}}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{LR1}
+  \strng{fullhash}{LR1}
+  \field{sortinit}{L}
+  \field{title}{Transformation}
+  \verb{url}
+  \verb http://www.w3.org/standards/xml/transformation
+  \endverb
+  \field{urlday}{25}
+  \field{urlmonth}{10}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{Mustache}{online}{}
+  \field{sortinit}{M}
+  \field{title}{Mustache}
+  \verb{url}
+  \verb https://mustache.github.io/
+  \endverb
+  \field{urlday}{25}
+  \field{urlmonth}{10}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{MobileLoad}{online}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Sean}{S.}%
+     {Work}{W.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{SW1}
+  \strng{fullhash}{SW1}
+  \field{sortinit}{S}
+  \field{title}{How Loading Time Affects Your Bottom Line}
+  \verb{url}
+  \verb https://blog.kissmetrics.com/loading-time/
+  \endverb
+  \field{urlday}{25}
+  \field{urlmonth}{10}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{Rust}{online}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{The Rust Core Team}}{T.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{T1}
+  \strng{fullhash}{T1}
+  \field{labelyear}{2015}
+  \field{sortinit}{T}
+  \field{title}{Announcing Rust 1.0}
+  \verb{url}
+  \verb http://blog.rust-lang.org/2015/05/15/Rust-1.0.html
+  \endverb
+  \field{day}{15}
+  \field{month}{05}
+  \field{year}{2015}
+  \field{urlday}{25}
+  \field{urlmonth}{10}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{XSLT}{online}{}
+  \name{author}{2}{}{%
+    {{}%
+     {W3C}{W.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {James}{J.}%
+     {Clark}{C.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{WJC1}
+  \strng{fullhash}{WJC1}
+  \field{labelyear}{1999}
+  \field{sortinit}{W}
+  \field{title}{XSL Transformations (XSLT) Version 1.0}
+  \verb{url}
+  \verb http://www.w3.org/TR/xslt
+  \endverb
+  \field{day}{16}
+  \field{month}{11}
+  \field{year}{1999}
+  \field{urlday}{25}
+  \field{urlmonth}{10}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{WikiCompare}{online}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Wikipedia, the free encyclopedia}}{W.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{W1}
+  \strng{fullhash}{W1}
+  \field{sortinit}{W}
+  \field{title}{Comparison of web template engines}
+  \verb{url}
+  \verb https://en.wikipedia.org/wiki/Comparison_of_web_template_engines
   \endverb
   \field{urlday}{26}
   \field{urlmonth}{10}

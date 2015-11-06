@@ -6,4 +6,22 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.2}Advantages of a templating language in the Web.}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.3}Building a Parser.}{5}
+\contentsline {section}{\numberline {1.3}Main features of \{NAME TBD\}{}}{7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.4}Building a transcompiler{}.}{8}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.5}Why Rust?}{8}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Requirements}{9}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Requirements Analysis}{9}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.1}Technical Requirements}{12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Rust}{12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Iron}{12}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}System Model}{13}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Feasibility}{14}
