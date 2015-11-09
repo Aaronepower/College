@@ -1,5 +1,5 @@
 @echo off
 pdflatex thesis
-bibtex thesis
+biber thesis
 pdflatex thesis
 pdflatex thesis

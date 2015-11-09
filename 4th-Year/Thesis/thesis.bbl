@@ -1,10 +1,10 @@
 % $ biblatex auxiliary file $
-% $ biblatex version 2.5 $
+% $ biblatex bbl format version 2.5 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
-% This file may safely be deleted. It will be recreated as
-% required.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
 %
 \begingroup
 \makeatletter
@@ -16,283 +16,50 @@
   {}
 \endgroup
 
-\entry{JSCompare}{online}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Alex}{A.}%
-     {Gorbatchev}{G.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{AG1}
-  \strng{fullhash}{AG1}
-  \field{labelyear}{2014}
-  \field{sortinit}{A}
-  \field{title}{Comparing JavaScript Templating Engines: Jade, Mustache, Dust
-  and More}
-  \verb{url}
-  \verb https://strongloop.com/strongblog/compare-javascript-templates-jade-mus
-  \verb tache-dust/
-  \endverb
-  \field{day}{11}
-  \field{month}{11}
-  \field{year}{2014}
-  \field{urlday}{26}
-  \field{urlmonth}{10}
-  \field{urlyear}{2015}
-\endentry
 
-\entry{DragonBook}{book}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Alfred}{A.}%
-     {V.~Abo}{V.~A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Monica}{M.}%
-     {S.~Lam}{S.~L.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Ravi}{R.}%
-     {Sethi}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Jeffery}{J.}%
-     {D.~Ullman}{D.~U.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {Addison Wesley}%
-  }
-  \strng{namehash}{AVA+1}
-  \strng{fullhash}{AVAMSLRSJDU1}
-  \field{labelyear}{2007}
-  \field{sortinit}{A}
-  \field{edition}{2}
-  \field{title}{Compilers Principles Techniques and Tools}
-  \field{year}{2007}
-\endentry
-
-\entry{MustacheMan}{online}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Chris}{C.}%
-     {Wanstrath}{W.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{CW1}
-  \strng{fullhash}{CW1}
-  \field{sortinit}{C}
-  \field{title}{Mustache Manual 5}
-  \verb{url}
-  \verb https://mustache.github.io/mustache.5.html
-  \endverb
-  \field{urlday}{25}
-  \field{urlmonth}{10}
-  \field{urlyear}{2015}
-\endentry
-
-\entry{ParseTech}{book}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Dick}{D.}%
-     {Grune}{G.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Ceriel}{C.}%
-     {J.H.~Jacobs}{J.~J.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {Springer}%
-  }
-  \strng{namehash}{DGCJJ1}
-  \strng{fullhash}{DGCJJ1}
-  \field{labelyear}{2008}
-  \field{sortinit}{D}
-  \field{edition}{2}
-  \field{title}{Parsing Techniques - A Practical Guide}
-  \field{year}{2008}
-\endentry
-
-\entry{Iron}{online}{}
-  \field{sortinit}{I}
-  \field{title}{{Iron}}
-  \verb{url}
-  \verb https://github.com/iron/iron
-  \endverb
-  \field{urlday}{25}
-  \field{urlmonth}{10}
-  \field{urlyear}{2015}
-\endentry
-
-\entry{Jade}{online}{}
-  \field{sortinit}{J}
-  \field{title}{{Jade - Template Engine}}
-  \verb{url}
-  \verb http://jade-lang.com/
-  \endverb
-  \field{urlday}{26}
-  \field{urlmonth}{10}
-  \field{urlyear}{2015}
-\endentry
-
-\entry{VergeJS}{online}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Les}{L.}%
-     {Orchard}{O.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{LO1}
-  \strng{fullhash}{LO1}
-  \field{labelyear}{2015}
-  \field{sortinit}{L}
-  \field{title}{The Verge's web sucks}
-  \verb{url}
-  \verb http://blog.lmorchard.com/2015/07/22/the-verge-web-sucks/
-  \endverb
-  \field{day}{22}
-  \field{month}{07}
-  \field{year}{2015}
-  \field{urlday}{25}
-  \field{urlmonth}{10}
-  \field{urlyear}{2015}
-\endentry
-
-\entry{XSLTEx}{online}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Liam}{L.}%
-     {{R. E. Quin}}{R.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{LR1}
-  \strng{fullhash}{LR1}
-  \field{sortinit}{L}
-  \field{title}{Transformation}
-  \verb{url}
-  \verb http://www.w3.org/standards/xml/transformation
-  \endverb
-  \field{urlday}{25}
-  \field{urlmonth}{10}
-  \field{urlyear}{2015}
-\endentry
-
-\entry{Mustache}{online}{}
-  \field{sortinit}{M}
-  \field{title}{Mustache}
-  \verb{url}
-  \verb https://mustache.github.io/
-  \endverb
-  \field{urlday}{25}
-  \field{urlmonth}{10}
-  \field{urlyear}{2015}
-\endentry
-
-\entry{MobileLoad}{online}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Sean}{S.}%
-     {Work}{W.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{SW1}
-  \strng{fullhash}{SW1}
-  \field{sortinit}{S}
-  \field{title}{How Loading Time Affects Your Bottom Line}
-  \verb{url}
-  \verb https://blog.kissmetrics.com/loading-time/
-  \endverb
-  \field{urlday}{25}
-  \field{urlmonth}{10}
-  \field{urlyear}{2015}
-\endentry
-
-\entry{Rust}{online}{}
-  \name{author}{1}{}{%
-    {{}%
-     {{The Rust Core Team}}{T.}%
-     {}{}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{T1}
-  \strng{fullhash}{T1}
-  \field{labelyear}{2015}
-  \field{sortinit}{T}
-  \field{title}{Announcing Rust 1.0}
-  \verb{url}
-  \verb http://blog.rust-lang.org/2015/05/15/Rust-1.0.html
-  \endverb
-  \field{day}{15}
-  \field{month}{05}
-  \field{year}{2015}
-  \field{urlday}{25}
-  \field{urlmonth}{10}
-  \field{urlyear}{2015}
-\endentry
-
-\entry{XSLT}{online}{}
-  \name{author}{2}{}{%
-    {{}%
-     {W3C}{W.}%
-     {}{}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {James}{J.}%
-     {Clark}{C.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{WJC1}
-  \strng{fullhash}{WJC1}
-  \field{labelyear}{1999}
-  \field{sortinit}{W}
-  \field{title}{XSL Transformations (XSLT) Version 1.0}
-  \verb{url}
-  \verb http://www.w3.org/TR/xslt
-  \endverb
-  \field{day}{16}
-  \field{month}{11}
-  \field{year}{1999}
-  \field{urlday}{25}
-  \field{urlmonth}{10}
-  \field{urlyear}{2015}
-\endentry
-
-\entry{WikiCompare}{online}{}
-  \name{author}{1}{}{%
-    {{}%
-     {{Wikipedia, the free encyclopedia}}{W.}%
-     {}{}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{W1}
-  \strng{fullhash}{W1}
-  \field{sortinit}{W}
-  \field{title}{Comparison of web template engines}
-  \verb{url}
-  \verb https://en.wikipedia.org/wiki/Comparison_of_web_template_engines
-  \endverb
-  \field{urlday}{26}
-  \field{urlmonth}{10}
-  \field{urlyear}{2015}
-\endentry
-
-\lossort
-\endlossort
-
+\refsection{0}
+  \sortlist{nyt}{nyt}
+    \entry{ParseTech}{book}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=93d0dfabfa4658ba40b54a59852d7857}{Dick}{D\bibinitperiod}{Grune}{G\bibinitperiod}{}{}{}{}}%
+        {{uniquename=0,hash=88c4c504ce46b7d0d0f7d8bcd8bfcb1e}{Ceriel}{C\bibinitperiod}{J.H.\bibnamedelimi Jacobs}{J\bibinitperiod\bibinitdelim J\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{57a530a646742be9851f29daee9fb3cd}
+      \strng{fullhash}{57a530a646742be9851f29daee9fb3cd}
+      \field{sortinit}{D}
+      \field{sortinithash}{78f7c4753a2004675f316a80bdb31742}
+      \field{labelyear}{2008}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2}
+      \field{title}{Parsing Techniques - A Practical Guide}
+      \field{year}{2008}
+    \endentry
+    \entry{Chomsky}{article}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=1895c794bc086b3adc318850acd1516c}{Noam}{N\bibinitperiod}{Chomsky}{C\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{1895c794bc086b3adc318850acd1516c}
+      \strng{fullhash}{1895c794bc086b3adc318850acd1516c}
+      \field{sortinit}{N}
+      \field{sortinithash}{925374ca63e7594de7fafdb83e64d41d}
+      \field{labelyear}{1956}
+      \field{labelmonth}{9}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transactions on Information Theory}
+      \field{month}{9}
+      \field{title}{Three Models For The Description Of Language}
+      \field{year}{1956}
+      \field{pages}{12}
+      \range{pages}{1}
+    \endentry
+  \endsortlist
+\endrefsection
 \endinput
+

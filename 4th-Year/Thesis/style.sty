@@ -1,9 +1,15 @@
-\usepackage[backend=bibtex, style=authoryear, dashed=false, firstinits=true]{biblatex}
-\addbibresource{thesis.bib}
-\
-\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[backend=biber, style=authoryear, dashed=false, uniquename=init]{biblatex}
+\DeclareNameAlias{sortname}{last-first}
+\DeclareNameAlias{default}{last-first}
+\addbibresource{bib/BackgroundResearch.bib}
+\addbibresource{bib/LiteratureReview.bib}
+
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
 \usepackage{color}
 \usepackage{subfig}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{setspace}
 \usepackage{tgtermes}
@@ -24,30 +30,3 @@
 \emergencystretch=1em
 
 \fontfamily{qtm}\selectfont
-
-
-% \makeatletter
-% \newrobustcmd*{\parentexttrack}[1]{%
-%   \begingroup
-%   \blx@blxinit
-%   \blx@setsfcodes
-%   \blx@bibopenparen#1\blx@bibcloseparen
-%   \endgroup}
-% 
-% \AtEveryCite{%
-%   \let\parentext=\parentexttrack%
-%   \let\bibopenparen=\bibopenbracket%
-%   \let\bibcloseparen=\bibclosebracket}
-% 
-% \renewbibmacro*{cite}{%
-%   \iffieldundef{shorthand}
-%     {\ifthenelse{\ifnameundef{labelname}\OR\iffieldundef{labelyear}}
-%        {\usebibmacro{cite:label}%
-%         \setunit{\addspace}}
-%        {\printnames{labelname}%
-%         \setunit{\nameyeardelim}}%
-% %     \usebibmacro{cite:labelyear+extrayear}}% DELETED
-%      \printtext[parens]{\usebibmacro{cite:labelyear+extrayear}}}% ADDED
-%     {\usebibmacro{cite:shorthand}}}
-% 
-% \makeatother% 
