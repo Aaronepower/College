@@ -95,3 +95,18 @@ hs_err_pid*
 *~
 
 dist/
+# Rust
+target/
+
+# TeX
+*.aux
+*.pdf
+*.ps
+*.log
+*.dvi
+*.bbl
+*.blg
+*.out
+*.run.xml
+*.lof
+*.tex~

@@ -6,8 +6,8 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.1}Determining how to parse the syntax of a language}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.1.1}Production rule Symbol definitions}{5}
+\contentsline {subsubsection}{\numberline {2.1.1}Grammar definitions}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.1.2}Language types}{6}
+\contentsline {subsubsection}{\numberline {2.1.2}Types of languages}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Conclusion}{7}
+\contentsline {section}{\numberline {3}Conclusion}{8}
