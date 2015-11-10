@@ -8,6 +8,6 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {2.1.1}Grammar definitions}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.1.2}Types of languages}{6}
+\contentsline {subsubsection}{\numberline {2.1.2}Chomsky hierarchy within formal languages}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Conclusion}{8}
+\contentsline {section}{\numberline {3}Conclusion}{9}

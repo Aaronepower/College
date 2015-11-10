@@ -19,6 +19,28 @@
 
 \refsection{0}
   \sortlist{nyt}{nyt}
+    \entry{DragonBook}{book}{}
+      \name{author}{4}{}{%
+        {{uniquename=0,hash=491bc02be17aca0608c589cf0a516693}{Alfred}{A\bibinitperiod}{V.\bibnamedelimi Abo}{V\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+        {{uniquename=0,hash=9627de3e55e524313a9a8e18796229f7}{Monica}{M\bibinitperiod}{S.\bibnamedelimi Lam}{S\bibinitperiod\bibinitdelim L\bibinitperiod}{}{}{}{}}%
+        {{uniquename=0,hash=969287875192725552501a11ae80b0bd}{Ravi}{R\bibinitperiod}{Sethi}{S\bibinitperiod}{}{}{}{}}%
+        {{uniquename=0,hash=63eba9b6fd024a07ae2b1c9806d31017}{Jeffery}{J\bibinitperiod}{D.\bibnamedelimi Ullman}{D\bibinitperiod\bibinitdelim U\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {Addison Wesley}%
+      }
+      \strng{namehash}{65ea525bca7b31f8e06102a9ae623ee4}
+      \strng{fullhash}{a83dd115bd9b46f05cd63311b89f57f5}
+      \field{sortinit}{A}
+      \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
+      \field{labelyear}{2007}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2}
+      \field{title}{Compilers Principles Techniques and Tools}
+      \field{year}{2007}
+    \endentry
     \entry{ParseTech}{book}{}
       \name{author}{2}{}{%
         {{uniquename=0,hash=93d0dfabfa4658ba40b54a59852d7857}{Dick}{D\bibinitperiod}{Grune}{G\bibinitperiod}{}{}{}{}}%

@@ -4,8 +4,10 @@
 
 \newpage
 \section{Language Parsing Design}
+
 \subsection{Determining how to parse the syntax of a language}
-A formal language is defined as a set of strings of symbols for use in situations where a natural language(\textit{English}) isn't suitable eg. Mathematics, and Computer programming. Where each symbol has precise semantic, and syntactic relation to each other. Writing formal grammar rules uses a set of finite ``\textit{productions}''. Productions, are rules that signify substitution of Symbols within a string, there are typically three symbols when writing productions in formal grammars as seen in figure \ref{fig:formalGrammar}. Productions rules are used to take strings, and convert them into parse trees, which are a hierarchy of tokens that can be used by the \compiler{}. The \emph{|}, known as pipe symbol is just a grouping of rules applying to the same rule so $A \rightarrow a\ |\ aA$ is the same as $A \rightarrow a$ and $ A \rightarrow aA$
+
+A formal language is defined as a set of strings of symbols for use in situations where a natural language(\textit{English}) isn't suitable eg. Mathematics, and Computer programming. Where each symbol has precise semantic, and syntactic relation to each other. Writing formal grammar rules uses a set of finite ``\textit{productions}''. Productions, are rules that signify substitution of Symbols within a string, there are typically three symbols when writing productions in formal grammars as seen in figure \ref{fig:formalGrammar}. Productions rules are used to take strings, and convert them into parse trees, which are a hierarchy of tokens that can be used by the \compiler{}. The \emph{|}, known as pipe symbol is just a grouping of rules applying to the same rule so $A \rightarrow a\ |\ aA$ is the same as $A \rightarrow a$ and $ A \rightarrow aA$ in the same production.
 
 \begin{figure}[ht!]
     \begin{align*}
@@ -18,7 +20,9 @@ A formal language is defined as a set of strings of symbols for use in situation
     \caption{Formal grammar syntax, example from \cite{ParseTech}}
     \label{fig:formalGrammar}
 \end{figure}
+
 \subsubsection{Grammar definitions}
+
 \begin{description}
     \item[\textit{Terminal Symbols}] Symbols which cannot be substituted any further, an example of this in programming languages is literal characters, or a single number digit. Terminal symbols are represented by lowercase letters.
     
@@ -27,19 +31,40 @@ A formal language is defined as a set of strings of symbols for use in situation
     \item[\textit{Start Symbol}] is a special Nonterminal symbol signifying the start of a string. Start symbols are represented by a uppercase S, or an Uppercase S with a subscript s eg. $S_s$, in order to signify it is different from a Nonterminal \textit{S} symbol.
 \end{description}
 
-\subsubsection{Types of languages}
-In \autocite{Chomsky} he defined what is now known as \textit{Chomsky-Schützenberger hierarchy}, which defines formal languages into four types(Type 0 - 4). As shown in Figure \ref{fig:Chomsky} each type is a subset of the previous. All of Type 4, can be a Type 0, but not all of Type 0 can be Type 4, so multiple rules can describe the same language depending on it's syntax.
-\begin{figure}[ht!]
+\subsubsection{Chomsky hierarchy within formal languages}
+
+When parsing a string as a way to meaningfully turn the language into meaningful data models, \autocite{Chomsky} talks about the need of structured models, rather using probabilistic models like Markov Chain. Which is a model where the model changes from different states, based solely on it's most recent state. \autocite{Chomsky} showcases this with the famous example: \\
+
+``\emph{Colorless green ideas sleep furiously}'' \\
+
+A sentence which is not a semantically valid sentence, but is grammatically correct. In \autocite{Chomsky} he defined what is now known as \textit{Chomsky-Schützenberger hierarchy}, which defines formal languages into four types(Type 0 - 4). As shown in Figure \ref{fig:Chomsky} each type is a subset of the previous. All of Type 4, can be a Type 0, but not all of Type 0 can be Type 4, so multiple rules can describe the same language depending on it's syntax.
+\clearpage
+\begin{figure}[h]
     \centerline{\includegraphics[width=0.5\linewidth]{img/Chomsky.png}}
     \caption{Chomsky-Schützenberger hierarchy, by J. Finkelstein}
     \label{fig:Chomsky}
 \end{figure}
 \begin{description}
-    \item[Type 0] Also known as \textit{phase structure} languages. This is the the parent of all following languages. Every language in the Chomsky hierarchy is also a phase structure. Phase structure is a generalised, and can have unclear hierarchy, due to it's lack of limitations.
+    \item[Type 0] Also known as \textit{recursively enumerable} languages. This is the the parent of all following languages. Every language in the Chomsky hierarchy is also a recursively enumerable. Recursively enumerable is a generalised, and can have unclear hierarchy, due to it's lack of limitations.
     \item[Type 1] Also known as \textit{context-sensitive} languages. Meaning only one of the nonterminal characters on the left hand side can be replaced. This allows for a much more clear hierarchy within the parse tree.
     \item[Type 2] Also known as \textit{context-free} languages. context-free is similar to context sensitive, except there is always only one Nonterminal Symbol on the left hand side. This prevents children in the parse tree to have siblings, providing a \textit{pure} hierarchy. This is a the type most programming languages fall under.
     \item[Type 3]  Also known as \textit{regular} languages. Regular languages are languages defined by \textit{regular expressions} rather than regular grammar like seen previously.
 \end{description}
 
+When discussing about parsing a programming language, it is important to differentiate between the syntax of the language, and the \emph{semantics} of the language. As confusion between the two can lead an individual to believe a language is one type, when it is actually a subset. As \autocite{DragonBook} shows, compilers commonly have a syntax analyser, and a semantics analyser. This is shown clearly in \ref{fig:InvalidC}. Where when run through a C compiler the compiler will print out ``error: \'x\' undeclared (first use in this function)''. This could lead an individual that the parser must be context-sensitive, as the compiler knew that x was being used before it existed. In reality the parser is context-free, and the semantic analyser is what determined that the code written was invalid. Using the methods laid out in \autocite{DragonBook} the parser of a compiler would commonly not try structure the strings into a data model, and also interpret the meaning of the code.
+
+\begin{figure}
+    \begin{verbatim}
+        int main() {
+            x++;
+            int x = 1;
+            return 0;
+        }
+    \end{verbatim}
+    \caption{C code with valid syntax, but invalid semantics.}
+    \label{fig:InvalidC}
+\end{figure}
+
 \newpage
 \section{Conclusion}
+\newpage
