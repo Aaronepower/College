@@ -1,20 +1,18 @@
 [0] Config.pm:324> INFO - This is Biber 2.1
-[2] Config.pm:327> INFO - Logfile is 'thesis.blg'
-[333] biber-MSWIN:273> INFO - === %a %b %e, %Y, %H:%M:%S
-[341] Biber.pm:333> INFO - Reading 'thesis.bcf'
-[938] Utils.pm:146> WARN - Warning: Found biblatex control file version 2.8, expected version 2.7
-[940] Biber.pm:645> INFO - Found 3 citekeys in bib section 0
-[1115] Biber.pm:2977> INFO - Processing section 0
-[1307] Biber.pm:3115> INFO - Looking for bibtex format file 'bib/BackgroundResearch.bib' for section 0
-[1346] bibtex.pm:1021> INFO - Decoding LaTeX character macros into UTF-8
-[1363] bibtex.pm:895> INFO - Found BibTeX data source 'bib/BackgroundResearch.bib'
-[1383] Biber.pm:3115> INFO - Looking for bibtex format file 'bib/LiteratureReview.bib' for section 0
-[1401] bibtex.pm:1021> INFO - Decoding LaTeX character macros into UTF-8
-[1405] bibtex.pm:895> INFO - Found BibTeX data source 'bib/LiteratureReview.bib'
-[1567] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1569] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1571] Biber.pm:2854> INFO - Sorting list 'nyt' of type 'entry' with scheme 'nyt' and locale 'en-US'
-[1572] Biber.pm:2858> INFO - No sort tailoring available for locale 'en-US'
-[1580] bbl.pm:505> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
-[1609] bbl.pm:596> INFO - Output to thesis.bbl
-[1615] Biber.pm:106> INFO - WARNINGS: 1
+[0] Config.pm:327> INFO - Logfile is 'thesis.blg'
+[75] biber-MSWIN:273> INFO - === %a %b %e, %Y, %H:%M:%S
+[76] Biber.pm:333> INFO - Reading 'thesis.bcf'
+[325] Biber.pm:645> INFO - Found 3 citekeys in bib section 0
+[443] Biber.pm:2977> INFO - Processing section 0
+[579] Biber.pm:3115> INFO - Looking for bibtex format file 'bib/BackgroundResearch.bib' for section 0
+[624] bibtex.pm:1021> INFO - Decoding LaTeX character macros into UTF-8
+[654] bibtex.pm:895> INFO - Found BibTeX data source 'bib/BackgroundResearch.bib'
+[675] Biber.pm:3115> INFO - Looking for bibtex format file 'bib/LiteratureReview.bib' for section 0
+[685] bibtex.pm:1021> INFO - Decoding LaTeX character macros into UTF-8
+[690] bibtex.pm:895> INFO - Found BibTeX data source 'bib/LiteratureReview.bib'
+[761] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[761] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[761] Biber.pm:2854> INFO - Sorting list 'nyt' of type 'entry' with scheme 'nyt' and locale 'en-US'
+[761] Biber.pm:2858> INFO - No sort tailoring available for locale 'en-US'
+[765] bbl.pm:505> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
+[774] bbl.pm:596> INFO - Output to thesis.bbl
