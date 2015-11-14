@@ -21,16 +21,16 @@
   \sortlist{nyt}{nyt}
     \entry{DragonBook}{book}{}
       \name{author}{4}{}{%
-        {{uniquename=0,hash=491bc02be17aca0608c589cf0a516693}{Alfred}{A\bibinitperiod}{V.\bibnamedelimi Abo}{V\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
-        {{uniquename=0,hash=9627de3e55e524313a9a8e18796229f7}{Monica}{M\bibinitperiod}{S.\bibnamedelimi Lam}{S\bibinitperiod\bibinitdelim L\bibinitperiod}{}{}{}{}}%
-        {{uniquename=0,hash=969287875192725552501a11ae80b0bd}{Ravi}{R\bibinitperiod}{Sethi}{S\bibinitperiod}{}{}{}{}}%
-        {{uniquename=0,hash=63eba9b6fd024a07ae2b1c9806d31017}{Jeffery}{J\bibinitperiod}{D.\bibnamedelimi Ullman}{D\bibinitperiod\bibinitdelim U\bibinitperiod}{}{}{}{}}%
+        {{uniquename=0,hash=5b604baf4685e918c3ea2bf07fe424b7}{Abo}{A\bibinitperiod}{Alfred\bibnamedelima V.}{A\bibinitperiod\bibinitdelim V\bibinitperiod}{}{}{}{}}%
+        {{uniquename=0,hash=c6e8ad520de884393c2780a9a26c7d31}{Lam}{L\bibinitperiod}{Monica\bibnamedelima S.}{M\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
+        {{uniquename=0,hash=b0e677112f976b0ff780553fcb888351}{Sethi}{S\bibinitperiod}{Ravi}{R\bibinitperiod}{}{}{}{}}%
+        {{uniquename=0,hash=4ab11bc5564e2dbed23bebd87c2cd2f9}{Ullman}{U\bibinitperiod}{Jeffery\bibnamedelima D.}{J\bibinitperiod\bibinitdelim D\bibinitperiod}{}{}{}{}}%
       }
       \list{publisher}{1}{%
         {Addison Wesley}%
       }
-      \strng{namehash}{65ea525bca7b31f8e06102a9ae623ee4}
-      \strng{fullhash}{a83dd115bd9b46f05cd63311b89f57f5}
+      \strng{namehash}{7449351d8f8af38d42f88a6c91156b3d}
+      \strng{fullhash}{0d449a3db6cbf9efed92b16b4e655a1b}
       \field{sortinit}{A}
       \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
       \field{labelyear}{2007}
@@ -41,34 +41,14 @@
       \field{title}{Compilers Principles Techniques and Tools}
       \field{year}{2007}
     \endentry
-    \entry{ParseTech}{book}{}
-      \name{author}{2}{}{%
-        {{uniquename=0,hash=93d0dfabfa4658ba40b54a59852d7857}{Dick}{D\bibinitperiod}{Grune}{G\bibinitperiod}{}{}{}{}}%
-        {{uniquename=0,hash=88c4c504ce46b7d0d0f7d8bcd8bfcb1e}{Ceriel}{C\bibinitperiod}{J.H.\bibnamedelimi Jacobs}{J\bibinitperiod\bibinitdelim J\bibinitperiod}{}{}{}{}}%
-      }
-      \list{publisher}{1}{%
-        {Springer}%
-      }
-      \strng{namehash}{57a530a646742be9851f29daee9fb3cd}
-      \strng{fullhash}{57a530a646742be9851f29daee9fb3cd}
-      \field{sortinit}{D}
-      \field{sortinithash}{78f7c4753a2004675f316a80bdb31742}
-      \field{labelyear}{2008}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{edition}{2}
-      \field{title}{Parsing Techniques - A Practical Guide}
-      \field{year}{2008}
-    \endentry
     \entry{Chomsky}{article}{}
       \name{author}{1}{}{%
-        {{uniquename=0,hash=1895c794bc086b3adc318850acd1516c}{Noam}{N\bibinitperiod}{Chomsky}{C\bibinitperiod}{}{}{}{}}%
+        {{uniquename=0,hash=28167c0b3800bc5cfb686676277005b0}{Chomsky}{C\bibinitperiod}{Noam}{N\bibinitperiod}{}{}{}{}}%
       }
-      \strng{namehash}{1895c794bc086b3adc318850acd1516c}
-      \strng{fullhash}{1895c794bc086b3adc318850acd1516c}
-      \field{sortinit}{N}
-      \field{sortinithash}{925374ca63e7594de7fafdb83e64d41d}
+      \strng{namehash}{28167c0b3800bc5cfb686676277005b0}
+      \strng{fullhash}{28167c0b3800bc5cfb686676277005b0}
+      \field{sortinit}{C}
+      \field{sortinithash}{59f25d509f3381b07695554a9f35ecb2}
       \field{labelyear}{1956}
       \field{labelmonth}{9}
       \field{datelabelsource}{}
@@ -80,6 +60,46 @@
       \field{year}{1956}
       \field{pages}{12}
       \range{pages}{1}
+    \endentry
+    \entry{ParseTech}{book}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=47f5a15fb7871943ce640d89cc324287}{Grune}{G\bibinitperiod}{Dick}{D\bibinitperiod}{}{}{}{}}%
+        {{uniquename=0,hash=5989fc437b194ebe8acc6d4ab6a8ccc5}{Jacobs}{J\bibinitperiod}{Ceriel\bibnamedelima J.H.}{C\bibinitperiod\bibinitdelim J\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{4b2c3c44fa8b672d52ef7138d68d618c}
+      \strng{fullhash}{4b2c3c44fa8b672d52ef7138d68d618c}
+      \field{sortinit}{G}
+      \field{sortinithash}{1c854ef9177a91bf894e66485bdbd3ed}
+      \field{labelyear}{2008}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2}
+      \field{title}{Parsing Techniques - A Practical Guide}
+      \field{year}{2008}
+    \endentry
+    \entry{LexYacc}{book}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,hash=4068c68b650361809ab32cea3fb41a0f}{Levine}{L\bibinitperiod}{John\bibnamedelima R.}{J\bibinitperiod\bibinitdelim R\bibinitperiod}{}{}{}{}}%
+        {{uniquename=0,hash=2b99dfe7918449caf861f2ae5bb6a02a}{Mason}{M\bibinitperiod}{Tony}{T\bibinitperiod}{}{}{}{}}%
+        {{uniquename=0,hash=515fd0fccb7901fd4a6f485910932531}{Brown}{B\bibinitperiod}{Doug}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly \& Associates Inc.}%
+      }
+      \strng{namehash}{7bf24942652cba4af38fadddc1dda3e9}
+      \strng{fullhash}{7bf24942652cba4af38fadddc1dda3e9}
+      \field{sortinit}{L}
+      \field{sortinithash}{872351f18d0f736066eda0bf18bfa4f7}
+      \field{labelyear}{1992}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Lex \& Yacc}
+      \field{year}{1992}
     \endentry
   \endsortlist
 \endrefsection
