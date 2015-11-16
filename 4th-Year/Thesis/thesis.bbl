@@ -82,6 +82,7 @@
       \range{pages}{1}
     \endentry
   \endsortlist
+  \missing{LexYacc}
 \endrefsection
 \endinput
 
