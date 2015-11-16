@@ -107,6 +107,8 @@ target/
 *.bbl
 *.blg
 *.out
+*.bcf
+*.toc
 *.run.xml
 *.lof
 *.tex~

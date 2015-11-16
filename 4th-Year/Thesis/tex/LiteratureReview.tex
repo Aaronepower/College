@@ -9,7 +9,7 @@ A formal language is defined as a set of strings of symbols for use in situation
 \begin{description}
     \item[\emph{Terminal Symbols}] Symbols which cannot be substituted any further, examples of this in programming languages are single number digits(0-9), and mathematical symbols(\emph{+,-,/,*}). Terminal symbols are commonly represented by lowercase letters.
     
-    \item[\emph{Nonterminal Symbols}] Symbols which can be reduced further using productions. For example as in \ref{fig:formalGrammar} $A \rightarrow a\ |\ aA$ is a nonterminal rule, as \emph{A} needs to be substituted into either \emph{a}, or \emph{aA}. Nonterminal symbols frequently are represented by uppercase letters.
+    \item[\emph{Nonterminal Symbols}] Symbols which can be reduced further using productions. For example as in Figure \ref{fig:formalGrammar} $A \rightarrow a\ |\ aA$ is a nonterminal rule, as \emph{A} needs to be substituted into either \emph{a}, or \emph{aA}. Nonterminal symbols frequently are represented by uppercase letters.
 
     \item[\emph{Start Symbol}] is a special Nonterminal symbol signifying the start of a string. Start symbols are represented by a uppercase S, or with a Uppercase letter with a subscript s eg. $S_s$, in order to signify it is different from a Nonterminal \emph{S} symbol.
 \end{description}
@@ -23,18 +23,18 @@ Productions rules are used show how a compiler will take strings, and convert th
     D &\rightarrow ab\ |\ aDb \\
     C &\rightarrow c\ |\ cC \\
     \end{align*}
-    \caption{Formal grammar syntax, example from \cite{ParseTech}}
+    \caption{Formal grammar syntax, example from \citep{ParseTech}}
     \label{fig:formalGrammar}
 \end{figure}
 \newpage
 \subsection{Chomsky hierarchy within formal languages}
-When parsing a string as a way to meaningfully turn the language into meaningful data models, \cite{Chomsky} talks about the need of structured models, rather than using probabilistic models like Markov Chain. Markov chain is a model where the data model changes from different states, based solely on it's most recent state. \cite{Chomsky} showcases this with the famous example:
+When parsing a string as a way to meaningfully turn the language into meaningful data models, \citep{Chomsky} talks about the need of structured models, rather than using probabilistic models like Markov Chain. Markov chain is a model where the data model changes from different states, based solely on it's most recent state. \citep{Chomsky} showcases this with the famous example:
 
 \vspace{12pt}
 \centerline{``\emph{Colorless green ideas sleep furiously}''}
 \vspace{12pt}
 
-A sentence which is not a semantically valid sentence, but is grammatically correct. In \cite{Chomsky} he defined what is now known as \emph{\hierarchy{}}, which defines formal languages into four types(Type 0 - 4). As shown in Figure \ref{fig:Chomsky} each type is a subset of the previous. All of Type 4, can be a Type 3, but not all of Type 3 can be Type 4, so multiple rules can describe the same language depending on it's syntax.
+A sentence which is not a semantically valid sentence, but is grammatically correct. In \citep{Chomsky} he defined what is now known as \emph{\hierarchy{}}, which defines formal languages into four types(Type 0 - 4). As shown in Figure \ref{fig:Chomsky} each type is a subset of the previous. All of Type 4, can be a Type 3, but not all of Type 3 can be Type 4, so multiple rules can describe the same language depending on it's syntax.
 \begin{figure}[ht!]
     \centerline{\includegraphics[width=0.5\textwidth]{img/Chomsky.png}}
     \caption{\hierarchy{}, by J. Finkelstein}
@@ -45,15 +45,14 @@ A sentence which is not a semantically valid sentence, but is grammatically corr
     \item[Type 0] Also known as \emph{recursively enumerable} languages. This is the the parent of all following languages. Every language in the Chomsky hierarchy is also a recursively enumerable. Recursively enumerable is a generalised, and can have unclear hierarchy, due to it's lack of limitations.
     \item[Type 1] Also known as \emph{context-sensitive} languages. Meaning only one of the nonterminal characters on the left hand side can be replaced. This allows for a much clearer hierarchy within the parse tree.
     \item[Type 2] Also known as \emph{context-free} languages. context-free is similar to context sensitive, except there is always only one Nonterminal Symbol on the left hand side. This prevents children in the parse tree to have star patterns with multiple parents pointing to the same child, which then points to multiple children within the parse tree. This is known as a \emph{pure} hierarchy. This is a the language type most programming languages fall under, with few exceptions(\emph{C++}).
-    \item[Type 3]  Also known as \emph{regular} languages. Regular languages are languages defined by \emph{regular expressions} rather than regular grammar like seen previously. Regular expressions are often used when the lexical rules of a language are simple, and don't require powerful notations like grammars. Regular expressions are also much more concise in the expressing notation, than it's grammar equivalents. However regular expressions cannot describe nested structures within the language, which can be very limiting \cite{DragonBook}.
+    \item[Type 3]  Also known as \emph{regular} languages. Regular languages are languages defined by \emph{regular expressions} rather than regular grammar like seen previously. Regular expressions are often used when the lexical rules of a language are simple, and don't require powerful notations like grammars. Regular expressions are also much more concise in the expressing notation, than it's grammar equivalents. However regular expressions cannot describe nested structures within the language, which can be very limiting \citep{DragonBook}.
 \end{description}
 \newpage
 \subsection{Using \hierarchy{} \\within a compiler}
-When discussing about parsing a programming language, it is important to differentiate between the syntax of the language, and the \emph{semantics} of the language. As confusion between the two can lead an individual to believe a language is one type, when it is actually a subset. As \cite{DragonBook} shows, compilers when parsing language have a lexical analyser, which would group characters into much more meaningful sequences known as \emph{lexemes}. Lexemes are then converted into a tokens commonly in the form of a key, value pairing.
-\vspace{12pt}
-\centerline{(\emph{token-name}, \emph{attribute-value})}
-\vspace{12pt}
-Raw symbols like digits, or mathematical symbols(\emph{+,-,/,*}) are mapped into their token-name equivalents. Where as variables, the compiler will map the token-name to a token representing that it is an identifier eg. \emph{id, ident, identifier}. The compiler will then assign the attribute-value to number representing it's key in the Symbol-Table. The Symbol-Table is designed to contain much more concrete information about the token, such as it's name, and it's type eg. \emph{int, float, double, string}. The set of tokens is then passed to the syntax analyser. 
+When discussing about parsing a programming language, it is important to differentiate between the syntax of the language, and the \emph{semantics} of the language. As confusion between the two can lead an individual to believe a language is one type, when it is actually a subset. As \citep{DragonBook} shows, compilers when parsing language have a lexical analyser, which would group characters into much more meaningful sequences known as \emph{lexemes}. This form of lexical analysis, has become a standard being used by a variety of works since \citep{CompilerTutorial}, \citep{CompilerBasics}, \citep{CompilerConstruction}. Lexemes are then converted into a tokens commonly in the form of a key, value pairing. \\ \centerline{(\emph{token-name}, \emph{attribute-value})} \\\\
+Raw symbols like digits, or mathematical symbols(\emph{+,-,/,*}) are mapped into their token-name equivalents. Where as variables, the compiler will map the token-name to a token representing that it is an identifier eg. \emph{id, ident, identifier}. The compiler will then assign the attribute-value to number representing it's key in the Symbol-Table. The Symbol-Table is designed to contain much more concrete information about the token, such as it's name, and it's type eg. \emph{int, float, double, string}. The set of tokens is then passed to the syntax analyser.
+
+\newpage
 The syntax analyser will only look at the token-name getting only a vary abstract representation of the code, and can only report syntactical errors such as using wrong keywords, or having incorrect mathematically expressions eg $x = 1 + - + 1$. This is shown clearly in Figure \ref{fig:InvalidC}. Where when run through a C compiler the compiler will print out ``\emph{error: \lq{}x\rq{} undeclared (first use in this function)}''. 
 \begin{figure}[ht!]
     \centering
@@ -67,8 +66,7 @@ The syntax analyser will only look at the token-name getting only a vary abstrac
     \caption{C code with valid syntax, but invalid semantics.}
     \label{fig:InvalidC}
 \end{figure}
-\newpage
-This could lead an individual that the syntax of the parser, and thus the language must be context-sensitive, as the compiler knew that ``\emph{x}'' was being used before it existed. As seen in \cite{DragonBook} the compiler could be using a parsing grammar that is context-free, and the semantic analyser is what determined that the code written was invalid. As the syntax analyser goes through each token it builds a parse tree, showing the relationship of the tokens as seen in Figure \ref{fig:AST}. It is solely within the syntax analyser that defines the language type of the programming language.
+This could lead an individual that the syntax of the parser, and thus the language must be context-sensitive, as the compiler knew that ``\emph{x}'' was being used before it existed. As seen in \citep{DragonBook} the compiler could be using a parsing grammar that is context-free, and the semantic analyser is what determined that the code written was invalid. As the syntax analyser goes through each token it builds a parse tree, showing the relationship of the tokens as seen in Figure \ref{fig:AST}. It is solely within the syntax analyser that defines the language type of the programming language.
 
 \begin{figure}[ht!]
     \centering
@@ -88,23 +86,23 @@ This could lead an individual that the syntax of the parser, and thus the langua
     \caption{An Abstract Syntax Tree.}
     \label{fig:AST}
 \end{figure}
-
-The semantics of the language are typically defined within a semantics analyser. One common part included within the analyser is \emph{type checking}. Where the compiler checks the types on both sides of an operand(\emph{+,-}). An example used in \cite{DragonBook} is array indexing. As commonly programming languages require the index number to be an integer eg. array[1], not array[1.5].
-
-Once the syntax of the language is decided the next important step is to determine the parse method. Parsing methods commonly fall into two categories \emph{Top-down}, and \emph{bottom-up}. \cite{DragonBook} claims top-downs popularity is due to the fact that it is easier to write by hand, top-down parsing is typically slower, and requires more memory than bottom-up parsing. However the difficulty of writing a bottom-up parser by hand is so difficult, that most bottom up parsers are generated by parser generator tools.
 \newpage
-\cite{DragonBook} recommends, using a tools like \emph{Lex}, and \emph{Yacc} for generating code from grammars that were discussed earlier. Both of these tools are available by default in most UNIX OS's. \cite{LexYacc} argues that creating parsers using the tools will produce much more concise, clear, and bug-free code than writing the parser by hand. Lex uses regular expressions, and thus can only however generate \emph{regular languages}, which cannot handle nested grammars. Yacc however uses \emph{grammars} like those shown in \ref{fig:formalGrammar}, and can be used to generate the other types of languages where Lex fails. Both of these tools can only generate C programs. This is a very limiting aspect of both, and could be considered a non starter for building a parser for those who don't wish to use, or cannot use C. There are however plenty of forks of the tools designed to generate different programming languages' as output.
+The semantics of the language are typically defined within a semantics analyser. One common part included within the analyser is \emph{type checking}. Where the compiler checks the types on both sides of an operand(\emph{+,-}). An example used in \citep{DragonBook} is array indexing. As commonly programming languages require the index number to be an integer eg. array[1], not array[1.5].
 
-When writing a top-down parser, there most common method as recommend by both \cite{DragonBook}, and \cite{ParseTech} is \emph{recursive descent}. \emph{Recursive descent parsing} is the method of defining a set of recursive procedures, where each procedure is associated with each \emph{nonterminal} of the grammar. This method however as mentioned by \cite{DragonBook} is not foolproof, and can infinitely recurse. This is shown in Figure \ref{fig:leftR} where the head of the production rule is the same as the nonterminal of the rule, and since in recursive descent the symbol that the parser is currently using is only changed when there is a match, and no matches occur until the recursion ends. The program will loop infinitely.
+Once the syntax of the language is decided the next important step is to determine the parse method. Parsing methods commonly fall into two categories \emph{Top-down}, and \emph{bottom-up}. \citep{DragonBook} claims top-downs popularity is due to the fact that it is easier to write by hand, top-down parsing is typically slower, and requires more memory than bottom-up parsing. However the difficulty of writing a bottom-up parser by hand is so difficult, that most bottom up parsers are generated by parser generator tools.
+
+
+\citep{DragonBook} recommends, using a tools like \emph{Lex}, and \emph{Yacc} for generating code from grammars that were discussed earlier. Both of these tools are available by default in most UNIX OS's. \citep{LexYacc} argues that creating parsers using the tools will produce much more concise, clear, and bug-free code than writing the parser by hand. Lex uses regular expressions, and thus can only however generate \emph{regular languages}, which cannot handle nested grammars. Yacc however uses \emph{grammars} like those shown in \ref{fig:formalGrammar}, and can be used to generate the other types of languages where Lex fails. Both of these tools can only generate C programs. This is a very limiting aspect of both, and could be considered a non starter for building a parser for those who don't wish to use, or cannot use C. There are however plenty of forks of the tools designed to generate different programming languages' as output.
+\newpage
+When writing a top-down parser, there most common method as recommend by both \citep{DragonBook}, and \citep{ParseTech} is \emph{recursive descent}. \emph{Recursive descent parsing} is the method of defining a set of recursive procedures, where each procedure is associated with each \emph{nonterminal} of the grammar. This method however as mentioned by \citep{DragonBook} is not foolproof, and can infinitely recurse. This is shown in Figure \ref{fig:leftR} where the head of the production rule is the same as the nonterminal of the rule, and since in recursive descent the symbol that the parser is currently using is only changed when there is a match, and no matches occur until the recursion ends. The program will loop infinitely.
 
 \begin{figure}[ht!]
     \begin{align*}
         expr &\rightarrow\ expr + term
     \end{align*}
-    \caption{A example of Left Recursion from \cite{DragonBook}}
+    \caption{A example of Left Recursion from \citep{DragonBook}}
     \label{fig:leftR}
 \end{figure}
-\newpage
 \emph{Bottom-up parsing} is the method of instead of beginning at the root, of a parse tree, and working through to the \emph{leaves}(A node within a tree that has no children). Bottom-up parsing instead begins at the leaves, and works up to the root of a tree. The most common method within Bottom-up is \emph{shift-reduce parsing}, where the parse has a stack, of all grammar symbols, and an input where the rest of the string that is waiting to be parsed into the stack is held. This method is typically very complicated to write by hand is recommend, to use an automatic grammar generator instead, such as Lex, or Yacc.
 
 \newpage
