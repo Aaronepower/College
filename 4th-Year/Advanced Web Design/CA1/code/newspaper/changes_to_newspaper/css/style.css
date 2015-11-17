@@ -1,0 +1,83 @@
+hr, p {
+    margin: 0;
+}
+
+h1 {
+    margin: 0;
+    font: normal bold 36pt/1.4 'Droid Serif', Georgia, serif;
+    font-weight: bold;
+    color: black;
+}
+
+.title-bar {
+    border: 0;
+    height: 10px;
+    color: #c7c7c7;
+    background-color: #c7c7c7;
+    margin-top: 15px;
+}
+
+.dashed-line {
+    border-top: dotted 1px;
+}
+
+.body-copy {
+    margin-top: 20px;
+}
+
+.lead-container {
+    margin-top: 20px;
+}
+
+.lead {
+    font-family: 'Droid Serif', Arial, sans-serif;
+    font-style: italic;
+    font-size: 18pt;
+}
+
+.author, .article-type {
+    font: normal bold 11pt/1.4 'Droid Serif', Arial, sans-serif;
+}
+
+.author {
+    margin-top: 15px;
+}
+
+.article-type {
+    color: #CC3333;
+    font-size: 16pt;
+}
+
+.arial {
+    font-family: 'Droid Serif', Arial, sans-serif;
+    line-height: 1.0;
+}
+.article {
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    font: normal normal 12pt/1.4 'Droid Serif', Georgia, serif;
+}
+
+.body-start {
+    margin-top: 18px;
+}
+
+.no-padding-right {
+    padding-right: 0 !important;
+}
+
+.second-column {
+    margin-top: 61px;
+}
+.quote {
+    color: #2A5353;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 18pt;
+    line-height: 1.2;
+}
+
+.third-column {
+    margin-top: 35px;
+}

@@ -1,0 +1,101 @@
+h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+    font-family: Georgia;
+}
+
+hr, p {
+    margin: 0;
+}
+
+h1 {
+    font: normal bold 32pt/1.4 Georgia, serif;
+    font-weight: bold;
+    color: black;
+}
+
+.title-bar {
+    border: 0;
+    height: 10px;
+    color: #c7c7c7;
+    background-color: #c7c7c7;
+    margin-top: 15px;
+}
+
+.dashed-line {
+    border-top: dotted 1px;
+}
+
+.body-copy {
+    margin-top: 20px;
+}
+
+.lead {
+    font-family: "Arial Narrow", Arial;
+    font-stretch: condensed;
+    font-size: 14.5pt;
+}
+
+.below-lead {
+    margin-top: 27px;
+}
+
+.author, .article-type {
+    font: normal bold 10pt/1.2 Arial;
+}
+
+.author {
+    margin-top: 15px;
+}
+
+.article-type {
+    color: #CC3333;
+    font-size: 16pt;
+}
+
+.arial {
+    font-family: Arial;
+    line-height: 1.0;
+}
+.article {
+    -moz-hyphens: manual;
+    hyphens: manual;
+    font: normal normal 10pt/1.2 Georgia;
+}
+
+.body-start {
+    margin-top: 39px;
+}
+
+.no-padding-right {
+    padding-right: 0 !important;
+}
+
+.main-body {
+    -webkit-columns: 4;
+    -moz-columns: 4;
+    -o-columns: 4;
+    columns: 4;
+    margin-top: -5px;
+}
+
+.irish-blockquote {
+    padding: 0;
+    border: none;
+}
+
+.quote-mark {
+    display: inline-block;
+    position: absolute;
+    font-size: 72pt;
+    top: -15px;
+    left: 200px;
+    color: black;
+    font-weight: bold;
+}
+
+.quote {
+    color: #2A5353;
+    font-weight: bold;
+    font-size: 12pt;
+    line-height: 1.15;
+}
