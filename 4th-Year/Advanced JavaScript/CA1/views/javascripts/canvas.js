@@ -94,12 +94,11 @@ function onImageLoad () {
     .end().filter('#clear').click(function() {
         var context = $('#filter-canvas')[0].getContext('2d')
         context.clearRect(0, 0, canvasWidth, canvasHeight)
-        $('')
     })
     // Manipulating the image's filter's opacity
     .end().filter('#filter-opacity').each(function (_, filter) { 
         $('#filter-canvas')[0].getContext('2d').globalAlpha = filter.value
-        $('#filter-opacity-label').text(' ' + Math.floor(filter.value * 100)+'%')
+        $('#filter-opacity-label').text('Colour Opacity ' + Math.floor(filter.value * 100)+'%')
 
     }).on('input', function (event) {
         var $canvas = $('#filter-canvas')
@@ -107,7 +106,7 @@ function onImageLoad () {
         context.globalAlpha = event.target.value
         context.clearRect(0, 0, canvasWidth, canvasHeight)
         context.fillRect(0, 0, canvasWidth, canvasHeight)
-        $('#filter-opacity-label').text('Filter Opacity: '+ Math.floor(event.target.value * 100)+'%')
+        $('#filter-opacity-label').text('Colour Opacity: '+ Math.floor(event.target.value * 100)+'%')
     })
 }
 

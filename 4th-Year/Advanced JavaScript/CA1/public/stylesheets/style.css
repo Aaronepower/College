@@ -34,8 +34,12 @@ canvas:active {
 	pointer-events: none;
 }
 
-#clear {
-	padding: 0;
+.colour-box {
+	height: 37px;
+}
+
+.clear {
+	padding: 0 !important;
 }
 
 .canvas-options {
