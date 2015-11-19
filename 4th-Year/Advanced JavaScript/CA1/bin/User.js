@@ -4,9 +4,9 @@ var mongoose = require('mongoose')
 module.exports = mongoose.model( 'User'
                                , new Schema({ username: String
                                             , password: String
-                                            , images: [ path: String
-                                                      , post: String
-                                                      , comments: String
+                                            , images: [{ data: String
+                                                       , tags: [String]
+                                                       }
                                                       ]
                                             })
                                )

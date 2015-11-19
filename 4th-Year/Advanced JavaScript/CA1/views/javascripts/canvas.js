@@ -62,7 +62,8 @@ function onImageLoad () {
             size.max = this.height
         }
         size.value = dWidth
-        changeSizePercentage(width, dWidth)
+        changePercentage('#size-label', 'size: ', (this.width / dWidth))
+
     }.bind(this)).on('input', function (event) {
         var target = event.target.value
           , oldWidth = dyImage.width
@@ -73,7 +74,7 @@ function onImageLoad () {
         dyImage.y -= diff(dyImage.height, oldHeight) / 2
         dyImage.draw()
 
-        changeSizePercentage(this.width, target)
+        changePercentage('#size-label', 'size: ', (target / this.width))
     }.bind(this))
     // Manipulating the image's
     .end().filter('#opacity').on('input', function (event) {
@@ -96,17 +97,28 @@ function onImageLoad () {
         context.clearRect(0, 0, canvasWidth, canvasHeight)
     })
     // Manipulating the image's filter's opacity
-    .end().filter('#filter-opacity').each(function (_, filter) { 
-        $('#filter-canvas')[0].getContext('2d').globalAlpha = filter.value
-        $('#filter-opacity-label').text('Colour Opacity ' + Math.floor(filter.value * 100)+'%')
+    .end().filter('#filter-opacity').each(function (_, filter) {
+        var alpha = filter.value
+        $('#filter-canvas')[0].getContext('2d').globalAlpha = alpha
+        changePercentage('#filter-opacity-label', 'Colour Opacity: ', alpha)
 
     }).on('input', function (event) {
         var $canvas = $('#filter-canvas')
           , context = $canvas[0].getContext('2d')
-        context.globalAlpha = event.target.value
+          , alpha = event.target.value
+        context.globalAlpha = alpha
         context.clearRect(0, 0, canvasWidth, canvasHeight)
         context.fillRect(0, 0, canvasWidth, canvasHeight)
-        $('#filter-opacity-label').text('Colour Opacity: '+ Math.floor(event.target.value * 100)+'%')
+        changePercentage('#filter-opacity-label', 'Colour Opacity: ', alpha)
+    })
+    .end().filter('#upload').click(function() {
+        var canvases = $('.canvas')
+          , hiddenCanvas = $('#hidden-canvas')
+          , hiddenContext = hiddenCanvas.getContext('2d')
+        for (var i = 0; i < canvases.length; i++) {
+            hiddenContext.drawImage(canvases[i], 0, 0)
+        }
+        console.log(hiddenCanvas.toDataURL())
     })
 }
 
@@ -118,7 +130,7 @@ function diff (a, b) {
     }
 }
 
-function changeSizePercentage (imageWidth, dyImageWidth) {
-    var percentage = Math.floor((dyImageWidth / imageWidth) * 100)
-    $('#size-label').text('size: ' + percentage + '%')
+function changePercentage (element, text, value) {
+    var percentage = Math.floor(value * 100)
+    $(element).text(text + percentage + '%')
 }
