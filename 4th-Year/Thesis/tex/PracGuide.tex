@@ -1,0 +1,81 @@
+\section{Practical Guide}
+
+\subsection{Introduction}
+In this section, the focus will be on constructing HTML from Jade, an existing templating language. This example will not cover every feature, or edge case, but will show concisely how a person would build a parser, and how parsing works in practical terms. The Jade that will be converted is the Figure	~\ref{fig:jade}. This will be converted to the code shown in Figure ~\ref{fig:html}, except without the whitespace(except within text), and newlines. The ``→'' character represents the tab character. While Jade can handle tabs or space characters, for simplicity this will focus purely with the tab character. Jade is whitespace sensitive meaning if the the leading whitespace(The whitespace at the start of a line) is more than the previous line, the element on the line is the child of the element from the previous line. The ``.'' syntax as seen in Figure ~\ref{fig:jade}, is shorthand for adding a class to the element so ``\textit{p.article}'' would become ``\textit{<p class=\'article\'></p>}''.
+
+\begin{figure}
+	\begin{verbatim}
+		html
+		→body
+		→→p.article Hello World!
+	\end{verbatim}
+	\caption{Sample Jade code to be parsed.}
+	\label{fig:jade}
+\end{figure}
+
+\begin{figure}
+	\begin{verbatim}
+		<html>
+			<body>
+				<p class="article">
+					Hello World!
+				</p>
+			</body>
+		</html>
+	\end{verbatim}
+	\caption{Sample HTML code to be created from Figure ~\ref{fig:jade}.}
+\end{figure}
+
+\subsection{Definitions}
+For this example there will be two main structs(A struct is a basic data structure with fields containing data). The ``\textit{parser}'' struct, and ``\textit{Element}'' struct. Where the parser struct represents the parser itself, and containing methods related to handling the input, and output of the program. The Element struct will represent elements within the AST(Abstract Syntax Elements). Since HTML already has a very clear heirarchy, the AST will also represent the DOM(Document Object Model).
+
+
+\begin{figure}
+	\begin{verbatim}
+		struct Element {
+		    // The name of te element eg. body in <body>
+			element: String,
+			// An array of the classes associated with the element
+			classes: Vec<String>,
+			// An Key-Value pairing of the attributes, and their values
+			attributes: HashMap<String, String>,
+			// The plain text stored in the element
+			text: String,
+			// The child elements of the element
+			children: Vec<Element>
+		}
+	\end{verbatim}
+\end{figure}
+
+\begin{figure}
+	\begin{verbatim}
+		struct Parser {
+			// The source provided by the user
+			input: String,
+			// The parser's current position within the source
+			position: usize,
+			// The root element of the AST
+			output: Element
+		}
+
+		impl Parser {
+			// Creates a new parser from the input provided by the user.
+			fn new(source: String) -> Self {
+				// code...
+			}
+
+			// Attempts to take the next available character. If there is a
+			// character remaining 
+			fn take() -> Option<char> {
+				//code...
+			}
+
+			// Looks at the next character in the source, and returns it, but
+			// doesn't remove it from the input.
+			fn peek() -> Option<char> {
+				// code...
+			}
+		}
+	\end{verbatim}
+
+\end{figure}

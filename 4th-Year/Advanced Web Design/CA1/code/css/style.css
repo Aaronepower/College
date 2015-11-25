@@ -1,0 +1,39 @@
+h1,h2,h3,h4,h5,h6 {
+	margin: 0;
+	font-family: Georgia;
+}
+
+h1 {
+	font-size: 45pt;
+}
+
+.title-bar {
+	border: none;
+	height: 15px;
+	color: #c7c7c7;
+	background-color: #c7c7c7; 
+}
+
+.introduction {
+	-webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    padding-right: 0;
+}
+
+article, .introduction {
+	text-align: justify;
+	-moz-hyphens: auto;
+	hyphens: auto;
+}
+
+article {	
+	-webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
+	/*padding-left: 0 !important;*/
+}
+
+.lead {
+	font-family: "Arial Narrow";
+}
