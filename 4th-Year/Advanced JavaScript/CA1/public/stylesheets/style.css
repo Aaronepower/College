@@ -51,3 +51,8 @@ canvas:active {
 .centered {
 	text-align: center;
 }
+
+.image {
+	cursor: pointer;
+	margin-left: 0;
+}

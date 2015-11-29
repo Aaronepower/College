@@ -2,6 +2,7 @@ extends layout
 
 block content
 	.container
+		script(src='/auth.js' defer)
 		h1.twelve.columns.row Image Creation
 		.creation-container.twelve.columns.row
 			.canvas-container.seven.columns
@@ -34,4 +35,4 @@ block content
 					p.row.twelve.columns Separate by comma.
 					input.setting.row.twelve.columns#tags(type="text" disabled placeholder="sunny, autumn, mountains")
 				.row.twelve.columns
-					input.twelve.columns.setting.button-primary#Upload(name="Upload" type="submit" value="Upload" disabled)
+					input.twelve.columns.setting.button-primary#upload(name="Upload" type="submit" value="Upload" disabled)

@@ -4,7 +4,7 @@ block content
 	.container
 		if login
 			h1.offset-by-four.columns="Login"
-			form#login.offset-by-two.ten.columns.row.form
+			form.offset-by-two.ten.columns.row.form
 				ul.twelve.columns.row
 					li.twelve.columns.row
 						label.two.columns(for="username") UserName:
@@ -15,10 +15,11 @@ block content
 					li.twelve.columns.row
 						#error.error
 					li.twelve.columns.row
-						input.offset-by-six.two.columns.button-primary(form='login' type='submit' value='Submit')
+						input#login.offset-by-six.two.columns.button-primary(form='login' type='submit' value='Submit')
+			a.ten.columns.offset-by-two(href='/register') Register
 		else
 			h1.offset-by-four.columns="Sign Up"
-			form#register.offset-by-two.ten.columns.row.form
+			form.offset-by-two.ten.columns.row.form
 				ul
 					li.twelve.columns.row
 						label.two.columns(for="username") Username:
@@ -33,3 +34,5 @@ block content
 						#error.error
 					li.twelve.columns.row
 						input#register.offset-by-six.two.columns.button-primary(form='register' type='submit' value='Submit')
+			a.ten.columns.offset-by-two(href='/login') Login
+

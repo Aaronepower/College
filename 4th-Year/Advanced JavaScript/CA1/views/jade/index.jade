@@ -1,5 +1,20 @@
 extends layout
 
 block content
-    h1 Hello World
-    p Lorem ipsum...
+    .container
+        .row.twelve.columns
+            h1.eight.columns
+                a(href='/') Home
+            .four.columns#user-buttons
+                a.six.columns(href='/register') Register
+                a.six.columns(href='/login') Login
+            a.four.columns(href='/canvas')
+                button#upload-button.button-primary Upload
+        .row.twelve.columns
+            .eight.columns &nbsp;
+                each image in images
+                    img.image.four.columns(src=''+image.data data-tags=''+image.tags)
+            .four.columns
+                h2.twelve.columns Tags
+                p#tag-listing.twelve.columns
+                

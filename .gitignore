@@ -112,3 +112,6 @@ target/
 *.run.xml
 *.lof
 *.tex~
+
+# MongoDB
+data/db
