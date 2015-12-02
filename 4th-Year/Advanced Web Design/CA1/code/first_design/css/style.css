@@ -26,9 +26,13 @@ h1,h2,h3,h4,h5,h6,h1:hover,h2:hover,h3:hover,h4:hover,h5:hover,h6:hover {
     color: black;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6,.serif {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
+}
+
+.light {
+  font-weight: 400;
 }
 
 h1 {
@@ -57,14 +61,23 @@ h5 {
 }
 
 hr {
-    height: 0.15rem;
+    height: 1rem;
 }
 p {
     font-size: 1.5rem;
 }
 
+::selection {
+  background: #c0392b; /* WebKit/Blink Browsers */
+  color: white;
+}
+::-moz-selection {
+  background: #c0392b; /* Gecko Browsers */
+  color: white;
+}
+
 .center-vertically {
-    margin-top: 25rem;
+    /*margin-top: 25rem;*/
 }
 
 aside h5 {
@@ -104,16 +117,22 @@ aside h5 {
 }
 
 .red-border {
-    border-color: #BF001A;
-    background-color: #BF001A;
+    border-color: #c0392b;
+    background-color: #c0392b;
 }
 
 .red, .red:hover {
-    color: #BF001A;
+    color: #c0392b;
 }
-.white {
-    border-color: #ccc;
-    background-color: #ccc;
+
+.red-hover:hover {
+    color: #c0392b;
+    text-decoration: none;
+}
+
+.gray {
+    border-color: #bbb;
+    background-color: #bbb;
 }
 
 .thin-line {
@@ -126,7 +145,7 @@ aside h5 {
 }
 
 .category {
-    color: #BF001A;
+    color: #c0392b;
 }
 
 .lead {
@@ -134,5 +153,8 @@ aside h5 {
 }
 
 .vertical-rule {
-    border-left: 0.1rem solid #BF001A;
+    border-left: 0.1rem solid #c0392b;
+}
+.vertical-rule-gray {
+    border-left: 0.1rem solid #bbb;
 }
