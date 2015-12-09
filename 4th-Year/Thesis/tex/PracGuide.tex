@@ -47,8 +47,8 @@ The ``\textit{Element}'' struct defines an individual element within both the AS
 \begin{itemize}
     \item[\textbf{new}] Creates, and returns an empty Element.
     \item[\textbf{generate\_html}] Returns a \textit{String} of html code, based on it's properties. This method is also recursive. Calling each of it's children's \textbf{generate\_html} methods.
-    \item[\textbf{getters and setters}] The get, and set methods for all the properties above.
-    \item[\textbf{adders and removers}] For properties containing multiple values like classes, children, and attributes. They would also have methods for pushing, and removing an individual value from them.
+    \item[\textbf{get \& set}] The get, and set methods for all the properties above.
+    \item[\textbf{add \& remove}] For properties containing multiple values like classes, children, and attributes. They would also have methods for pushing, and removing an individual value from them.
 \end{itemize}
 
 \begin{figure}[ht!]
@@ -69,17 +69,20 @@ The ``\textit{Element}'' struct defines an individual element within both the AS
         fn get_tag(&self) -> String { unimplemented!() }
         fn set_tag(&mut self, tag: String) { unimplemented!() }
         fn get_indentation(&self) -> u8 { unimplemented!() }
-        fn set_indentation(&mut self, indentation: u8) { unimplemented!() }
+        fn set_indentation(&mut self, indentation: u8) 
+        { unimplemented!() }
         fn get_classes(&self) -> Vec<String> { unimplemented!() }
         fn set_classes(&mut self) { unimplemented!() }
-        fn get_attributes(&self) -> HashMap<String, String> { unimplemented!() }
+        fn get_attributes(&self) -> HashMap<String, String> 
+        { unimplemented!() }
         fn set_attributes(&mut self) { unimplemented!() }
         fn get_text(&self) -> String { unimplemented!() }
         fn set_text(&mut self, text: String) { unimplemented!() }
         fn get_children(&self) -> Element { unimplemented!() }
         fn set_children(&mut self) { unimplemented!() }
         fn add_child(&mut self, child: Element) { unimplemented!() }
-        fn add_attribute(&mut self, key: String, value: String) { unimplemented!() }
+        fn add_attribute(&mut self, key: String, value: String) 
+        { unimplemented!() }
         fn add_class(&mut self, class: String) { unimplemented!() }
         fn remove_child(&mut self, child: Element) { unimplemented!() }
         fn remove_attribute(&mut self, key: String) { unimplemented!() }
@@ -110,7 +113,7 @@ The parser struct represents the Parser itself. All logic with regards to moving
     
     \item[\textbf{peek}] Returns an Option either containing the next character, but doesn't remove it from the input. Or None indicating EOF.
 
-    \item[\textbf{consume\_whitespace}] Removes characters until the character isn't whitespace(space, tab, newline, carriage return), and returns how many characters were removed.
+    \item[\textbf{take\_spaces}] Removes characters until the character isn't whitespace(space, tab, newline, carriage return), and returns how many characters were removed.
 
     \item[\textbf{take\_until}] Takes, and remove characters from the source until it reaches the character passed as a parameter. Then returns a Result either containing a String of all the characters taken excluding the character passed, or a ParseError indicating that something went wrong while taking the characters. eg. EOF.
 
@@ -118,7 +121,7 @@ The parser struct represents the Parser itself. All logic with regards to moving
     
     \item[\textbf{take\_while}] Takes, and removes characters, while the function passed evaluates to false. The function passed in, is passed a char, which is the the latest character in the stream.
     
-    \item[\textbf{getters and setters}] The get, and set methods for all the properties above.
+    \item[\textbf{get \& set}] The get, and set methods for all the properties above.
 \end{itemize}
 
 \begin{figure}[ht!]
@@ -140,10 +143,13 @@ The parser struct represents the Parser itself. All logic with regards to moving
       fn take(&mut self) -> Option<char> { unimplemented!() }
       fn peek(&mut self) -> Option<char> { unimplemented!() }
       fn eof(&self) -> bool { unimplemented!() }
-      fn consume_whitespace(&mut self) -> u8 { unimplemented!() }
-      fn take_until(&mut self, character: char) -> Result<String, ParseError> { unimplemented!() }
-      fn peek_until(&mut self, character: char) -> Result<String, ParseError> { unimplemented!() }
-      fn take_while<F>(&mut self, condition: F) -> Result<String, ParseError> 
+      fn take_spaces(&mut self) -> u8 { unimplemented!() }
+      fn take_until(&mut self, character: char) 
+      -> Result<String, ParseError> { unimplemented!() }
+      fn peek_until(&mut self, character: char) 
+      -> Result<String, ParseError> { unimplemented!() }
+      fn take_while<F>(&mut self, condition: F) 
+      -> Result<String, ParseError> 
         where F : Fn(char) -> bool { unimplemented!() }
       fn get_input(&self) -> String { unimplemented!() }
       fn set_input(&mut self, input: String) { unimplemented!() }
@@ -155,13 +161,13 @@ The parser struct represents the Parser itself. All logic with regards to moving
   \end{verbatim}
   \caption{Parser code}
 \end{figure}
-
-
+\newpage
+\newpage
 \subsection{Parser Logic}
-Once, the program has the source, and the parser is instantiated the program begins a loop that will run until the end of the source. This loop will contain the logic for parsing. First we check if the line is empty or contains all whitespace, if does we simply discard it. Jade is a line sensitive language, so elements can't continue onto the next line without the use of special characters, and their implementation is out of scope for this guide. 
+Once, the program has read the source into memory, and the parser is instantiated the program begins a loop that will run until the end of the source. This loop will contain the logic for parsing. First the program checks if the line is empty or contains all whitespace, if does the program will simply ignore it. Jade is a line sensitive language, so elements can't continue onto the next line without the use of special characters, and their implementation is out of scope for this guide. A new blank element is created, and the parser reads in how many leading spaces on the line in order to determine heirarchy, the heirarchy is defined once every element has been parsed, for simplicity. The program runs the the \textbf{take\_while}, with a closure, that evaluates based on whether the character is a ``\textit{.}'', ``\textit{\#}'', ``\textit{(}'' symbols, or if it is whitespace. For example with the line ``\textit{article.class}'' take\_while will pull out the ``article'', and place that as the element's tag. The program then begins another while loop that continues until the end of the line. Matching for the symbols mentioning before, with ``\#'' meaning id, ``.'' meaning class, ``('' meaning atrributes eg. ``(href=\textquotedbl{}\#\textquotedbl{} required=\textquotedbl{}true\textquotedbl{} style=\textquotedbl{}margin-top: 2px\textquotedbl{})'', and if we find any whitespace everything up to the end of the line is parsed as plaintext. This continues iteraviely until the source is delepted, and the tree of elements is created.
 
 
-\begin{figure}
+\begin{figure}[ht!]
   \begin{verbatim}
     use std::io::Read;
     use std::fs::File;
@@ -182,27 +188,34 @@ Once, the program has the source, and the parser is instantiated the program beg
         }
         let element = Element::new();
 
-        element.set_indentation(parser.consume_whitespace());
+        element.set_indentation(parser.take_spaces());
 
-        let if_not_whitespace_or_attribute = |character| {
+        let isnt_character = |character| {
           !character.is_whitespace() && 
             character != '.' &&
             character != '#' &&
-            character != '(' &&
+            character != '('
         };
 
-        let tag = parser.take_while(if_not_whitespace_or_attribute);
+        let tag = parser.take_while(isnt_character);
 
         element.set_tag(tag);
 
+        // continued on next page...        
+  \end{verbatim}
+  \caption{Program Code. Part 1}
+\end{figure}
+
+\begin{figure}[ht!]
+  \begin{verbatim}
         while !parser.peek() != Some('\n') {
           match match parser.take().unwrap() {
             '.' => {
-               let className = parser.take_while(if_not_whitespace_or_attribute);
+               let className = parser.take_while(isnt_character);
                element.add_class(className);
             },
             '#' => {
-              let idName = parser.take_while(if_not_whitespace_or_attribute);
+              let idName = parser.take_while(isnt_character);
               element.add_attribute("id", idName);
             },
             '(' => {
@@ -233,5 +246,5 @@ Once, the program has the source, and the parser is instantiated the program beg
       true
     }
   \end{verbatim}
-  \caption{Program Code.}
+  \caption{Program Code. Part 2}
 \end{figure}
