@@ -28,62 +28,210 @@ In this section, the focus will be on constructing HTML from Jade, an existing t
 \end{figure}
 
 \subsection{Definitions}
-For this example there will be two main structs(A struct is a basic data structure with fields containing data). The ``\textit{parser}'' struct, and ``\textit{Element}'' struct. Where the parser struct represents the parser itself, and containing methods related to handling the input, and output of the program. The Element struct will represent elements within the AST(Abstract Syntax Elements). Since HTML already has a very clear hierarchy, the AST will also represent the DOM(Document Object Model). Each element contains a Vec(Short for Vector, which is a growable array in rust) of itself allowing for an element to recursively store other elements.
+For this example there will be two main structs(A struct is a basic data structure with fields containing data). The ``\textit{parser}'' struct, and ``\textit{Element}'' struct. Where the parser struct represents the parser itself, and containing methods related to handling the input, and output of the program. Code samples containing method definitions are shorten to signatures for brevity.
 
+\subsubsection{Element}
+The ``\textit{Element}'' struct defines an individual element within both the AST, and HTML. Markup languages such as HTML can usually be translated directly from AST representation to code, due to their already present parent-child relation. Features that don't directly translate such as variables, or keywords(extends, includes), it'd be better to have a ``\textit{Node}'' struct, that could contain the either the element struct, or another defining rules of the other features. Both structs also implement the ``\textit{Debug}'' trait to allow them to be easily printed to the console.
+
+\paragraph{Element Properties}
+\begin{itemize}
+    \item[\textbf{tag:}] The html tag of the element. eg. \textit{html, body, h1, p}
+    \item[\textbf{indentation:}] In Jade leading whitespace defines the hierarchy of the elements. So it is important to keep track of the whitespace.
+    \item[\textbf{attributes:}] A Key-Value pairing of the attributes, with the attribute name as the hey, and their value as 
+    \item[\textbf{classes:}] The class attribute is the only html attribute that accepts multiple values, so it wouldn't fit within attributes.
+    \item[\textbf{text:}] The plain text within the element.
+    \item[\textbf{children:}] The child elements of the element.
+\end{itemize}
+
+\paragraph{Element Methods}
+\begin{itemize}
+    \item[\textbf{new}] Creates, and returns an empty Element.
+    \item[\textbf{generate\_html}] Returns a \textit{String} of html code, based on it's properties. This method is also recursive. Calling each of it's children's \textbf{generate\_html} methods.
+    \item[\textbf{getters and setters}] The get, and set methods for all the properties above.
+    \item[\textbf{adders and removers}] For properties containing multiple values like classes, children, and attributes. They would also have methods for pushing, and removing an individual value from them.
+\end{itemize}
 
 \begin{figure}[ht!]
     \begin{verbatim}
-        struct Element {
-            // The name of the element eg. body in <body>
-            element: String,
-            // An array of the classes associated with the element
-            classes: Vec<String>,
-            // An Key-Value pairing of the attributes, and their values
-            attributes: HashMap<String, String>,
-            // The plain text stored in the element
-            text: String,
-            // The child elements of the element
-            children: Vec<Element>
-        }
+      #[derive(Debug)]
+      struct Element {
+        tag: String,
+        indentation: u8,
+        classes: Vec<String>,
+        attributes: HashMap<String, String>,
+        text: String,
+        children: Vec<Element>,
+      }
+
+      impl Element {
+        fn new() -> Self { unimplemented!() }
+        fn generate_html(&self) -> String { unimplemented!() }
+        fn get_tag(&self) -> String { unimplemented!() }
+        fn set_tag(&mut self, tag: String) { unimplemented!() }
+        fn get_indentation(&self) -> u8 { unimplemented!() }
+        fn set_indentation(&mut self, indentation: u8) { unimplemented!() }
+        fn get_classes(&self) -> Vec<String> { unimplemented!() }
+        fn set_classes(&mut self) { unimplemented!() }
+        fn get_attributes(&self) -> HashMap<String, String> { unimplemented!() }
+        fn set_attributes(&mut self) { unimplemented!() }
+        fn get_text(&self) -> String { unimplemented!() }
+        fn set_text(&mut self, text: String) { unimplemented!() }
+        fn get_children(&self) -> Element { unimplemented!() }
+        fn set_children(&mut self) { unimplemented!() }
+        fn add_child(&mut self, child: Element) { unimplemented!() }
+        fn add_attribute(&mut self, key: String, value: String) { unimplemented!() }
+        fn add_class(&mut self, class: String) { unimplemented!() }
+        fn remove_child(&mut self, child: Element) { unimplemented!() }
+        fn remove_attribute(&mut self, key: String) { unimplemented!() }
+        fn remove_class(&mut self, class: String) { unimplemented!() }
+      }
     \end{verbatim}
     \caption{Element code}
 \end{figure}
 
+\subsubsection{Parser}
+The parser struct represents the Parser itself. All logic with regards to moving through the input given by the user is either handled within this struct, or through calling methods on this struct.
+
+\paragraph{Parser Properties}
+\begin{itemize}
+    \item[\textbf{input:}] The source code given by the user. Usually the contents of a file.
+    \item[\textbf{position:}] The parsers position within the input. 
+    \item[\textbf{output:}] A vector of the elements parsed.
+\end{itemize}
+
+\paragraph{Parser Methods}
+\begin{itemize}
+    
+    \item[\textbf{new}] Creates, and returns a new parser containing the source passed in.
+    
+    \item[\textbf{take}] Returns an Option either containing the next character, and removes it from the input. Or None indicating EOF(End Of File).
+    
+    \item[\textbf{eof}] checks if we've reached the end of the source.
+    
+    \item[\textbf{peek}] Returns an Option either containing the next character, but doesn't remove it from the input. Or None indicating EOF.
+
+    \item[\textbf{consume\_whitespace}] Removes characters until the character isn't whitespace(space, tab, newline, carriage return), and returns how many characters were removed.
+
+    \item[\textbf{take\_until}] Takes, and remove characters from the source until it reaches the character passed as a parameter. Then returns a Result either containing a String of all the characters taken excluding the character passed, or a ParseError indicating that something went wrong while taking the characters. eg. EOF.
+
+    \item[\textbf{peek\_until}] Takes, but doesn't remove characters from the source until it reaches the character passed as a parameter. Then returns a Result either containing a String of all the characters taken excluding the character passed, or a ParseError indicating that something went wrong while taking the characters. eg. EOF.
+    
+    \item[\textbf{take\_while}] Takes, and removes characters, while the function passed evaluates to false. The function passed in, is passed a char, which is the the latest character in the stream.
+    
+    \item[\textbf{getters and setters}] The get, and set methods for all the properties above.
+\end{itemize}
+
 \begin{figure}[ht!]
-    \begin{verbatim}
-        struct Parser {
-            // The source provided by the user
-            input: String,
-            // The parser's current position within the source
-            position: usize,
-            // The root element of the AST
-            output: Element
+  \begin{verbatim}
+    #[derive(Debug)]
+    enum ParseError {
+      EOF,
+      EncodingError,
+    }
+
+    #[derive(Debug)]
+    struct Parser {
+      input: String,
+      position: usize,
+      output: Vec<Element>
+    }
+    impl Parser {
+      fn new(source: String) -> Self { unimplemented!() }
+      fn take(&mut self) -> Option<char> { unimplemented!() }
+      fn peek(&mut self) -> Option<char> { unimplemented!() }
+      fn eof(&self) -> bool { unimplemented!() }
+      fn consume_whitespace(&mut self) -> u8 { unimplemented!() }
+      fn take_until(&mut self, character: char) -> Result<String, ParseError> { unimplemented!() }
+      fn peek_until(&mut self, character: char) -> Result<String, ParseError> { unimplemented!() }
+      fn take_while<F>(&mut self, condition: F) -> Result<String, ParseError> 
+        where F : Fn(char) -> bool { unimplemented!() }
+      fn get_input(&self) -> String { unimplemented!() }
+      fn set_input(&mut self, input: String) { unimplemented!() }
+      fn get_position(&self) -> usize { unimplemented!() }
+      fn set_position(&mut self, position: usize) { unimplemented!() }
+      fn get_output(&self) -> Element { unimplemented!() }
+      fn set_output(&mut self, output: Element) { unimplemented!() }
+    }
+  \end{verbatim}
+  \caption{Parser code}
+\end{figure}
+
+
+\subsection{Parser Logic}
+Once, the program has the source, and the parser is instantiated the program begins a loop that will run until the end of the source. This loop will contain the logic for parsing. First we check if the line is empty or contains all whitespace, if does we simply discard it. Jade is a line sensitive language, so elements can't continue onto the next line without the use of special characters, and their implementation is out of scope for this guide. 
+
+
+\begin{figure}
+  \begin{verbatim}
+    use std::io::Read;
+    use std::fs::File;
+
+    fn main() {
+      let mut file = File::open("./test.jade").unwrap();
+
+      let mut contents = String::new();
+      let _ = file.read_to_string(&mut contents).unwrap();
+
+      let parser = Parser::new(contents);
+
+      while !parser.eof() {
+        let line = parser.peek_until('\n').unwrap();
+        if is_all_whitespace(line) {
+          parser.take_until('\n');
+          continue;
         }
-    \end{verbatim}
-    \newpage
-    \begin{verbatim}
-        // Code shorten to signatures for brevity
-        impl Parser {
-            // Creates a new parser from the input provided by the user.
-            fn new(source: String) -> Self {}
+        let element = Element::new();
 
-            // Attempts to take the next available character. If there is a
-            // character remaining it returns a Some(char) else return None
-            fn take() -> Option<char> {}
+        element.set_indentation(parser.consume_whitespace());
 
-            // Looks at the next character in the source, and returns it, but
-            // doesn't remove it from the input.
-            fn peek() -> Option<char> {}
+        let if_not_whitespace_or_attribute = |character| {
+          !character.is_whitespace() && 
+            character != '.' &&
+            character != '#' &&
+            character != '(' &&
+        };
 
-            // Takes, and removes characters from the input until it finds a 
-            // matching character, and then returns every character up to that
-            // character returns as a String
-            fn take_until(character: char) -> String {}
-            // Takes, and removes characters from the input while the callback
-            // passed to the function returns true, and returns those 
-            // characters once the function returns false
-            fn take_while(condition: fn(char) -> bool) -> {}
+        let tag = parser.take_while(if_not_whitespace_or_attribute);
+
+        element.set_tag(tag);
+
+        while !parser.peek() != Some('\n') {
+          match match parser.take().unwrap() {
+            '.' => {
+               let className = parser.take_while(if_not_whitespace_or_attribute);
+               element.add_class(className);
+            },
+            '#' => {
+              let idName = parser.take_while(if_not_whitespace_or_attribute);
+              element.add_attribute("id", idName);
+            },
+            '(' => {
+              let attributes = parser.take_until(')');
+              let attributes:Vec<String> = attributes.split_whitespace()
+                                                     .collect::Vec<String>()
+                                                     .split('=');
+              for chunk in attributes.chunks(2) {
+                element.add_attribute(chunk[0], chunk[1][1..chunk[1].len()]);
+              }
+            },
+            ' ' => {
+              element.set_plain_text(parser.take_until('\n'));
+            },
+            _ => unreachable!(),
+          }
         }
-    \end{verbatim}
-    \caption{Parser code}
+        let _ = parser.take();
+      }
+    }
+
+    fn is_all_whitespace(string: &String) -> bool {
+      for character in string.chars() {
+        if !character.is_whitespace() {
+          return false
+        }
+      }
+      true
+    }
+  \end{verbatim}
+  \caption{Program Code.}
 \end{figure}
