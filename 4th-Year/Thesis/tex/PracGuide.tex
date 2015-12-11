@@ -1,9 +1,9 @@
-\section{Practical Guide}
-
-\subsection{Introduction}
-In this section, the focus will be on constructing HTML from Jade, an existing templating language. This example will not cover every feature, or edge case, but will show concisely how a person would build a parser, and how parsing works in practical terms. The Jade that will be converted is the Figure ~\ref{fig:jade}. This will be converted to the code shown in Figure ~\ref{fig:html}, except without the whitespace(except within text), and newlines. The ``->'' character represents the tab character. While Jade can handle tabs or space characters, for simplicity this will focus purely with the tab character. Jade is whitespace sensitive meaning if the the leading whitespace(The whitespace at the start of a line) is more than the previous line, the element on the line is the child of the element from the previous line. The ``.'' syntax as seen in Figure ~\ref{fig:jade}, is shorthand for adding a class to the element so ``\textit{p.article}'' would become ``\textit{<p class=\'article\'></p>}''.
+\section{Introduction}
+In this section, the focus will be on constructing \acro{HTML} from Jade, an existing templating language. This example will not cover every feature, or edge case, but will show concisely how a person would build a parser, and how parsing works in practical terms. The Jade that will be converted is the Figure ~\ref{fig:jade}. This will be converted to the code shown in Figure ~\ref{fig:html}, except without the whitespace(except within text), and newlines. The ``->'' character represents the tab character. While Jade can handle tabs or space characters, for simplicity this will focus purely with the tab character. Jade is whitespace sensitive meaning if the the leading whitespace(The whitespace at the start of a line) is more than the previous line, the element on the line is the child of the element from the previous line. The ``.'' syntax as seen in Figure ~\ref{fig:jade}, is shorthand for adding a class to the element so ``\textit{p.article}'' would become ``\textit{<p class=\'article\'></p>}''.
 
 \begin{figure}[ht!]
+    \small
+    \setstretch{1.0}
     \begin{verbatim}
         html
         ->body
@@ -14,6 +14,8 @@ In this section, the focus will be on constructing HTML from Jade, an existing t
 \end{figure}
 
 \begin{figure}[ht!]
+    \small
+    \setstretch{1.0}
     \begin{verbatim}
         <html>
             <body>
@@ -23,17 +25,17 @@ In this section, the focus will be on constructing HTML from Jade, an existing t
             </body>
         </html>
     \end{verbatim}
-    \caption{Sample HTML code to be created from Figure ~\ref{fig:jade}.}
+    \caption{Sample \acro{HTML} code to be created from Figure ~\ref{fig:jade}.}
     \label{fig:html}
 \end{figure}
 
-\subsection{Definitions}
+\section{Definitions}
 For this example there will be two main structs(A struct is a basic data structure with fields containing data). The ``\textit{parser}'' struct, and ``\textit{Element}'' struct. Where the parser struct represents the parser itself, and containing methods related to handling the input, and output of the program. Code samples containing method definitions are shorten to signatures for brevity.
 
-\subsubsection{Element}
-The ``\textit{Element}'' struct defines an individual element within both the AST, and HTML. Markup languages such as HTML can usually be translated directly from AST representation to code, due to their already present parent-child relation. Features that don't directly translate such as variables, or keywords(extends, includes), it'd be better to have a ``\textit{Node}'' struct, that could contain the either the element struct, or another defining rules of the other features. Both structs also implement the ``\textit{Debug}'' trait to allow them to be easily printed to the console.
+\subsection{Element}
+The ``\textit{Element}'' struct defines an individual element within both the \acro{AST}, and \acro{HTML}. Markup languages such as \acro{HTML} can usually be translated directly from \acro{AST} representation to code, due to their already present parent-child relation. Features that don't directly translate such as variables, or keywords(extends, includes), it'd be better to have a ``\textit{Node}'' struct, that could contain the either the element struct, or another defining rules of the other features. Both structs also implement the ``\textit{Debug}'' trait to allow them to be easily printed to the console.
 
-\paragraph{Element Properties}
+\subsubsection{Element Properties}
 \begin{itemize}
     \item[\textbf{tag:}] The html tag of the element. eg. \textit{html, body, h1, p}
     \item[\textbf{indentation:}] In Jade leading whitespace defines the hierarchy of the elements. So it is important to keep track of the whitespace.
@@ -43,7 +45,7 @@ The ``\textit{Element}'' struct defines an individual element within both the AS
     \item[\textbf{children:}] The child elements of the element.
 \end{itemize}
 
-\paragraph{Element Methods}
+\subsubsection{Element Methods}
 \begin{itemize}
     \item[\textbf{new}] Creates, and returns an empty Element.
     \item[\textbf{generate\_html}] Returns a \textit{String} of html code, based on it's properties. This method is also recursive. Calling each of it's children's \textbf{generate\_html} methods.
@@ -52,6 +54,8 @@ The ``\textit{Element}'' struct defines an individual element within both the AS
 \end{itemize}
 
 \begin{figure}[ht!]
+    \small
+    \setstretch{1.0}
     \begin{verbatim}
       #[derive(Debug)]
       struct Element {
@@ -92,17 +96,17 @@ The ``\textit{Element}'' struct defines an individual element within both the AS
     \caption{Element code}
 \end{figure}
 
-\subsubsection{Parser}
+\subsection{Parser}
 The parser struct represents the Parser itself. All logic with regards to moving through the input given by the user is either handled within this struct, or through calling methods on this struct.
 
-\paragraph{Parser Properties}
+\subsubsection{Parser Properties}
 \begin{itemize}
     \item[\textbf{input:}] The source code given by the user. Usually the contents of a file.
     \item[\textbf{position:}] The parsers position within the input. 
     \item[\textbf{output:}] A vector of the elements parsed.
 \end{itemize}
 
-\paragraph{Parser Methods}
+\subsubsection{Parser Methods}
 \begin{itemize}
     
     \item[\textbf{new}] Creates, and returns a new parser containing the source passed in.
@@ -125,13 +129,14 @@ The parser struct represents the Parser itself. All logic with regards to moving
 \end{itemize}
 
 \begin{figure}[ht!]
+    \small
+    \setstretch{1.0}
   \begin{verbatim}
     #[derive(Debug)]
     enum ParseError {
       EOF,
       EncodingError,
     }
-
     #[derive(Debug)]
     struct Parser {
       input: String,
@@ -163,88 +168,96 @@ The parser struct represents the Parser itself. All logic with regards to moving
 \end{figure}
 \newpage
 \newpage
-\subsection{Parser Logic}
+\section{Parser Logic}
 Once, the program has read the source into memory, and the parser is instantiated the program begins a loop that will run until the end of the source. This loop will contain the logic for parsing. First the program checks if the line is empty or contains all whitespace, if does the program will simply ignore it. Jade is a line sensitive language, so elements can't continue onto the next line without the use of special characters, and their implementation is out of scope for this guide. A new blank element is created, and the parser reads in how many leading spaces on the line in order to determine heirarchy, the heirarchy is defined once every element has been parsed, for simplicity. The program runs the the \textbf{take\_while}, with a closure, that evaluates based on whether the character is a ``\textit{.}'', ``\textit{\#}'', ``\textit{(}'' symbols, or if it is whitespace. For example with the line ``\textit{article.class}'' take\_while will pull out the ``article'', and place that as the element's tag. The program then begins another while loop that continues until the end of the line. Matching for the symbols mentioning before, with ``\#'' meaning id, ``.'' meaning class, ``('' meaning atrributes eg. ``(href=\textquotedbl{}\#\textquotedbl{} required=\textquotedbl{}true\textquotedbl{} style=\textquotedbl{}margin-top: 2px\textquotedbl{})'', and if we find any whitespace everything up to the end of the line is parsed as plaintext. This continues iteraviely until the source is delepted, and the tree of elements is created.
 
 
 \begin{figure}[ht!]
+    \small
+    \setstretch{1.0}
   \begin{verbatim}
-    use std::io::Read;
-    use std::fs::File;
+  use std::io::Read;
+  use std::fs::File;
+  use std::collections::HashMap;
 
-    fn main() {
-      let mut file = File::open("./test.jade").unwrap();
+  fn main() {
+    let mut file = File::open("./test.jade").unwrap();
 
-      let mut contents = String::new();
-      let _ = file.read_to_string(&mut contents).unwrap();
+    let mut contents = String::new();
+    let _ = file.read_to_string(&mut contents).unwrap();
 
-      let parser = Parser::new(contents);
+    let mut parser = Parser::new(contents);
 
-      while !parser.eof() {
-        let line = parser.peek_until('\n').unwrap();
-        if is_all_whitespace(line) {
-          parser.take_until('\n');
-          continue;
-        }
-        let element = Element::new();
+    while !parser.eof() {
+      let line = parser.peek_until('\n').unwrap();
+      if is_all_whitespace(line) {
+        parser.take_until('\n');
+        continue;
+      }
+      let mut element = Element::new();
 
-        element.set_indentation(parser.take_spaces());
+      element.set_indentation(parser.consume_whitespace());
 
-        let isnt_character = |character| {
-          !character.is_whitespace() && 
-            character != '.' &&
-            character != '#' &&
-            character != '('
-        };
+      let is_not_alphanumeric = |character: char| -> bool {
+        !character.is_whitespace() && 
+        character != '.' &&
+        character != '#' &&
+        character != '('
+      };
 
-        let tag = parser.take_while(isnt_character);
+      let tag = parser.take_while(&is_not_alphanumeric);
 
-        element.set_tag(tag);
-
-        // continued on next page...        
+      element.set_tag(tag.unwrap());
+      // continued on next page...        
   \end{verbatim}
   \caption{Program Code. Part 1}
 \end{figure}
 
 \begin{figure}[ht!]
+    \small
+    \setstretch{1.0}
   \begin{verbatim}
-        while !parser.peek() != Some('\n') {
-          match match parser.take().unwrap() {
-            '.' => {
-               let className = parser.take_while(isnt_character);
-               element.add_class(className);
-            },
-            '#' => {
-              let idName = parser.take_while(isnt_character);
-              element.add_attribute("id", idName);
-            },
-            '(' => {
-              let attributes = parser.take_until(')');
-              let attributes:Vec<String> = attributes.split_whitespace()
-                                                     .collect::Vec<String>()
-                                                     .split('=');
-              for chunk in attributes.chunks(2) {
-                element.add_attribute(chunk[0], chunk[1][1..chunk[1].len()]);
-              }
-            },
-            ' ' => {
-              element.set_plain_text(parser.take_until('\n'));
-            },
-            _ => unreachable!(),
-          }
-        }
-        let _ = parser.take();
-      }
-    }
+      while parser.peek() != Some('\n') {
+        match parser.take().unwrap() {
+          '.' => {
+           let class_name = parser.take_while(&is_not_alphanumeric);
+           element.add_class(class_name.unwrap());
+           },
+           '#' => {
+            let id_name = parser.take_while(&is_not_alphanumeric);
+            element.add_attribute(String::from("id"), id_name.unwrap());
+          },
+          '(' => {
+            let attributes = parser.take_until(')');
+            let attributes:String = attributes.unwrap()
+                                              .split_whitespace()
+                                              .collect();
 
-    fn is_all_whitespace(string: &String) -> bool {
-      for character in string.chars() {
-        if !character.is_whitespace() {
-          return false
+            let attributes:Vec<&str> = attributes.split("=")
+                                                 .collect();
+            for chunk in attributes.chunks(2) {
+              let key = String::from(chunk[0]);
+              let value = String::from(&chunk[1][1..chunk[1].len()]);
+              element.add_attribute(key, value);
+            }
+          },
+          ' ' => {
+            element.set_text(parser.take_until('\n').unwrap());
+          },
+          _ => unreachable!(),
         }
       }
-      true
+      let _ = parser.take();
     }
+  }
+  fn is_all_whitespace(string: String) -> bool {
+    for character in string.chars() {
+      if !character.is_whitespace() {
+        return false
+      }
+    }
+    true
+  }
   \end{verbatim}
   \caption{Program Code. Part 2}
 \end{figure}

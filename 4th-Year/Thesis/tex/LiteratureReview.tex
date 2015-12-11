@@ -56,6 +56,8 @@ Raw symbols like digits, or mathematical symbols(\emph{+,-,/,*}) are mapped into
 The syntax analyser will only look at the token-name getting only a vary abstract representation of the code, and can only report syntactical errors such as using wrong keywords, or having incorrect mathematically expressions eg $x = 1 + - + 1$. This is shown clearly in Figure \ref{fig:InvalidC}. Where when run through a C compiler the compiler will print out ``\emph{error: \lq{}x\rq{} undeclared (first use in this function)}''. 
 \begin{figure}[ht!]
     \centering
+    \small
+    \setstretch{1.0}
     \begin{verbatim}
                 int main() {
                     x++;
