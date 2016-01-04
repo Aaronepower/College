@@ -1,5 +1,5 @@
 @echo off
-pdflatex thesis
-biber thesis
-pdflatex thesis
-pdflatex thesis
+pdflatex thesis -quiet
+biber thesis -q
+pdflatex thesis -quiet
+pdflatex thesis -quiet

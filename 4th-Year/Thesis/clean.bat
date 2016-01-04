@@ -1,0 +1,10 @@
+@echo off
+del *.aux
+del *.bcf
+del *.log
+del *.run.xml
+del *.bbl
+del *.blg
+del *.dvi
+del *.lof
+del *.toc

@@ -1,0 +1,110 @@
+\section{Analysis of other markup languages}
+
+\subsection{Introduction}
+
+In order to decide the syntax of a \acro{HTML} markup language, it is important to examine previous languages, and build on top of their strengths, and try and address their weaknesses. The three main sources used are Jade, a templating built for Node.JS\cite{Jade}, Handlebars.js, a templating language originally built in JavaScript, and has been ported to various other languages, and finally \LaTeX{}, which while not a web markup language, has been in use since 1985\cite{LaTeX}, and thus has a lot more maturity in it's syntax decisions.
+
+\subsection{Jade}
+
+Unlike handlebars, Jade features syntactic sugar for writing html. Jade removes explicit tags, and instead relies on whitespace to determine hierarchy. This allows it to be very terse, lightweight, and simple. A basic example is seen in Figure~\ref{fig:JadeHelloWorld}. However its whitespace dependency can lead to a lot of cases where it's syntax starts to become a hindrance. A simple example of this is shown in Figure~\ref{fig:JadeProblem} where you have paragraph with ``Hello World!'', and within the paragraph the ``World!'' is underlined, and the ``!'' is in bold. This example is arbitrary, but it shows Jade's problems with handling text. Another distinct example of Jade's problem with text is how it handles multi line text, shown in Figure~\ref{fig:JadeMultiLine}. 
+
+Jade assumes the first word in a given line is the name of the element. This resulted in a special character to allow for multi line text, but this can lead to weird indentation to use inline text elements. While the writer can write normal html elements in the text elements, this solution however leads to inconsistency in the syntax. Even with those two solutions the writer would still have to make sure that if there is a newline character, that it maintains the same level of indentation. With Jade you have to conform to it's style, rather than have an ideal format suiting to the content. Jade's control flow statements are for the most part the same as JavaScript. Which in the context of being a templating on top of a JavaScript engine, but the file also contained html to solve the previous problem, leads to a file containing three different syntaxes in an attempt to solve the problem of separating logic from content.
+
+\begin{figure}[ht!]
+    \large{\acro{HTML}}\normalsize{}
+    \begin{verbatim}
+    <!DOCTYPE html>
+    <html>
+      <body>
+        <p>Hello World!</p>
+      </body>
+    </html>
+    \end{verbatim}
+    \large{Jade}\normalsize{}
+    \begin{verbatim}
+    doctype html
+    html
+        body
+            p Hello World!
+    \end{verbatim}
+    \caption{Hello World in Jade.}
+    \label{fig:JadeHelloWorld}
+\end{figure}
+
+\begin{figure}[ht!]
+    \large{\acro{HTML}}\normalsize{}
+    \begin{verbatim}
+    <!DOCTYPE html>
+    <html>
+      <body>
+        <p>Hello <u>World<strong>!</strong></u></p>
+      </body>
+    </html>
+    \end{verbatim}
+    \large{Jade}\normalsize{}
+    \begin{verbatim}
+    doctype html
+    html
+        body
+            p Hello
+                u World
+                    strong !
+    \end{verbatim}
+    \caption{Text problems in Jade.}
+    \label{fig:JadeProblem}
+\end{figure}
+
+
+\begin{figure}[ht!]
+    \large{\acro{HTML}}\normalsize{}
+    \begin{verbatim}
+    <!DOCTYPE html>
+    <html>
+      <body>
+        <p>
+          Sing to me of the man, Muse, the man of twists and turns... 
+          driven time and again off course, once he had plundered the
+          hallowed heights of <strong>Troy</strong>. Many cities of 
+          men he saw and learned their minds, many pains he suffered, 
+          heartsick on the open sea, fighting to save his life and 
+          bring his comrades home.
+        </p>
+        <p>
+          Sing to me of the man, Muse, the man of twists and turns... 
+          driven  time and again off course, once he had plundered
+          the hallowed heights of <strong>Troy</strong>. Many cities
+          of men saw and learned their minds, many pains he suffered, 
+          heartsick on the open sea, fighting to save his life and 
+          bring his comrades home.
+        </p>
+      </body>
+    </html>
+    \end{verbatim}
+    \newpage
+    \large{Jade}\normalsize{}
+    \begin{verbatim}
+    doctype html
+    html
+      body
+        p.
+          Sing to me of the man, Muse, 
+          the man of twists and turns ... 
+          driven time and again off course, once he had plundered 
+          the hallowed heights of <strong>Troy</strong>. 
+          Many cities of men he saw and learned their minds, 
+          many pains he suffered, heartsick on the open sea, 
+          fighting to save his life and bring his comrades home. 
+        p
+          | Sing to me of the man, Muse, 
+          | the man of twists and turns ... 
+          | driven time and again off course, once he had plundered 
+          | the hallowed heights of 
+          strong Troy 
+          | . Many cities of men he saw and learned their minds, 
+          | many pains he suffered, heartsick on the open sea, 
+          | fighting to save his life and bring his comrades home. 
+    \end{verbatim}
+    \caption{Multi line problems with Jade.}
+    \label{fig:JadeMultiLine}
+\end{figure}
+
