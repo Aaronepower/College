@@ -110,6 +110,142 @@ Jade assumes the first word in a given line is the name of the element. This res
 
 \subsection{Handlebars}
 
-Handlebars syntax, is at opposites with Jade, it's syntax is verbose, while designed as a html templating language, it is in reality language agnostic. As long as \you{} is careful, Handlebars could work on top of any language including \languageName{}. Handlebars doesn't allow for ``explicit'' logic, calling itself a ``logic-less'' language. Where logic is based on the data type of variables passed to the compiler. It also has a feature named ``helper functions'', which allow for custom logic on a variable, and these must be written in an outside JavaScript(or equivalent language that has a port of Handlebars) file, which can provide a good separation of logic from content.
+Handlebars syntax, is at opposites with Jade, it's syntax is verbose, while designed as a \acro{HTML} templating language, it is in reality language agnostic. As long as \you{} is careful, Handlebars could work on top of any language including \languageName{}. Handlebars doesn't allow for ``explicit'' logic, calling itself a ``logic-less'' language. Where logic is based on the data type of variables passed to the compiler. It also has a feature named ``helper functions'', which allow for custom logic on a variable, and these must be written in an outside JavaScript(or equivalent language that has a port of Handlebars) file, which can provide a good separation of logic from content.
 
-Despite being self proclaimed ``logic-less'', in reality it still uses a lot of logic, just with less characters. Even if \you{} can't write ``if 5 > 10 {...}'', \you{} can still write ``{{\#if expr}}...{{/if}}'', and is much more verbose, even if it does remove explicit logic.
+Despite being self proclaimed ``logic-less'', in reality it still uses a lot of logic, just being solely based on the object. Even if \you{} can't write ``if 5 > 10 \{...\}'', \you{} can still write ``\{\{\#if variable}}...\{\{/if\}\}'', making the logic feel very overly verbose.
+
+\begin{figure}[ht!]
+    \large{\acro{HTML}}\normalsize{}
+    \begin{verbatim}
+    <!DOCTYPE html>
+    <html>
+      <body>
+        <p>Hello World!</p>
+      </body>
+    </html>
+    \end{verbatim}
+    \large{Handlebars}\normalsize{}
+    \begin{verbatim}
+    <!DOCTYPE html>
+    <html>
+      <body>
+        <p>{{text}}</p>
+      </body>
+    </html>
+    \end{verbatim}
+    \large{JSON}\normalsize{}
+    \begin{verbatim}
+    {
+        "text": "Hello World!"
+    }
+    \end{verbatim}
+    \caption{Hello World in Handlebars.}
+    \label{fig:HandlebarsHelloWorld}
+\end{figure}
+
+\begin{figure}[ht!]
+    \large{\acro{HTML}}\normalsize{}
+    \begin{verbatim}
+    <!DOCTYPE html>
+    <html>
+      <body>
+        <p>Hello <u>World<strong>!</strong></u></p>
+      </body>
+    </html>
+    \end{verbatim}
+    \large{Handlebars}\normalsize{}
+    \begin{verbatim}
+    <!DOCTYPE html>
+    <html>
+      <body>
+      {{#if hello}}
+        <p>{{hello}} <u>{{world}}<strong>{{mark}}</strong></u></p>
+      </body>
+      {{/if}}
+    </html>
+    \end{verbatim}
+    \large{JSON}\normalsize{}
+    \begin{verbatim}
+    {
+        "hello": "Hello",
+        "world": "World",
+        "mark": "!"
+    }
+    \end{verbatim}
+    \caption{Verboseness in Handlebars.}
+    \label{fig:HandlebarsProblem}
+\end{figure}
+
+
+\subsection{\LaTeX{}}
+
+\LaTeX{}'s base syntax is very lightweight, and text first unlike Jade, making ideal for use within \acro{HTML}, and is the main inspiration for the syntax for \languageName{}. [Unfinished]
+
+\begin{figure}[ht!]
+  \begin{verbatim}
+  \section{Hello World}
+  Sing to me of the man, Muse, 
+  the man of twists and turns ... 
+  driven time and again off course, once he had plundered 
+  the hallowed heights of \textbf{Troy}. 
+  Many cities of men he saw and learned their minds, 
+  many pains he suffered, heartsick on the open sea, 
+  fighting to save his life and bring his comrades home.
+  \end{verbatim}
+  \caption{Sample \LaTeX{} program.}
+\end{figure}
+
+\section{Syntax of \languageName{}}
+
+\subsection{Elements}
+All elements are started with a ``/'' character. The  reason for the ``/'' over \LaTeX{}'s ``\\'' is because the character is used for in elements in \acro{HTML}, and provides a familiar character's being used for creating elements. The children of an element are defined within ``{}'' braces. The use of braces to show hierarchy is much more succinct, than \acro{HTML} end tags, and also provides a lot more versatility than being whitespace dependent.
+
+\begin{figure}[ht!]
+  \begin{verbatim}
+  /html {
+      /body {
+          /p {
+              Hello World!
+          }
+      }
+  }
+  \end{verbatim}
+  \caption{Hello World in \languageName{}}
+\end{figure}
+
+\subsection{Classes, and ids}
+Since both the class, and id attribute are the most commonly used attributes in \acro{HTML}, they are given a shortcut syntax in the form of \acro{CSS} selectors. This also provides a very familiar syntax to \you{}, and an easy way to write \acro{HTML} selectors. This feature is mostly inspired by Jade, which has this syntax. 
+
+\begin{figure}[ht!]
+  \begin{verbatim}
+  /html {
+      /body {
+          /p.article#helloWorld {
+              Hello World!
+          }
+      }
+  }
+  \end{verbatim}
+  \caption{Classes, and ids in \languageName{}}
+\end{figure}
+
+
+\subsection{Attributes}
+This feature is also similar to it's equivalent in Jade, where attributes are defined within ``()'' parameters. It is also possible to enter the ``class'', and ``id'' attribute here if desired. \You{} can enter either single word attributes, like ``required'', or ``contenteditable'', or key value pairings, like ``style'' or ``href''. An element with ``()'' doesn't have to also have braces. This was mainly designed for void elements like ``img'', or ``link'', but can be for any element.
+
+\begin{figure}[ht!]
+  \begin{verbatim}
+  /html {
+      /body {
+          /a.article#helloWorld(contenteditable href="index.html") {
+              Hello World!
+          }
+      }
+  }
+  \end{verbatim}
+  \caption{Hello World in \languageName{}}
+\end{figure}
+
+
+\subsection{Variables, and Resources}
+Variables are defined with the ``@'' character, as to distinguish identifiers from regular words. Variables can also be attached to elements, these are called resources. This varaible will be the entire contents 
