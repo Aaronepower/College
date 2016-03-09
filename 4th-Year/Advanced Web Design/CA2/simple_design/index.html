@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aaron Power's Portfolio</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,900italic,900,800italic,800,700italic,700,600italic,600,500italic,500,400italic,300italic,300,200italic,200,100italic,100' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div>
+                    <h2>Aaron Power.</h2>
+                </div>
+                <hr class="black-border">
+            </div>
+        </div>
+        <div class="row small-margin">
+            <div class="col-md-7">&nbsp;</div>
+            <div class="col-md-5">
+                <ul class="list-inline col-xs-12 fill-horizontal">
+                    <li>Work.</li>
+                    <li>GitHub.</li>
+                    <li>Stack.</li>
+                    <li>Contact.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="medium-margin">
+            <div class="col-xs-6">
+                <div id="editor" class="col-xs-6">
+
+                </div>
+            <h5><u>Run</u></h5>
+            </div>
+            <div class="col-xs-6">
+                <canvas height="400px"></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="ace.js"></script>
+<script src="mode-javascript.js"></script>
+<script src="mode-rust.js"></script>
+<script src="style-github.js"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/github");
+    editor.setValue("let json = if let Some(path) = matches.value_of(\"json\") {\n\
+    let contents = {\n\
+        let mut file = File::open(path).expect(\"JSON File not found\");\n\
+        let mut contents = String::new();\n\
+        file.read_to_string(&amp;mut contents).expect(\"Couldn't JSON read file.\");\n\
+        contents\n\
+    };\n\
+    match serde_json::from_str(&amp;*contents).expect(\"Wasn't valid JSON\") {\n\
+        Value::Object(object) => object,\n\
+        _ => panic!(\"Wasn't a JSON object\"),\n\
+    }\n\
+} else {\n\
+    BTreeMap::new()\n\
+};");
+    editor.getSession().setMode("ace/mode/rust");
+    document.getElementById('editor').style.fontSize='1.5rem';
+</script>
+</html>
