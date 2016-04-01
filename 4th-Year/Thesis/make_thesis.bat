@@ -1,5 +1,4 @@
-@echo off
-pdflatex thesis -quiet
+pdflatex thesis -shell-escape
 biber thesis -q
-pdflatex thesis -quiet
-pdflatex thesis -quiet
+pdflatex thesis -shell-escape
+pdflatex thesis -shell-escape

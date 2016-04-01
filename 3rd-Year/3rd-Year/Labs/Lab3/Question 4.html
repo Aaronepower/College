@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Question 4</title>
+	<style>
+		.trail { /* className for the trail elements */
+			position: absolute;
+			height: 6px; width: 6px;
+			border-radius: 3px;
+			background: teal;
+		}
+		body {
+			height: 300px;
+		}
+	</style>
+</head>
+<body>
+</body>
+<script>
+	(function () {
+		var moveEvent = function (event) {
+			var mouseX = event.pageX
+			var mouseY = event.pageY
+			var div = document.createElement('div')
+			div.className = 'trail'
+			div.style.left = mouseX+'px'
+			div.style.top = mouseY+'px'
+			document.body.appendChild(div)
+		}
+		document.body.addEventListener('mousemove', moveEvent, false)
+	})(); 
+</script>
+</html>

@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+        \PYG{p}{\PYGZob{}}
+            \PYG{n+nt}{\PYGZdq{}friends\PYGZdq{}}\PYG{p}{:} \PYG{p}{[}
+                \PYG{p}{\PYGZob{}}\PYG{n+nt}{\PYGZdq{}name\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Jerry\PYGZdq{}}\PYG{p}{,} \PYG{n+nt}{\PYGZdq{}picture\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}./imgs/jerry.png\PYGZdq{}}\PYG{p}{\PYGZcb{},}
+                \PYG{p}{\PYGZob{}}\PYG{n+nt}{\PYGZdq{}name\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Elaine\PYGZdq{}}\PYG{p}{,} \PYG{n+nt}{\PYGZdq{}picture\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}./imgs/elaine.png\PYGZdq{}}\PYG{p}{\PYGZcb{},}
+                \PYG{p}{\PYGZob{}}\PYG{n+nt}{\PYGZdq{}name\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}George\PYGZdq{}}\PYG{p}{,} \PYG{n+nt}{\PYGZdq{}picture\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}./imgs/george.png\PYGZdq{}}\PYG{p}{\PYGZcb{},}
+                \PYG{p}{\PYGZob{}}\PYG{n+nt}{\PYGZdq{}name\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Cosmo\PYGZdq{}}\PYG{p}{,} \PYG{n+nt}{\PYGZdq{}picture\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}./imgs/cosmo.png\PYGZdq{}}\PYG{p}{\PYGZcb{}}
+            \PYG{p}{]}
+        \PYG{p}{\PYGZcb{}}
+\end{Verbatim}

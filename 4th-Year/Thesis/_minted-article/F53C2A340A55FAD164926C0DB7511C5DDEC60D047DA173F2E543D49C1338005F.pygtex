@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{        }\PYG{c+cp}{\PYGZsh{}[cfg(test)]}
+\PYG{+w}{        }\PYG{k+kn}{mod}\PYG{+w}{ }\PYG{n}{test}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{c+cp}{\PYGZsh{}[test]}
+\PYG{+w}{            }\PYG{k}{fn}\PYG{+w}{ }\PYG{n}{ampersand\PYGZus{}operator}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n}{lexer}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Lexer}\PYG{o}{::}\PYG{n}{new}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZam{}\PYGZdq{}}\PYG{p}{);}
+
+\PYG{+w}{                }\PYG{n}{assert\PYGZus{}eq}\PYG{o}{!}\PYG{p}{(}\PYG{n}{lexer}\PYG{p}{.}\PYG{n}{output}\PYG{p}{(),}\PYG{+w}{ }\PYG{n}{vec}\PYG{o}{!}\PYG{p}{[}\PYG{n}{Symbol}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Ampersand}\PYG{p}{)]);}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+        \PYG{p}{\PYGZob{}}
+            \PYG{n+nt}{\PYGZdq{}items\PYGZdq{}}\PYG{p}{:} \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}Item One\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}Item Two\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}Item Three\PYGZdq{}}\PYG{p}{]}
+        \PYG{p}{\PYGZcb{}}
+\end{Verbatim}

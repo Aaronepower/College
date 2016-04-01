@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CA 2</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<section class = "col-md-6">
+		<p id="title">Video</p>
+		<video id="userMediaVideo"></video>
+		<button id="snapButton">Take Snapshot</button>
+		<button id="seriesButton">Take Series</button>
+	</section>
+	<section class = "col-md-6">
+		<p id="title">Canvas</p>
+		<div id="canvasWrapper" class="col-md-12" width="640" height="480">
+			<canvas id="userMediaCanvas"></canvas>
+			<canvas id="filterCanvas"></canvas>
+			<canvas id="textCanvas" tabindex="1"></canvas>
+			<canvas id="shapesCanvas"></canvas>
+			<canvas id="drawingCanvas"></canvas>
+		</div>
+		<section class="col-md-12">
+			<section class="col-md-3">
+				<h3>Ctrl+Alt+(*)</h3>
+			  <button id="drawButton">(D)raw</button>
+				<button id="eraseButton">(E)rase</button>
+				<button id="undoButton">(U)ndo</button>
+				<button id="textButton">(T)ext</button>
+				<button id="saveButton">(S)ave</button>
+			</section>
+			<section class="col-md-9">
+				<section id="filters" class="col-md-4">
+					<p class="childTitles">Filters</p>
+					<button id="negativeButton">Negative</button>
+					<button id="polaroidButton">Polaroid</button>
+				</section>
+				<section id="lineWidthSection" class="col-md-4">
+					<p class="childTitles" id="rangeTitle">Line Width:</p>
+					<p class="text">1</p>
+					<input type="range" min="1" id="lineWidth" value="5" max="50">
+					<p class="text">50</p>
+				</section>
+				<section id="colourSection" class="col-md-4">
+					<p class="childTitle">Colours</p>
+					<input type="color" id="colorPicker">			
+				</section>
+			</section>
+		</section>
+	</section>
+	<canvas id="hiddenCanvas"></canvas>
+</body>
+<script src="js/assetLoader.js"></script>
+<script src="js/globals.js"></script>
+<script src="js/getUserMedia.js"></script>
+<script src="js/filters.js"></script>
+<script src="js/textCanvas.js"></script>
+<script src="js/drawingCanvas.js"></script>
+<script src="js/hiddenCanvas.js" ></script>
+<script src="js/keyEvents.js" ></script>
+<script src="js/init.js"></script>
+</html>

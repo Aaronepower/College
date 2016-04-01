@@ -1,13 +1,12 @@
 \section{Introduction}
 
-A \compiler{}  is a compiler that converts source code into some other form of source code, as opposed to a traditional compiler which converts human readable source code into machine instructions. This has a wide array of uses within different implementations. CMS'(Content Management Systems) have templates that writers pass in their writing to format it into a \acro{HTML} article on their Website. Some academics use \LaTeX{} to convert plain text into scientific documents, and reports. Their use in this thesis is to create a templating language which is a programming language that will convert it's source code into \acro{HTML} for use in Web applications. The purpose of \languageName{} is to create a templating language that Web developers can use to have more modular, and scalable markup in their Web application.
+A \compiler{}  is a compiler that converts source code into some other form of source code, as opposed to a traditional compiler which converts human readable source code into machine instructions. This has a wide variety of uses within different implementations. \acro{CMS} have templates to generate \acro{HTML} pages from special markup. Academics use \LaTeX{} to convert plain text into scientific documents, and reports. Their use in relation to this thesis was to create a templating language. This primarily means the development of a programming language that will convert it's source code into \acro{HTML} for use in Web applications. The  main purpose of \languageName{} is to create a templating language that Web developers can use so that they can have more modular, and scalable markup in their Web application.
 
-While there is no definitive first templating language. Their popularity began around the late 1990's with \acro{XSLT} in 1999 in a W3C recommendation document \parencite{XSLT}. Which was designed for transforming \acro{XML} documents into other formats IE: PDF's\parencite{XSLTEx}.
-\newpage 
+While there is no definitive first templating language. Their popularity began around the late 1990's with the development of \acro{XSLT} in 1999 and included in a W3C recommendation document \cite{XSLT}. This was developed for transforming \acro{XML} documents into other formats. E.g. PDF's\cite{XSLTEx}. 
+\newpage
+One of the most popular modern templating languages for use within Web applications Mustache\cite{Mustache}. Mustache is a ``\textit{logic-less}'' templating language, meaning it has no explicit control flow statements ``\textit{if, else, for}''\cite{MustacheMan}. Everything is instead based on the object that is passed to the template. Mustache is not a \acro{HTML} specific templating language, meaning Mustache's syntax is completely independent from it and can be used in conjunction, with any other language. However this also results in the language being unable to make assumptions based on the language leading the syntax to be verbose. 
 
-One of the most popular modern templating languages for use within Web applications is \parencite{Mustache}. Mustache is a ``\textit{logic-less}'' templating language, meaning it has no explicit control flow statements \textit{if, else, for} according to the \parencite{MustacheMan}. Everything is instead based on the object that is passed to the template See Figure \ref{fig:mustacheEx}. So if the developer couldn't change the markup if someone's name started with A instead of B unless they add a key to the hash before they pass it to the Mustache templating engine. Mustache is not a \acro{HTML} specific templating language. Meaning it's syntax is completely independent from it and can be used with anything. However this also means it as language can't use assumptions based on the language leading the syntax to be very verbose. 
-
-\begin{figure}[ht!]
+\begin{figure}[!hbtp]
     \small
     \setstretch{1.0}
     \begin{verbatim}
@@ -34,52 +33,19 @@ One of the most popular modern templating languages for use within Web applicati
                 You have just won 10000 dollars!
                 Well, 6000.0 dollars, after taxes.
     \end{verbatim}
-    \caption{A Mustache Example, from \parencite{MustacheMan}}
+    \caption{A Mustache Example, \cite{MustacheMan}}
     \label{fig:mustacheEx}
 \end{figure}
-\clearpage
-
-
-
-\section{Advantages of a templating language in the Web.}
-As the Web has advanced there has always been a need to be able to have the document delivered to the user to be able to be changed based on who, and how the document is being requested. With \acro{HTML}(HyperText Markup Language) there is no way to reuse sections, or write generic sections that can be re-purposed based on the data given to them. The most popular way to do this currently is with JavaScript frameworks like React. In which the standard is to have a \acro{HTML} document with a single ``\textit{<div>}'' element, and let React build the DOM once it, and the user's scripts are loaded.
-
-\begin{figure}[ht!]
-    \small
-    \setstretch{1.0}
-    \begin{verbatim}
-        <!DOCTYPE html>
-        <html>
-            <head>
-                <meta charset="UTF-8" />
-                <title>Hello React!</title>
-                <script src="build/react.js"></script>
-                <script src="build/react-dom.js"></script>
-                <script src="build/script.js"</script>
-            </head>
-            <body>
-                <div id="example"></div>
-            </body>
-        </html>
-    \end{verbatim}
-    \caption{Standard React \acro{HTML} index file}
-\end{figure}
-
-This comes with problems. The content of the Web page is dependent on the JavaScript. While the JavaScript is being downloaded the user will only see a blank page. This problem becomes especially apparent when the user is on a mobile network, or has a slow connection. Studies have shown that 47\% of mobile users expect a site to load in less than two seconds, that 40\% of mobile users will abandon a site if it doesn't load in three seconds or less, and that 52\% of users said that a quick page load is important to site loyalty according to \parencite{MobileLoad}. In large scale applications, and businesses JavaScript size quickly becomes a huge bottleneck in the load times of Websites as shown by \parencite{VergeJS}.\newline
-
-It is in this area in particular that the advantages of using a templating language is seen. With a templating language the content of the Web page can be sent in the initial \acro{HTML} page, making the ``perceived'' load time of the Web page very quick. Giving the JavaScript more time download than if the user were to see a blank page.\newline
-
-Having a templating language can also provide good separation between the data model of the language, and the design of the page. The designers, or client-side programmers who are formatting the Web page don't have to worry about how the server-side logic works, or write code that could change server's data-model in order to change the format of the Web page. 
 \newpage
 \section{Main features of \languageName{}}
-From doing my own research and looking at the two comparisons of both templating languages in established server-side programming languages(\textit{PHP, C\#, .NET}) from \parencite{WikiCompare}, and templating languages made specifically for use in Isomorphic JavaScript which are generally much younger in their development than their traditional language equivalents as shown in \parencite{JSCompare}.
+From extensive research and examining templating languages in established server-side programming languages(\textit{PHP, C\#, .NET})\cite{WikiCompare}. Also examining templating languages that were made specifically for use with JavaScript which are generally much younger in their development than their traditional language equivalents\cite{JSCompare}.
 
-From looking at these languages I think the main features of \languageName{} is to first have inheritance, and includes, and variables which is to mean that you can write parent markup files which have child markup files which when parsed will include the markup of the parent, that arbitrary \languageName{} files can be inserted into other \languageName{} files, and be able to have data injected within the template respectively. 
+After the involved phase of research the main feature identified as critical to \languageName{}'s development. Would be the to include inheritance and variables which is to mean that you can write parent markup files which have child markup files which when parsed will include the markup of the parent, that arbitrary \languageName{} files can be inserted into other \languageName{} files, and be able to have data injected within the template respectively. 
 
-One feature that seems to be most absent, or lacking in strong support in most the languages is I18n(\textit{Internationalization and localization}) support. In the modern Web it seems that having poor I18n support is a huge weakness in a templating language for the Web. According to Alexa estimates Google.com's top five countries are as follows United States, India, Japan, Brazil, and Russia. Out of 5 of the top countries only one of those is an English speaking country, and only two of which are Latin based languages. It is important now more than ever to have strong support for other speaking languages.
+One feature that seems to be most absent, or lacking in strong support, in most templating languages is \acro{I18n} support. In the current day it seems that having poor I18n support is a huge weakness in a templating language for the global multilingual web. According to Alexa, Google.com's top five countries are as follows United States, India, Japan, Brazil, and Russia. Out of 5 of the top countries only one of those is an English speaking country, and only two of which are Latin based languages. It is important now more than ever to have strong support for other speaking languages.
 \newpage
 \section{Building a \compiler{}.}
-Building \compiler{} is a difficult task. The two primary sources for building a \compiler{} will be Compilers Principles Techniques and Tools (2nd Edition) by \parencite{DragonBook} also known as ``\textit{The Dragon Book}'', and Parsing Techniques - A Practical Guide (2nd Edition) by \parencite{ParseTech}. Since the project is for a \compiler{}, and not a traditional compiler, there is a lot within the sources that won't be used. For example The Dragon Book has chapter's such as ``Run-Time Environments'', and ``Machine-Independent Optimizations'' which don't relate as are output is \acro{HTML}, and not Machine Code. The syntax, and the features of the language will need to be mostly finalised early within the project to prevent any sort of feature creep, or spending time, and resources on changing the style of the language. Especially aspects like whether to have natural templates, which are templates which are independent of the language, and have a much more verbose language similar to \parencite{Mustache}, or to have a much more terse language, but have it only work for outputting \acro{HTML} files, like \parencite{Jade}. 
+Building \compiler{} is a difficult task. The two primary sources for understanding a \compiler{} will be Compilers Principles Techniques and Tools (2nd Edition) \cite{DragonBook} also known as \textit{``The Dragon Book''}, and Parsing Techniques - A Practical Guide (2nd Edition) \cite{ParseTech}. Since the project is for a \compiler{}, and not a traditional compiler, there is a lot within the sources that won't be used. For example, The Dragon Book has chapter's such as \textit{``Run-Time Environments''}, and \textit{``Machine-Independent Optimizations''} which don't relate as the output will be \acro{HTML}, and not Machine Code. The syntax, and the features of the language will need to be mostly finalised early within the project to prevent any sort of feature creep, or spending time and resources on changing the style of the language. These include aspects like whether to have natural templates, that are independent of the language. Have a much more verbose language similar to Mustache \cite{Mustache}, or to have a much more terse language, but have it only work for outputting \acro{HTML} files, like Jade \cite{Jade}. 
 
 \section{Why Rust?}
-There are many reasons that make Rust an great candidate for building a \compiler{}. Rust doesn't have a garbage collector that other languages like Java, or JavaScript. This reduces the runtime overhead of the program giving a significant performance boost, which is important for doing on request compilation of templates on a server. Rust's \textcolor{blue}{char} type is a Unicode scalar value. Meaning Rust can handle non-Latin characters much more easily than languages without IE: JavaScript. Which would be an important feature since the \languageName{} will have strong I18n support. Since rust has such a minimal runtime, it has strong \acro{FFI} support, meaning the \compiler{} can be used in servers written in different languages, without requiring the compiler to be rewritten in that language, and keeping the performance gains from having it built in Rust.
+There are many reasons that make Rust a great candidate for building a \compiler{}. Rust doesn't have a garbage collector unlike other languages such as Java, C\# or JavaScript. This reduces the runtime overhead of the program giving a significant performance boost, which is important for handling on request compilation of templates on a server. Rust's \textit{``char''} type is a Unicode scalar value, and all \textit{``String''}'s are guarnteed to be valid UTF-8, eliminating the need to handle this case manually, or through a third party. Rust can also handle non-Latin characters much more easily than languages without e.g. JavaScript. Which would be an important feature since the \languageName{} will have strong I18n support. Since Rust has such a minimal runtime, it has strong \acro{FFI} support, meaning the \compiler{} can be used in servers written in different languages, without requiring the compiler to be rewritten in that language, and keeping the performance gains from having it built in Rust.

@@ -59,6 +59,7 @@ h1:hover {
 }
 
 hr {
+  margin: 0 !important;
   height: 1rem;
 }
 p {

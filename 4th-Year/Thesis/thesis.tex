@@ -1,4 +1,4 @@
-\documentclass[12pt]{report}
+\documentclass[a4paper, 12pt, oneside]{book}
 \usepackage{style}
 
 \title{\thesisTitle{}}
@@ -45,21 +45,36 @@
 \begin{document}
   \begin{acronyms}
     \acrodef*{AST}{Abstract Syntax Tree}
+    \acrodef*{CMS}{Content Management Systems}
     \acrodef*{CSS}{Cascading StyleSheet}
-    \acrodef*{HTML}{HyperText Markup Language}
-    \acrodef*{I18n}{Internationalization and localization}
     \acrodef*{FFI}{Foreign Function Interface}
+    \acrodef*{HTML}{HyperText Markup Language}
+    \acrodef*{JSON}{JavaScript Object Notation}
+    \acrodef*{I18n}{Internationalization and localization}
     \acrodef*{XSLT}{Extensible Stylesheet Language Transformations}
     \acrodef*{XML}{Extensible Markup Language}
   \end{acronyms}
   \maketitle
-  \newpage
+  \chapter*{Abstract}
+  \addcontentsline{toc}{chapter}{Abstract}
+  This thesis describes the process of building a templating language in Rust. Using various sources such as \textit{``Compilers: Principles, Techniques, and Tools''} to build a compiler, and have it interact with Rust. This thesis also addresses the problems of existing templating languages, and how \languageName{} attempts to solve.
+   \chapter*{Declaration}
+  \addcontentsline{toc}{chapter}{Declaration}
+  The incorporation of material without formal and proper acknowledgment (even with no deliberate intent to cheat) can constitute plagiarism.
+  If you have received significant help with a solution from one or more colleagues, you should document this in your submitted work and if you have any doubt as to what level of discussion/collaboration is acceptable, you should consult your lecturer or the Course Director.\\
+  \textbf{WARNING:} Take care when discarding program listings lest they be copied by someone else, which may well bring you under suspicion. Do not to leave copies of your own files on a hard disk where they can be accessed by other. Be aware that removable media, used to transfer work, may also be removed and/or copied by others if left unattended. Plagiarism is considered to be an act of fraudulence and an offence against Institute discipline.
+  Alleged plagiarism will be investigated and dealt with appropriately by the Institute. Please refer to the Institute Handbook for further details of penalties. The following is an extract from the B.Sc. in Computing (Hons) course handbook. Please read carefully and sign the declaration below
+  Collusion may be defined as more than one person working on an individual assessment. This would include jointly developed solutions as well as one individual giving a solution to another who then makes some changes and hands it up as their own work. Failure to complete and submit this form may lead to an investigation into your work.
+  \textbf{DECLARATION:} 
+  I am aware of the Institute's policy on plagiarism and certify that this thesis is my own work.\\
+  Student:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+  Signed:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+  \chapter*{Acknowledgments}
+  \addcontentsline{toc}{chapter}{Acknowledgments}
+  I would like to thank my project tutor John Montayne, for his guidance throughout the project. I would also like to thank everyone in the Rust community for helping me figure out Rust, and problems I had with my code.
   \tableofcontents
-  \newpage
   \listoffigures
-  \newpage
   \listofacronyms
-  \newpage 
   \chapter{Background Research}
   \input{tex/BackgroundResearch}
   \chapter{Literature Review}
@@ -68,7 +83,11 @@
   \input{tex/PracGuide}
   \chapter{Syntax}
   \input{tex/Design}
-  % \input{tex/Requirements}
-  % \input{tex/ResearchAndAnalysis}
+  \chapter{Implementation}
+  \input{tex/Implementation}
+  \chapter{Testing}
+  \input{tex/TestingAndAnalysis}
+  \chapter{Conclusion}
+  \input{tex/Conclusion}
   \printbibliography
 \end{document}

@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Drawing App</title>
+	<link rel="stylesheet" type="text/css" href="buttons.css" />
+	<link rel="stylesheet" type="text/css" href="menu.css" />
+  </head>
+
+	<script>
+
+	var canvas;
+	var context;
+	var strokeSize = 1;
+	var strokeColor = '#999999';
+	var bgColor = '#cc99cc';
+	var mouse = {};
+	
+	function drawBg(ctx) {
+	  ctx.beginPath();
+	  ctx.rect(0,0,canvas.width,canvas.height);
+	  ctx.fillStyle = bgColor;
+	  ctx.fill();
+	  ctx.closePath();
+	}
+	
+	function init() {
+
+	  canvas = document.getElementById('canvas');
+      context = canvas.getContext('2d');
+	  drawBg(context);
+	
+	  
+	  
+	  nav = new Menu(document.getElementById('menu'));
+			
+	   canvas.addEventListener('mousedown', onMouseDown, false);
+      
+	  //removing mouseMove EL
+
+      canvas.addEventListener('mouseup', function () {
+        	context.closePath();
+        	canvas.removeEventListener('mousemove', onMouseMove, false);
+      }, false);
+
+    }
+
+	//when the  mouse is down
+	function onMouseDown (e) {
+		e = e || event;
+		mouse = getMouse(e);
+		//adding mouseMove EL
+        canvas.addEventListener('mousemove', onMouseMove, false);
+		context.lineWidth = strokeSize;
+		context.strokeStyle = strokeColor;
+		context.beginPath();
+        context.moveTo(mouse.x, mouse.y);
+	}
+
+	//while the mouse is moving
+	function onMouseMove (e) {
+		//monitoring mouseClicks;
+		e = e || event;
+		console.log(e);
+		mouse = getMouse(e);
+        context.lineWidth = strokeSize;
+		context.strokeStyle = strokeColor;
+		context.lineTo(mouse.x, mouse.y);
+        context.stroke();
+    }
+
+
+    //utility function to get the Mouse position
+    function  getMouse(e) {
+    	e = e || event;
+	    var rect = this.canvas.getBoundingClientRect();
+	        return {
+	          x: e.clientX - rect.left,
+	          y: e.clientY - rect.top
+			}
+	}
+
+
+
+	//Menu constructor: uses event delegation
+ 	function Menu(elem) {
+			var myCanvas = canvas;
+  			this.onDraw = function() {
+  					console.log("drawing");
+						strokeSize -=  10;
+						strokeColor = '#999999';
+  			};
+
+  			this.onErase = function(){
+					console.log("erasing");
+						strokeSize +=  10;
+						strokeColor = bgColor;   
+			};
+			
+			this.onEraseAll = function(){
+					console.log("erasing All");
+					drawBg(context);
+			};
+
+  			var self = this;
+
+			  elem.onclick = function(e) {
+			   var target = e && e.target || event.srcElement;
+			   var action = target.getAttribute('btn-action');
+			    if (action) {
+			      self["on"+action]();
+			   		}
+			}
+    }
+
+
+	</script>
+
+  <body onload="init()">
+
+	<h1>Click and draw with the mouse.</h1>
+
+    <canvas id="canvas" width="600" height="400" style="border:1px solid #d3d3d3 bgcolor ;"></canvas>
+
+
+
+	<ul id="menu">
+		  <li><a class="button" btn-action="Draw">Draw</a></li>
+		  <li><a class="button" btn-action="Erase">Erase</a></li>
+		  <li><a class="button" btn-action="EraseAll">Erase All</a></li>
+	</ul>
+
+  </body>
+</html>

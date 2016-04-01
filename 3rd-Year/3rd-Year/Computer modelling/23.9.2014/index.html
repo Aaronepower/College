@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Practical 2 Question 1</title>
+	<style type="text/css">
+	canvas {
+		border: 2px solid black;
+	}
+	</style>
+</head>
+<body>
+<canvas id="myCanvas" width="640" height-"480"></canvas>
+</body>
+<script src="utils.js"></script>
+<script src="ball.js"></script>
+<script type="text/javascript">
+	(function () {
+		'use strict';
+		var canvas = document.getElementById("myCanvas")
+		var context = canvas.getContext("2d")
+		var canvasWidth = canvas.width
+		var canvasHeight = canvas.height
+
+		var ball = new Ball(10)
+		var xPos = 0
+		var yPos = 0
+		var tPos = 0
+		
+		function animate () {
+			context.clearRect(0, 0, canvasWidth, canvasHeight)
+			window.requestAnimationFrame(animate, canvas)
+			xPos   = (tPos*tPos)/10
+			yPos   = Math.pow(tPos, 3)/1000 -3*tPos + 120
+			ball.x = xPos
+			ball.y = canvasHeight - yPos
+			tPos   = tPos + .4			
+			ball.draw(context)
+		}
+		window.requestAnimationFrame(animate, canvas)
+
+	})() 
+</script>
+</html>

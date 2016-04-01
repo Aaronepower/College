@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{            }\PYG{l+s+sd}{/// The = character used for assignment within the}
+\PYG{+w}{            }\PYG{l+s+sd}{/// attributes field}
+\PYG{+w}{            }\PYG{n}{Equals}\PYG{p}{,}
+\PYG{+w}{            }\PYG{l+s+sd}{/// The / character used to define elements}
+\PYG{+w}{            }\PYG{n}{ForwardSlash}\PYG{p}{,}
+\PYG{+w}{            }\PYG{l+s+sd}{/// The \PYGZob{} character used to signify the start of}
+\PYG{+w}{            }\PYG{l+s+sd}{/// an elements children.}
+\PYG{+w}{            }\PYG{n}{OpenBrace}\PYG{p}{,}
+\PYG{+w}{            }\PYG{l+s+sd}{/// The ( character used to signify the start of}
+\PYG{+w}{            }\PYG{l+s+sd}{/// the attributes for an element, or start of a}
+\PYG{+w}{            }\PYG{l+s+sd}{/// function call}
+\PYG{+w}{            }\PYG{n}{OpenParam}\PYG{p}{,}
+\PYG{+w}{            }\PYG{l+s+sd}{/// The \PYGZsh{} character used to define CSS ids for an}
+\PYG{+w}{            }\PYG{l+s+sd}{/// element.}
+\PYG{+w}{            }\PYG{n}{Pound}\PYG{p}{,}
+\PYG{+w}{            }\PYG{l+s+sd}{/// The \PYGZdq{} character used for values within an}
+\PYG{+w}{            }\PYG{l+s+sd}{/// attributes field.}
+\PYG{+w}{            }\PYG{n}{Quote}\PYG{p}{,}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

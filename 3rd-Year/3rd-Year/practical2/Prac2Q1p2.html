@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>prac2 q1 partii</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="./classes/ball.html"></script> 
+	<script src="./classes/utils.html"></script>
+	<script type="text/javascript">
+		
+		$(document).ready(function() {
+
+			var canvas = document.getElementById("myCanvas");
+			
+			var context = canvas.getContext("2d");
+			var canvasWidth = canvas.width;
+			var canvasHeight = canvas.height;
+			
+			ball = new Ball(10);
+			var xPos = 0;
+			var yPos = 0;
+			var tPos = 0;
+			
+			function animate () {
+				context.clearRect(0, 0, canvasWidth, canvasHeight);
+				window.requestAnimationFrame(animate, canvas);
+				
+				xPos = 10*Math.cos(tPos*Math.PI/180);
+				yPos = 20*Math.sin(tPos*Math.PI/180);
+				ball.x = xPos*10 + 320;
+				ball.y = canvasHeight - (yPos*10 + 240);
+				tPos = tPos + 1;
+				ball.draw(context);
+				
+			};
+			window.requestAnimationFrame(animate, canvas);
+		});
+	</script>
+</head>  
+<body>
+	<canvas id="myCanvas" width="640" height="480"
+	style="border:1px solid #000000;">
+</canvas>
+</body>
+</html>

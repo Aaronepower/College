@@ -1,0 +1,202 @@
+<!--Author: Joachim Pietsch
+//Date 24/10/2013
+//Changes: this version has added further elements to the menu
+and updates global variables.
+-->
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Drawing App version 2</title>
+	<link rel="stylesheet" type="text/css" href="buttons.css" />
+	<link rel="stylesheet" type="text/css" href="menu.css" />
+  </head>
+
+	<script>
+
+	var canvas;
+	var context;
+	var strokeSize = 1;
+	var strokeColor = '#999999';
+	var fillColor = '#ffffff';
+	var bgColor = '#cc99cc';
+	var mouse = {};
+
+	function drawBg(ctx) {
+	  ctx.beginPath();
+	  ctx.rect(0,0,canvas.width,canvas.height);
+	  ctx.fillStyle = bgColor;
+	  ctx.fill();
+	  ctx.closePath();
+	}
+
+	function init() {
+
+	  canvas = document.getElementById('canvas');
+      context = canvas.getContext('2d');
+	  drawBg(context);
+
+
+	  //instantiating our menu
+	  nav = new Menu(document.getElementById('menu'));
+
+	  //Eventlisteners
+	  // to the mousedown element
+	  canvas.addEventListener('mousedown', onMouseDown, false);
+	  //listening to mouseOut element
+      canvas.addEventListener('mouseout', onMouseOut, false);
+	  //removing mouseMove EL
+
+
+      canvas.addEventListener('mouseup', function () {
+        	context.closePath();
+        	canvas.removeEventListener('mousemove', onMouseMove, false);
+      }, false);
+
+    }
+
+	//when the  mouse is down
+	function onMouseDown (e) {
+		e = e || event;
+		mouse = getMouse(e);
+		//adding mouseMove EL
+        canvas.addEventListener('mousemove', onMouseMove, false);
+		context.lineWidth = strokeSize;
+		context.strokeStyle = strokeColor;
+		context.beginPath();
+        context.moveTo(mouse.x, mouse.y);
+	}
+
+
+	//stops drawing line when the mouse is outside the canvas and
+	//moved back in while still clicked.
+	function onMouseOut (e) {
+		console.log("mouse is outside the canvas");
+		context.closePath();
+		canvas.removeEventListener('mousemove', onMouseMove, false);
+	}
+
+
+	//while the mouse is moving
+	function onMouseMove (e) {
+		//monitoring mouseClicks;
+		e = e || event;
+		console.log(e);
+		mouse = getMouse(e);
+        context.lineWidth = strokeSize;
+		context.strokeStyle = strokeColor;
+		context.lineTo(mouse.x, mouse.y);
+        context.stroke();
+    }
+
+
+    //utility function to get the Mouse position
+    function  getMouse(e) {
+    	e = e || event;
+	    var rect = this.canvas.getBoundingClientRect();
+	        return {
+	          x: e.clientX - rect.left,
+	          y: e.clientY - rect.top
+			}
+	}
+
+
+
+	//Menu constructor: uses event delegation
+ 	function Menu(elem) {
+
+
+			var myCanvas = canvas;
+  			this.onDraw = function() {
+  					console.log("drawing");
+						strokeSize -=  10;
+						strokeColor = '#999999';
+  			};
+
+  			this.onErase = function(){
+					console.log("erasing");
+						strokeSize +=  10;
+						strokeColor = bgColor;
+			};
+
+			this.onEraseAll = function(){
+					console.log("erasing All");
+					drawBg(context);
+			};
+
+  			var self = this;
+
+			elem.onclick = function(e) {
+			   var target = e && e.target || event.srcElement;
+			   var action = target.getAttribute('btn-action');
+			    if (action) {
+			      self["on"+action]();
+			   		}
+
+
+			elem.onchange = function(e) {
+				   	//checking for strokeValue range Slider
+				   	if (target.id == "strokeSize")	{
+				   		console.log("clicked on strokeSize" );
+				   		console.log(target.value);
+				   		strokeSize = parseInt(target.value);
+				   	}
+
+				   	//checking for strokeValue range Slider
+				   	if (target.id == "strokecolor")	{
+				   		console.log("clicked on stroke color" );
+				   		strokeColor = target.value;
+				   		console.log(strokeColor);
+				   	}
+
+				   	//checking for strokeValue range Slider
+				   	if (target.id == "fillcolor")	{
+				   		console.log("clicked on fill color" );
+				   		fillColor = target.value;
+				   		console.log(strokeColor);
+				   	}
+
+				   	//checking for strokeValue range Slider
+				   	if (target.id == "bgcolor")	{
+				   		console.log("clicked on bg color" );
+				   		bgColor = target.value;
+				   		console.log(bgColor);
+				   		drawBg(context);
+				   	}
+
+			   	}
+
+			}
+    }
+
+
+	</script>
+
+  <body onload="init()">
+
+	<h1>Click and draw with the mouse.</h1>
+
+    <canvas id="canvas" width="600" height="400" style="border:1px solid #d3d3d3 bgcolor ;"></canvas>
+
+
+	<div id="menu">
+	<ul >
+		  <li><a class="button" btn-action="Draw">Draw</a></li>
+		  <li><a class="button" btn-action="Erase">Erase</a></li>
+		  <li><a class="button" btn-action="EraseAll">Erase All</a></li>
+	</ul>
+	<form>
+		Stroke Size:
+		<input type='range'  id='strokeSize' step="1" min="1" max="10" title="stroke Size"  value="1"/>
+	  	Stroke Color:
+	  	<input type='color' id='strokecolor' / value="#ffffff" />
+	  	Fill Color:
+	  	<input type='color' id='fillcolor' / value="#ffffff" />
+	  	Bg Color:
+	  	<input type='color' id='bgcolor' / value="#ffffff" />
+
+  	</form>
+  </div>
+  </body>
+</html>

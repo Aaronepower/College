@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ClickingApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="staticClicks">Clicks:</string>
+    <string name="numOfClicks">0</string>
+    <string name="clickButton">Click</string>
+    <string name="clearButton">Clear</string>
+    <string name="saveButton">Save</string>
+    <string name="leaderButton">Leaderboards</string>
+    <string name="clearMessage">Are you sure you want to clear your score?</string>
+    <string name="saveMessage">Are you sure you want to save your score? It will reset your score</string>
+    <string name="ok">Yes</string>
+    <string name="cancel">No</string>
+
+</resources>

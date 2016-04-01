@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{n+nt}{doctype} html
+    \PYG{n+nt}{html}
+        \PYG{n+nt}{body}
+            \PYG{n+nt}{p} Hello World!
+\end{Verbatim}
