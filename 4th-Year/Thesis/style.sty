@@ -5,8 +5,6 @@
 \addbibresource{bib/BackgroundResearch.bib}
 \addbibresource{bib/LiteratureReview.bib}
 \addbibresource{bib/Design.bib}
-\addbibresource{bib/TestingAndAnalysis.bib}
-
 
 \usepackage[a4paper, total={6in, 8in}]{geometry}
 \usepackage{graphicx}
@@ -20,24 +18,22 @@
 \usepackage{import}
 \usepackage{tikz}
 \usepackage{tikz-qtree}
-\usetikzlibrary{positioning}
-\usepackage{minted}
-\usepackage{breakcites}
+
 \newcommand{\languageName}{Polly}
 \newcommand{\languageExt}{.polly}
 \newcommand{\you}{the user}
 \newcommand{\You}{The user}
-\newcommand{\compiler}{compiler}
+\newcommand{\compiler}{transcompiler}
 \newcommand{\hierarchy}{Chomsky-Schützenberger hierarchy}
-\newcommand{\thesisTitle}{\languageName{}: A Templating language built in Rust.}
+\newcommand{\thesisTitle}{\languageName{}: A Templating language in Rust.}
 \renewcommand{\baselinestretch}{1.4}
 % \renewcommand{\familydefault}{\sfdefault}
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \setlength{\headheight}{15pt}
-\lhead{\nouppercase{\leftmark}}
-\rhead{\thepage}
+\lhead{\thesisTitle{}}
+\rhead{Aaron Power}
 
 \emergencystretch=1em
 

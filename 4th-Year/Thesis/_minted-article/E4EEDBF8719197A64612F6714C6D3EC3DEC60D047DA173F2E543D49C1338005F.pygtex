@@ -1,9 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{+w}{        }\PYG{k}{pub}\PYG{+w}{ }\PYG{k}{enum}\PYG{+w}{ }\PYG{n}{Token}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
-\PYG{+w}{            }\PYG{n}{Html}\PYG{p}{(}\PYG{n}{Element}\PYG{p}{),}
-\PYG{+w}{            }\PYG{n}{Text}\PYG{p}{(}\PYG{n+nb}{String}\PYG{p}{),}
-\PYG{+w}{            }\PYG{n}{Variable}\PYG{p}{(}\PYG{n+nb}{String}\PYG{p}{),}
-\PYG{+w}{            }\PYG{n}{CompCall}\PYG{p}{(}\PYG{n}{ComponentCall}\PYG{p}{),}
-\PYG{+w}{            }\PYG{n}{Function}\PYG{p}{(}\PYG{n}{FunctionCall}\PYG{p}{),}
-\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
-\end{Verbatim}

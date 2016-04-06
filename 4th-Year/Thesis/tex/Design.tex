@@ -2,67 +2,73 @@
 
 \subsection{Introduction}
 
-In order to decide the syntax of a \acro{HTML} markup language, it is important to examine previous languages, and build on top of their strengths, and try and address their weaknesses. The three main sources used are Jade, a templating built for Node.JS\cite{Jade}, Handlebars.js, a templating language originally built in JavaScript, and has been ported to various other languages, and finally \LaTeX{}, which while not a web markup language, has been in use since 1985\cite{LaTeX}, and thus has a lot more maturity in it's syntax decisions.
-
-In addition to research into markup languages, research was conducted by  examining articles written about templating languages by it's users, especially articles that were opposed the use of templating languages. This is important to understand templating languages within a larger context, and whether they solve what they set to solve\cite{AgainstTemplating}\cite{LinkedinTemplating}. The main goal of \languageName{}, and it's syntax, is to show a clear, concise, and consistent language providing separation of logic that dictates the form, from content.
+In order to decide the syntax of a \acro{HTML} markup language, it is important to examine previous languages, and build on top of their strengths, and try and address their weaknesses. The three main sources used are Jade, a templating built for Node.JS\cite{Jade}, Handlebars.js, a templating language originally built in JavaScript, and has been ported to various other languages, and finally \LaTeX{}, which while not a web markup language, has been in use since 1985\cite{LaTeX}, and thus has a lot more maturity in it's syntax decisions. In addition to research into markup languages, research was done looking into articles written about templating languages by it's users, especially articles that were against the use of templating languages, as it's important to understand templating languages within a larger context, and whether they solve what they set to solve\cite{AgainstTemplating}\cite{LinkedinTemplating}. The main goal of \languageName{}, and it's syntax, is to show a clear, concise, and consistent language providing separation of logic that dictates the form, from content.
 
 \subsection{Jade}
 
-Unlike handlebars, Jade features syntactic sugar for writing \acro{HTML}. Jade removes explicit tags, and instead relies on whitespace to determine hierarchy. This allows it to be very terse, lightweight, and simple. A basic example is seen in Figure~\ref{fig:JadeHelloWorld}. However its whitespace dependency can lead to a lot of cases where it's syntax starts to become a hindrance. A simple example of this is shown in Figure~\ref{fig:JadeProblem} where you have paragraph with ``Hello World!'', and within the paragraph the ``World!'' is underlined, and the ``!'' is in bold. This example is arbitrary, but it shows Jade's problems with handling text. Another distinct example of Jade's problem with text is how it handles paragraphs of text, shown in Figure~\ref{fig:JadeMultiLine}. 
+Unlike handlebars, Jade features syntactic sugar for writing html. Jade removes explicit tags, and instead relies on whitespace to determine hierarchy. This allows it to be very terse, lightweight, and simple. A basic example is seen in Figure~\ref{fig:JadeHelloWorld}. However its whitespace dependency can lead to a lot of cases where it's syntax starts to become a hindrance. A simple example of this is shown in Figure~\ref{fig:JadeProblem} where you have paragraph with ``Hello World!'', and within the paragraph the ``World!'' is underlined, and the ``!'' is in bold. This example is arbitrary, but it shows Jade's problems with handling text. Another distinct example of Jade's problem with text is how it handles multi line text, shown in Figure~\ref{fig:JadeMultiLine}. 
 
-Jade assumes the first word in a given line is the name of the element. This results in the use of a special character to allow for paragraphs of text, but this can lead to unusual indentation required to make use of inline text elements. E.g. \textit{``<u>, <strong>''}. While \you{} can write normal \acro{HTML} elements within the text elements, this leads to inconsistency within the syntax of the user's program. Even with those two solutions \you{} would still have to make sure that if a newline character is required in the paragraph, that the text maintains the same level of indentation.
+Jade assumes the first word in a given line is the name of the element. This resulted in a special character to allow for multi line text, but this can lead to weird indentation to use inline text elements. While \you{} can write normal html elements in the text elements, this solution however leads to inconsistency in the syntax. Even with those two solutions \you{} would still have to make sure that if there is a newline character, that it maintains the same level of indentation. With Jade you have to conform to it's style, rather than have an ideal format suiting to the content. Jade's control flow statements are for the most part the same as JavaScript. Which in the context of being a templating on top of a JavaScript engine, but the file also contained html to solve the previous problem, leads to a file containing three different syntaxes in an attempt to solve the problem of separating logic from content, and in reality only moves the problem into Jade's files, and syntax.
 
-With Jade you have to conform to it's style, rather than have an ideal format suiting to the content. Jade's control flow statements however, are for the most part the same as JavaScript even allowing arbitrary JavaScript execution. Which could be considered a positive in the context of being a templating language on top of a JavaScript engine. However, the template may also contain \acro{HTML} to solve the previous problem of having inline text elements, leads to a template containing three different syntaxes in an attempt to solve the problem of separating logic from content, and in reality only moves the problem into Jade's files, and syntax.
-
-\begin{figure}[!htbp]
-    \Large{\textbf{\acro{HTML}}}\normalsize{}
-    \begin{minted}{html}
+\begin{figure}[ht!]
+    \large{\acro{HTML}}\normalsize{}
+    \begin{verbatim}
     <!DOCTYPE html>
     <html>
       <body>
         <p>Hello World!</p>
       </body>
     </html>
-    \end{minted}
-    \Large{\textbf{Jade}}\normalsize{}
-    \begin{minted}{jade}
+    \end{verbatim}
+    \large{Jade}\normalsize{}
+    \begin{verbatim}
     doctype html
     html
         body
             p Hello World!
-    \end{minted}
+    \end{verbatim}
     \caption{Hello World in Jade.}
     \label{fig:JadeHelloWorld}
 \end{figure}
 
-\begin{figure}[!htbp]
-    \Large{\textbf{\acro{HTML}}}\normalsize{}
-    \begin{minted}{html}
+\begin{figure}[ht!]
+    \large{\acro{HTML}}\normalsize{}
+    \begin{verbatim}
     <!DOCTYPE html>
     <html>
       <body>
         <p>Hello <u>World<strong>!</strong></u></p>
       </body>
     </html>
-    \end{minted}
-    \Large{\textbf{Jade}}\normalsize{}
-    \begin{minted}{jade}
+    \end{verbatim}
+    \large{Jade}\normalsize{}
+    \begin{verbatim}
     doctype html
     html
         body
             p Hello
                 u World
                     strong !
-    \end{minted}
+    \end{verbatim}
     \caption{Text problems in Jade.}
     \label{fig:JadeProblem}
 \end{figure}
-\begin{figure}[!htbp]
-    \Large{\textbf{\acro{HTML}}}\normalsize{}
-    \begin{minted}{html}
+
+
+\begin{figure}[ht!]
+    \large{\acro{HTML}}\normalsize{}
+    \begin{verbatim}
     <!DOCTYPE html>
     <html>
       <body>
+        <p>
+          Sing to me of the man, Muse, the man of twists and turns... 
+          driven time and again off course, once he had plundered the
+          hallowed heights of <strong>Troy</strong>. Many cities of 
+          men he saw and learned their minds, many pains he suffered, 
+          heartsick on the open sea, fighting to save his life and 
+          bring his comrades home.
+        </p>
         <p>
           Sing to me of the man, Muse, the man of twists and turns... 
           driven  time and again off course, once he had plundered
@@ -73,12 +79,20 @@ With Jade you have to conform to it's style, rather than have an ideal format su
         </p>
       </body>
     </html>
-    \end{minted}
-    \Large{\textbf{Jade}}\normalsize{}
-    \begin{minted}{jade}
+    \end{verbatim}
+    \large{Jade}\normalsize{}
+    \begin{verbatim}
     doctype html
     html
       body
+        p.
+          Sing to me of the man, Muse, 
+          the man of twists and turns ... 
+          driven time and again off course, once he had plundered 
+          the hallowed heights of <strong>Troy</strong>. 
+          Many cities of men he saw and learned their minds, 
+          many pains he suffered, heartsick on the open sea, 
+          fighting to save his life and bring his comrades home. 
         p
           | Sing to me of the man, Muse, 
           | the man of twists and turns ... 
@@ -88,55 +102,59 @@ With Jade you have to conform to it's style, rather than have an ideal format su
           | . Many cities of men he saw and learned their minds, 
           | many pains he suffered, heartsick on the open sea, 
           | fighting to save his life and bring his comrades home. 
-    \end{minted}
+    \end{verbatim}
     \caption{Multi line problems with Jade.}
     \label{fig:JadeMultiLine}
 \end{figure}
-\newpage
-\subsection{Handlebars}
-Handlebars syntax, is at opposites with Jade, meaning it's syntax is verbose. While it has been designed as a \acro{HTML} templating language, it is in reality language agnostic. As long as \you{} is careful, Handlebars could work on top of any language including \languageName{}. Handlebars doesn't allow for ``explicit'' logic, calling itself a ``logic-less'' language. Where logic is based on the data type of variables passed to the compiler. It also has a feature named ``helper functions'', which allow for custom logic on a variable, and these must be written in an outside JavaScript(or equivalent language that has a port of Handlebars) file, which can provide a good separation of logic from content. Despite being self proclaimed ``logic-less'', in reality it still uses a lot of logic, just being solely based on the object. Even if \you{} can't write ``if 5 > 10 \{...\}'', \you{} can still write ``\{\{\#if variable\}\}...\{\{/if\}\}'', making the logic feel very overly verbose.
 
-\begin{figure}[!htbp]
-    \Large{\textbf{\acro{HTML}}}\normalsize{}
-    \begin{minted}{html}
+
+\subsection{Handlebars}
+
+Handlebars syntax, is at opposites with Jade, it's syntax is verbose, while designed as a \acro{HTML} templating language, it is in reality language agnostic. As long as \you{} is careful, Handlebars could work on top of any language including \languageName{}. Handlebars doesn't allow for ``explicit'' logic, calling itself a ``logic-less'' language. Where logic is based on the data type of variables passed to the compiler. It also has a feature named ``helper functions'', which allow for custom logic on a variable, and these must be written in an outside JavaScript(or equivalent language that has a port of Handlebars) file, which can provide a good separation of logic from content.
+
+Despite being self proclaimed ``logic-less'', in reality it still uses a lot of logic, just being solely based on the object. Even if \you{} can't write ``if 5 > 10 \{...\}'', \you{} can still write ``\{\{\#if variable}}...\{\{/if\}\}'', making the logic feel very overly verbose.
+
+\begin{figure}[ht!]
+    \large{\acro{HTML}}\normalsize{}
+    \begin{verbatim}
     <!DOCTYPE html>
     <html>
       <body>
         <p>Hello World!</p>
       </body>
     </html>
-    \end{minted}
-    \Large{\textbf{Handlebars}}\normalsize{}
-    \begin{minted}{html}
+    \end{verbatim}
+    \large{Handlebars}\normalsize{}
+    \begin{verbatim}
     <!DOCTYPE html>
     <html>
       <body>
         <p>{{text}}</p>
       </body>
     </html>
-    \end{minted}
-    \Large{\textbf{\acro{JSON}}}\normalsize{}
-    \begin{minted}{json}
+    \end{verbatim}
+    \large{JSON}\normalsize{}
+    \begin{verbatim}
     {
         "text": "Hello World!"
     }
-    \end{minted}
+    \end{verbatim}
     \caption{Hello World in Handlebars.}
     \label{fig:HandlebarsHelloWorld}
 \end{figure}
 
-\begin{figure}[!htbp]
-    \Large{\textbf{\acro{HTML}}}\normalsize{}
-    \begin{minted}{html}
+\begin{figure}[ht!]
+    \large{\acro{HTML}}\normalsize{}
+    \begin{verbatim}
     <!DOCTYPE html>
     <html>
       <body>
         <p>Hello <u>World<strong>!</strong></u></p>
       </body>
     </html>
-    \end{minted}
-    \Large{\textbf{Handlebars}}\normalsize{}
-    \begin{minted}{html}
+    \end{verbatim}
+    \large{Handlebars}\normalsize{}
+    \begin{verbatim}
     <!DOCTYPE html>
     <html>
       <body>
@@ -145,27 +163,26 @@ Handlebars syntax, is at opposites with Jade, meaning it's syntax is verbose. Wh
       </body>
       {{/if}}
     </html>
-    \end{minted}
-    \Large{\textbf{\acro{JSON}}}\normalsize{}
-    \begin{minted}{json}
+    \end{verbatim}
+    \large{JSON}\normalsize{}
+    \begin{verbatim}
     {
         "hello": "Hello",
         "world": "World",
         "mark": "!"
     }
-    \end{minted}
+    \end{verbatim}
     \caption{Verboseness in Handlebars.}
     \label{fig:HandlebarsProblem}
 \end{figure}
-\newpage
+
 
 \subsection{\LaTeX{}}
 
-\LaTeX{}'s base syntax is very lightweight, and isn't whitespace significant unlike Jade, making ideal for use within \acro{HTML}, and is the main inspiration for the syntax for \languageName{}. However \LaTeX{} doesn't have built in conditionals or logic, usually requiring \you{} to use third-party packages, to make use of various features.
+\LaTeX{}'s base syntax is very lightweight, and text first unlike Jade, making ideal for use within \acro{HTML}, and is the main inspiration for the syntax for \languageName{}. [Unfinished]
 
-\begin{figure}[!htbp]
-  \Large{\textbf{\LaTeX{}}}\normalsize{}
-  \begin{minted}{latex}
+\begin{figure}[ht!]
+  \begin{verbatim}
   \section{Hello World}
   Sing to me of the man, Muse, 
   the man of twists and turns ... 
@@ -174,281 +191,61 @@ Handlebars syntax, is at opposites with Jade, meaning it's syntax is verbose. Wh
   Many cities of men he saw and learned their minds, 
   many pains he suffered, heartsick on the open sea, 
   fighting to save his life and bring his comrades home.
-  \end{minted}
+  \end{verbatim}
   \caption{Sample \LaTeX{} program.}
 \end{figure}
-\newpage
 
 \section{Syntax of \languageName{}}
 
 \subsection{Elements}
-An element is any element starting with a ``/'' character. The reason for the ``/'' over \LaTeX{}'s ``\textbackslash'' is because the character is used for ending elements in \acro{HTML}, and provides a familiar character to \you{}. The children of an element are defined within ``{}'' braces. The use of braces to show hierarchy is much more succinct, than \acro{HTML} end tags, and also provides a lot more versatility than being whitespace dependent.
+All elements are started with a ``/'' character. The  reason for the ``/'' over \LaTeX{}'s ``\\'' is because the character is used for in elements in \acro{HTML}, and provides a familiar character's being used for creating elements. The children of an element are defined within ``{}'' braces. The use of braces to show hierarchy is much more succinct, than \acro{HTML} end tags, and also provides a lot more versatility than being whitespace dependent.
 
-\begin{figure}[!htbp]
-    \Large{\textbf{\languageName{}}}\normalsize{}
-    \begin{verbatim}
-    /html {
-        /body {
-            /h1 {
-                Hello World!
-            }
-        }
-    }
-  \end{verbatim}
-  \caption{Hello World in \languageName{}}
-\end{figure}
-\newpage
-\subsection{Attributes}
-Attributes are defined within ``()'' parameters. \You{} can enter either single word attributes, like ``required'', or ``contenteditable'', or key value pairings, like ``style'' or ``href''. An element with an attribute field doesn't have to also have braces. This was mainly designed for void elements such as ``img'', or ``link'', but can be for any element.
-
-\begin{figure}[!htbp]
-    \Large{\textbf{\languageName{}}}\normalsize{}
+\begin{figure}[ht!]
   \begin{verbatim}
   /html {
       /body {
-          /a(contenteditable href="index.html") {
+          /p {
               Hello World!
           }
-          /img(src="image.jpg")
       }
   }
   \end{verbatim}
-    \Large{\textbf{\acro{HTML}}}\normalsize{}
-
-  \begin{minted}{html}
-  <html>
-      <body>
-          <a contenteditable href="index.html" >
-              Hello World!
-          </a>
-          <img src="image.jpg"/>
-      </body>
-  </html>
-  \end{minted}
   \caption{Hello World in \languageName{}}
 \end{figure}
-\newpage
+
 \subsection{Classes, and ids}
-Since both the ``class'', and ``id'' attributes are the most commonly used attributes in \acro{HTML}, they are given a syntactic sugar in a similar form to \acro{CSS} selectors. This also provides a very familiar syntax to \you{}, and an easy way to write \acro{HTML} selectors.
+Since both the class, and id attribute are the most commonly used attributes in \acro{HTML}, they are given a shortcut syntax in the form of \acro{CSS} selectors. This also provides a very familiar syntax to \you{}, and an easy way to write \acro{HTML} selectors. This feature is mostly inspired by Jade, which has this syntax. 
 
-\begin{figure}[!htbp]
-  \Large{\textbf{\languageName{}}}\normalsize{}
+\begin{figure}[ht!]
   \begin{verbatim}
   /html {
       /body {
-          /h1.class.second-class#ident {
+          /p.article#helloWorld {
               Hello World!
           }
       }
   }
   \end{verbatim}
-  \Large{\textbf{\acro{HTML}}}\normalsize{}
-
-  \begin{minted}{html}
-  <html>
-      <body>
-          <h1 class="class second-class" id="ident" >
-              Hello World!
-          </h1>
-      </body>
-  </html>
-  \end{minted}
   \caption{Classes, and ids in \languageName{}}
 \end{figure}
 
-\newpage
-\subsection{Variables}
-Variables are defined with the ``@'' character Example: ``@foo''. Variables require a prefix in order to differentiate \you{}'s intent. The compiler will search the first level of the json for the name provided. To be able to access values that are nested within objects, \you{} can use the JavaScript syntax of accessing objects Example: ``@foo.bar''. As \languageName{} is purely ``logic-less'', you cannot define your own variables, or perform conditions on two variables. \languageName{} will only utilize the \acro{JSON} given. All declarations and conditions must be done beforehand, and also added to the \acro{JSON} file passed in.
 
-\begin{figure}[!htbp]
-    \Large{\textbf{\languageName{}}}\normalsize{}
+\subsection{Attributes}
+This feature is also similar to it's equivalent in Jade, where attributes are defined within ``()'' parameters. It is also possible to enter the ``class'', and ``id'' attribute here if desired. \You{} can enter either single word attributes, like ``required'', or ``contenteditable'', or key value pairings, like ``style'' or ``href''. An element with ``()'' doesn't have to also have braces. This was mainly designed for void elements like ``img'', or ``link'', but can be for any element.
+
+\begin{figure}[ht!]
   \begin{verbatim}
-    /html {
-        /body {
-            Hello @name! You're from @country.region, @country.name!
-        }
-    }
-  \end{verbatim}
-    \Large{\textbf{\acro{JSON}}}\normalsize{}
-
-  \begin{minted}{json}
-      {
-          "name": "Jane",
-          "country": {
-              "name": "Ireland",
-              "region": "Dublin"
+  /html {
+      /body {
+          /a.article#helloWorld(contenteditable href="index.html") {
+              Hello World!
           }
       }
-  \end{minted}
-    \Large{\textbf{\acro{HTML}}}\normalsize{}
-
-  \begin{minted}{html}
-    <html>
-        <body>
-            Hello Jane! You're from Dublin, Ireland!
-        </body>
-    </html>
-  \end{minted}
-  \caption{Variables in \languageName{}}
-\end{figure}
-\newpage
-\subsection{Components}
-Components are simply reusable blocks of markup. Components can be passed in variables, and will only read from the variables passed in. This allows them to be easily reusable, and imported into many templates, without worrying about which variables are in scope. It is also good practice to name-space your component, so you don't import it into a template, with a component that shares that name. Components can also be attached to a element, replacing the body of text.
-
-\begin{figure}[!htbp]
-    \Large{\textbf{\languageName{}}}\normalsize{}
-  \begin{verbatim}
-    /html {
-        /body {
-            /h1&component(@person.name){}
-        }
-    }
-
-    &component(@name) {
-      Hello @name!
-    }
+  }
   \end{verbatim}
-
-    \Large{\textbf{\acro{JSON}}}\normalsize{}
-    \begin{minted}{json}
-        {
-            "person": {
-                "name": "Joe"
-            }
-        }
-    \end{minted}
-
-    \Large{\textbf{\acro{HTML}}}\normalsize{}
-    \begin{minted}{html}
-        <html>
-            <body>
-                <h1> Hello Joe! </h1>
-            </body>
-        </html>
-    \end{minted}
-\end{figure}
-\newpage
-\subsection{Escaping.}
-While \languageName{} is smart enough not to require that every operator be used as an operator. As \languageName{} would be unwieldy if everytime \you{} used a ``.'' the \compiler{} tried to make it an operator instead of a full stop. There are a few symbols however, that start contexts that could happen at any point, which also could be wanted for user facing text. For example if \you{} were showing an email address the @ symbol is reserved for variable use. So there is also the ``\textbackslash{}'' operator, which will escape the next symbol, so \you{} can still use those symbols for user facing text.
-\begin{figure}[!htbp]
-    \Large{\textbf{\languageName{}}}\normalsize{}
-  \begin{verbatim}
-    /html {
-        /body {
-            /h1{johndoe\@email.com}
-        }
-    }
-  \end{verbatim}
-
-    \Large{\textbf{\acro{HTML}}}\normalsize{}
-    \begin{minted}{html}
-        <html>
-            <body>
-                <h1>johndoe@email.com</h1>
-            </body>
-        </html>
-    \end{minted}
-\end{figure}
-\newpage
-\subsection{Locales}
-One of the key features of \languageName{} is easy localisation. This is done using components. \languageName{} achieves that by making use of an implied directory structure. So currently the \languageName{} code base would look as shown in Figure~\ref{fig:directory}. In the Rust API, \you{} can then specify which \you{} want to render so calling ``\verb|template.render("en")|'' would generate the English version of the website, and ``\verb|template.render("de")|''will render the German version, etc. Where the locales are located, or the requirement for having locales can be overwritten, if desired. The example shown in Figure~\ref{fig:pollyLocalisation} is a trivial example, but since components can be more than just text, \you{} can have it so different locales get totally different content, or CSS rules, so \you{} could have it in the English version the text left-aligned, where in Arabic it is right-aligned.
-
-\begin{figure}[!htbp]
-    \begin{verbatim}
-        templates/
-            src/
-                index.polly
-            locales/
-                en/
-                    index.polly
-                de/
-                    index.polly
-                ...repeat as necessary
-    \end{verbatim}
-    \caption{Locales directory structure}
-    \label{fig:directory}
+  \caption{Hello World in \languageName{}}
 \end{figure}
 
-\begin{figure}[!htbp]
-    \Large{\textbf{index.polly}}\normalsize{}
-    \begin{verbatim}
-        /html {
-            /body {
-                /h1&locales.hello-world{}
-            }
-        }
-    \end{verbatim}
-    \Large{\textbf{en/index.polly}}\normalsize{}
-    \begin{verbatim}
-        &hello-world {
-            Hello World!
-        }
-    \end{verbatim}
-    \Large{\textbf{de/index.polly}}\normalsize{}
-    \begin{verbatim}
-        &hello-world {
-            Hallo Welt!
-        }
-    \end{verbatim}
-    \Large{\textbf{English \acro{HTML}}}\normalsize{}
-    \begin{verbatim}
-        <html>
-            <body>
-                <h1> Hello World! </h1>
-            </body>
-        </html>
-    \end{verbatim}
-    \Large{\textbf{German \acro{HTML}}}\normalsize{}
-    \begin{verbatim}
-        <html>
-            <body>
-                <h1> Hallo Welt! </h1>
-            </body>
-        </html>
-    \end{verbatim}
-    \caption{Localisation in \languageName{}}
-    \label{fig:pollyLocalisation}
-\end{figure}
-\newpage
 
-\subsection{Functions}
-Functions are the only form of logic in \languageName{}.  The logic of the functions themselves can only be defined in Rust. This provides the advantage of having the functions logic compiled with the program, allowing for the Rust compiler to optimise them, before they are called. This is instead of having \languageName{} performing the parsing, and optimising at run-time. 
-
-\You{} can register those functions to the template, and can call them from \languageName{}. There is also a set of ``standard'' functions, that cover the basic logic for a templating language, such as conditionals, and iteration. Functions can be passed components and variables. Functions take in named arguments only. \You{} who defines the function gets access to the full AST representation of any components, and \acro{JSON}. Allowing for powerful functions, that can take advantage of their context.
-
-For example, the ``std.each'' function takes a \acro{JSON} array, and also a component to use to generate the html for each entry. Since we have access to both how the \acro{JSON} is structured, and the Component's AST, we can have the function behave differently based on that. In Figure~\ref{fig:functionExample} it is shown how it works with an array of single items, and a component with a single argument. 
-
-What if the component had multiple arguments, and what if the \acro{JSON} was an array of array's, or an array of \acro{JSON} objects? With the ability to look at the AST, \languageName{} can have so that if the array's within the array are of the same length, and the components arguments are of the same length, then it can map each entry in the array to the argument in the component.
-
-\begin{figure}[!htbp]
-    \Large{\textbf{\languageName{}}}\normalsize{}
-    \begin{verbatim}
-        /html {
-            /body {
-                /ul {
-                    $std.each(array = @items, component = &list-item)
-                }
-            }
-        }
-    \end{verbatim}
-    \Large{\textbf{\acro{JSON}}}\normalsize{}
-    \begin{minted}{json}
-        {
-            "items": ["Item One", "Item Two", "Item Three"]
-        }
-    \end{minted}
-    \Large{\textbf{\acro{HTML}}}\normalsize{}
-    \begin{minted}{html}
-        <html>
-            <body>
-                <ul>
-                    <li>Item One</li>
-                    <li>Item Two</li>
-                    <li>Item Three</li>
-                </ul>
-            </body>
-        </html>
-    \end{minted}
-    \caption{Functions in \languageName{}}
-    \label{fig:functionExample}
-\end{figure}
+\subsection{Variables, and Resources}
+Variables are defined with the ``@'' character, as to distinguish identifiers from regular words. Variables can also be attached to elements, these are called resources. This varaible will be the entire contents 

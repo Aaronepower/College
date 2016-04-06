@@ -1,9 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-      \PYG{p}{\PYGZob{}}
-          \PYG{n+nt}{\PYGZdq{}name\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Jane\PYGZdq{}}\PYG{p}{,}
-          \PYG{n+nt}{\PYGZdq{}country\PYGZdq{}}\PYG{p}{:} \PYG{p}{\PYGZob{}}
-              \PYG{n+nt}{\PYGZdq{}name\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Ireland\PYGZdq{}}
-              \PYG{l+s+s2}{\PYGZdq{}region\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Dublin\PYGZdq{}}
-          \PYG{p}{\PYGZcb{}}
-      \PYG{p}{\PYGZcb{}}
-\end{Verbatim}

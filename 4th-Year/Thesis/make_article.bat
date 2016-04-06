@@ -1,5 +1,5 @@
 @echo off
-pdflatex article -shell-escape
+pdflatex article -quiet
 biber article -q 
-pdflatex article -shell-escape
-pdflatex article -shell-escape
+pdflatex article -quiet
+pdflatex article
