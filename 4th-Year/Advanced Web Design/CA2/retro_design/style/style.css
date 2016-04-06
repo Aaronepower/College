@@ -53,6 +53,10 @@ p, li {
     margin-top: 8.5rem;
 }
 
+.hidden {
+    display: hidden;
+}
+
 .container {
     z-index: 1;
 }
@@ -94,9 +98,7 @@ video#bgvid {
 }
 
 .rgb-shadows {
-    text-shadow: 
-    5px 0px 1px rgba(255, 0, 0, 0.5),
-    -5px 0px 1px rgba(0, 255, 0, 0.5);
+    text-shadow: 1.5px 1.5px 0 red, -1.5px -1.5px 0 cyan;
 }
 
 .black-bg {

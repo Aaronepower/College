@@ -1,0 +1,67 @@
+.container
+    h1.twelve.columns.row Image Creation
+    .creation-container.twelve.columns.row(ng-controller="CanvasController as ctrl")
+        .canvas-container.seven.columns
+            canvas#hidden-canvas
+            canvas#image-canvas.canvas(ng-mousedown="ctrl.isMouseDown = true"
+            						   ng-mouseup="ctrl.isMouseDown = false"
+            						   ng-mousemove="ctrl.mousemove($event)")
+            canvas#filter-canvas.canvas
+        aside.canvas-options.five.columns
+            .row.twelve.columns
+                h3.centered Options
+            .row.twelve.columns
+                label.five.columns(for="file") Image file:
+                input.seven.columns#file(name="file" 
+                                         type="file"
+                                         accept="image/*"
+                                         onchange="angular.element(this).scope().ctrl.fileChange()")
+            .row.twelve.columns
+                label.five.columns#size-label(for="size") Size: {{ctrl.size}}px
+                input.seven.columns.setting#size(name="size"
+                                                 type="range"
+                                                 ng-model="ctrl.size"
+                                                 ng-change="ctrl.sizeChange(ctrl.size)")
+            .row.twelve.columns
+                label.five.columns#opacity-label(for="opacity") Opacity: {{ctrl.opacity * 100| number:0}}%
+                input.seven.columns.setting#opacity(name="opacity" 
+                                                    type="range"
+                                                    ng-model="ctrl.opacity"
+                                                    ng-change="ctrl.opacityChange(ctrl.opacity)"
+                                                    min="0"
+                                                    max="1"
+                                                    step="0.01")
+            .row.twelve.columns
+                h4.row.twelve.columns Filter
+                .row.twelve.columns
+                    label.five.columns#filter-label(for="filter") Colour:
+                    input.five.columns.setting.colour-box#filter(name="filter"
+                    											 ng-model="ctrl.colour"
+                    											 ng-change="ctrl.filterColourChange(ctrl.colour)"
+                    											 value="#000000"
+                    											 type="color")
+                    input.two.columns.setting.clear#clear(name="clear"
+                    									  type="button"
+                    									  ng-click="ctrl.clearFilter()"
+                    									  value="Clear")
+                .row.twelve.columns
+                    label.five.columns#filter-opacity-label(for="filter-opacity") Filter Opacity: {{ctrl.filterOpacity * 100| number:0}}%
+                    input.seven.columns.setting#filter-opacity(name="filter-opacity"
+                                                               type="range"
+                                                               ng-model="ctrl.filterOpacity"
+                                                               ng-change="ctrl.filterOpacityChange(ctrl.filterOpacity)"
+                                                               min="0"
+                                                               max="1"
+                                                               value="0"
+                                                               step="0.01")
+            .row.twelve.columns
+                h4.row.twelve.columns Tags
+                p.row.twelve.columns Separate by comma.
+                input.setting.row.twelve.columns#tags(type="text"
+                									  ng-model="ctrl.tags"
+                									  placeholder="sunny, autumn, mountains")
+            .row.twelve.columns
+                input.twelve.columns.setting.button-primary#upload(name="Upload"
+                												   ng-click="ctrl.upload()"
+													               type="submit"
+													               value="Upload")

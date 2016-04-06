@@ -1,6 +1,4 @@
 "use strict";
-
-// From: http://stackoverflow.com/questions/22003491/animating-canvas-to-look-like-tv-noise
 var bg = document.getElementById('bg-canvas'),
 ctx = bg.getContext('2d');
 bg.width = window.innerWidth
@@ -14,3 +12,17 @@ for (var i = 0; i < bg.height; i++) {
         ctx.stroke()
     }
 }
+
+document.querySelector('#work').addEventListener('click', function(event) {
+    let bgvid = document.querySelector('#bgvid')
+    let videoSources = bgvid.querySelectorAll('.bgvideo')
+    const videoTypes = ['.webm', '.mp4']
+    for (var i = 0; i < videoSources.length; i++) {
+        let video = videoSources[i]
+        video.src = 'tv_turn_off'+videoTypes[i]
+    }
+    bgvid.loop = false
+    bgvid.load()
+    bgvid.play()
+    document.querySelector('.landing').className += ' hidden'
+})

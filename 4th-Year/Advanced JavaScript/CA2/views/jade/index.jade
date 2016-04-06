@@ -1,0 +1,21 @@
+doctype html
+html(ng-app="CA2")
+  head
+    title= title
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+    link(rel='stylesheet', href='/stylesheets/normalize.css')
+    link(rel='stylesheet', href='/stylesheets/skeleton.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css')
+    script(src = '/bower_components/angular/angular.min.js')
+    script(src = '/bower_components/angular-route/angular-route.min.js')
+    script(type='text/javascript', src='/javascripts/RouteProvider.js' defer)
+    script(type='text/javascript', src='/javascripts/Services/DynamicImageService.js' defer)
+    script(type='text/javascript', src='/javascripts/Services/UserService.js' defer)
+    script(type='text/javascript', src='/javascripts/Controllers/CanvasController.js' defer)
+    script(type='text/javascript', src='/javascripts/Controllers/FormController.js' defer)
+    script(type='text/javascript', src='/javascripts/Controllers/HomeController.js' defer)
+  body
+    div(ng-view)

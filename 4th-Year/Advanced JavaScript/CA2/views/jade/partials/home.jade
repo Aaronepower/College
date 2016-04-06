@@ -1,0 +1,19 @@
+.container
+    .row.twelve.columns
+        h1.eight.columns
+            a(href="#/") Home
+        .four.columns#user-buttons
+            a.six.columns(href="#/register") Register
+            a.six.columns(href="#/login") Login
+        a.four.columns(href="#/canvas")
+            button#upload-button.button-primary Upload
+    .row.twelve.columns
+        .eight.columns(ng-controller="HomeController as ctrl")
+            &nbsp;
+            img.image.four.columns(ng-repeat="image in ctrl.images"
+                                   ng-src="image.data"
+                                   data-tags="image.tags")
+        .four.columns
+            h2.twelve.columns Tags
+            p#tag-listing.twelve.columns
+            
